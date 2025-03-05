@@ -1,10 +1,10 @@
 #include "YN.h"
 
-bool isValidYN(YN value) {
+bool isValidYN(const YN& value) {
 	return value > YN::YN_UNKNOWN && value < YN::YN_COUNT;
 }
 
-void printYN(YN choice) {
+void printYN(const YN& choice) {
 	if (!isValidYN(choice)) {
 		std::cout << "Not a valid choice!\n";
 		return;

@@ -2,7 +2,7 @@
 
 #include "Fruit.h"
 
-void printFruit(Fruit fruit) {
+void printFruit(const Fruit& fruit) {
 	std::cout << "Fruit name: " << fruit.name << std::endl;
 
 	std::cout << "Fruit color: ";

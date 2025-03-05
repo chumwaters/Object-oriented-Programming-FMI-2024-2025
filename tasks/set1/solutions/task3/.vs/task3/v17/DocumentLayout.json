@@ -1,0 +1,134 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|D:\\OOP-2023-2024\\set1\\solutions\\task3\\Fruit.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|solutionrelative:Fruit.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|D:\\OOP-2023-2024\\set1\\solutions\\task3\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|D:\\OOP-2023-2024\\set1\\solutions\\task3\\Fruit.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|solutionrelative:Fruit.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|D:\\OOP-2023-2024\\set1\\solutions\\task3\\YN.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|solutionrelative:YN.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|D:\\OOP-2023-2024\\set1\\solutions\\task3\\YN.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|solutionrelative:YN.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|D:\\OOP-2023-2024\\set1\\solutions\\task3\\Color.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|solutionrelative:Color.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|D:\\OOP-2023-2024\\set1\\solutions\\task3\\Color.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{05CBF3A7-BA42-41AA-96F6-DA4A905E2120}|task3.vcxproj|solutionrelative:Color.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Color.h",
+              "DocumentMoniker": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\Color.h",
+              "RelativeDocumentMoniker": "Color.h",
+              "ToolTip": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\Color.h",
+              "RelativeToolTip": "Color.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-05T13:52:53.822Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Color.cpp",
+              "DocumentMoniker": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\Color.cpp",
+              "RelativeDocumentMoniker": "Color.cpp",
+              "ToolTip": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\Color.cpp",
+              "RelativeToolTip": "Color.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-05T13:41:43.492Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "YN.h",
+              "DocumentMoniker": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\YN.h",
+              "RelativeDocumentMoniker": "YN.h",
+              "ToolTip": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\YN.h",
+              "RelativeToolTip": "YN.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-05T13:56:08.734Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "YN.cpp",
+              "DocumentMoniker": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\YN.cpp",
+              "RelativeDocumentMoniker": "YN.cpp",
+              "ToolTip": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\YN.cpp",
+              "RelativeToolTip": "YN.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-05T13:43:12.323Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Fruit.h",
+              "DocumentMoniker": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\Fruit.h",
+              "RelativeDocumentMoniker": "Fruit.h",
+              "ToolTip": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\Fruit.h",
+              "RelativeToolTip": "Fruit.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-05T13:57:40.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Fruit.cpp",
+              "DocumentMoniker": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\Fruit.cpp",
+              "RelativeDocumentMoniker": "Fruit.cpp",
+              "ToolTip": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\Fruit.cpp",
+              "RelativeToolTip": "Fruit.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-05T13:40:49.663Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "main.cpp",
+              "DocumentMoniker": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\main.cpp",
+              "RelativeDocumentMoniker": "main.cpp",
+              "ToolTip": "D:\\OOP-2023-2024\\set1\\solutions\\task3\\main.cpp",
+              "RelativeToolTip": "main.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-05T16:34:04.359Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

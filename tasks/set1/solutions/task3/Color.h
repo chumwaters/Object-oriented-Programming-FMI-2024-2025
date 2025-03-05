@@ -12,6 +12,6 @@ enum Color {
 	COLOR_COUNT
 };
 
-bool isValidColor(Color value);
+bool isValidColor(const Color& value);
 
-void printColor(Color c);
+void printColor(const Color& c);

@@ -1,10 +1,10 @@
 #include "Color.h"
 
-bool isValidColor(Color value) {
+bool isValidColor(const Color& value) {
 	return value > Color::COLOR_UNKNOWN && value < Color::COLOR_COUNT;
 }
 
-void printColor(Color c) {
+void printColor(const Color& c) {
 	if (!isValidColor(c)) {
 		std::cout << "Not a valid color!\n";
 		return;

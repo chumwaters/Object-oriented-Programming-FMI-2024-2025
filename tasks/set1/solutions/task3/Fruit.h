@@ -11,7 +11,7 @@ struct Fruit {
 	YN tropical;
 };
 
-void printFruit(Fruit fruit);
+void printFruit(const Fruit& fruit);
 
 void printArrayOfFruits(Fruit** fruits, int size);
 

@@ -9,6 +9,6 @@ enum YN {
 	YN_COUNT
 };
 
-bool isValidYN(YN value);
+bool isValidYN(const YN& value);
 
-void printYN(YN choice);
+void printYN(const YN& choice);
