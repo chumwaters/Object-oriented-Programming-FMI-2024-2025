@@ -2,18 +2,23 @@
 
 #include <iostream>
 
+#define _CRT_SECURE_NO_WARNINGS_
+
 struct Address {
 	char city[32];
 	unsigned int postCode;
 	char street[64];
 	unsigned int streetNumber;
 	char streetCharacter; 
-	short entrance;
-	short floor;
-	short apartment;
+	unsigned int entrance;
+	unsigned int floor;
+	unsigned int apartment;
 };
 
-void readAddress(Address& a);
+void read(Address& a);
 
-void printAddress(const Address& a);
+void print(const Address& a);
 
+char generateRandomChar();
+
+void generateRandom(Address& a);
