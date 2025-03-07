@@ -18,8 +18,14 @@ struct Student {
 	unsigned short* examsScores;
 };
 
-void readStudent(Student& s);
+void read(Student& s);
 
-void printStudent(const Student& s);
+void print(const Student& s);
 
 void printExamsScores(const Student& s);
+
+void generateRandomFN(Student& s);
+
+void generateRandom(Student& s);
+
+void clear(Student& s);
