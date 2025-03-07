@@ -13,6 +13,8 @@ enum Major {
 
 bool isValidMajor(const Major& value);
 
-void readMajor(Major& m);
+void read(Major& m);
 
-void printMajor(const Major& m);
+void print(const Major& m);
+
+void generateRandom(Major& m);
