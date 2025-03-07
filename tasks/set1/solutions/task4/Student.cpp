@@ -81,8 +81,10 @@ void generateRandomFN(Student& s) {
             break;
         case INFORMATION_SYSTEMS:
             snprintf(s.facultyNumber, 10, "%d", 42000 + rand() % 1000);
+            break;
         case SOFTWARE_ENGINEERING:
             snprintf(s.facultyNumber, 10, "%d", 32000 + rand() % 1000);
+            break;
     }
 }
 
