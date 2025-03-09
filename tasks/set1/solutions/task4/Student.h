@@ -28,4 +28,8 @@ void generateRandomFN(Student& s);
 
 void generateRandom(Student& s);
 
+double calcAverageScore(const Student& s);
+
+Student* filterAboveThreshold(Student* students, int size, int& filteredSize, unsigned short threshold);
+
 void clear(Student& s);
