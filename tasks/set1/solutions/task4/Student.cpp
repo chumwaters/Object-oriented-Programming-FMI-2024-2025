@@ -124,7 +124,40 @@ void generateRandom(Student& s) {
 
 }
 
+double calcAverageScore(const Student& s) {
+    int sum = 0;
+    for (int i = 0; i < s.passedExamsCnt; i++) {
+        sum += s.examsScores[i];
+    }
+
+    return (double)sum / (double)s.passedExamsCnt;
+}
+
+Student* filterAboveThreshold(Student* students, int size, int& filteredSize, unsigned short threshold) { 
+    for (int i = 0; i < size; i++) {
+        if (calcAverageScore(students[i]) >= threshold) {
+            filteredSize++;
+        }
+    }
+
+    Student* result = new (std::nothrow) Student[filteredSize];
+    if (!result) {
+        std::cerr << "Failed to allocate memory!\n";
+
+        return nullptr;
+    }
+
+    int j = 0;
+    for (int i = 0; i < size; i++) {
+        if (calcAverageScore(students[i]) >= threshold) {
+            result[j++] = students[i];
+        }
+    }
+
+    return result;
+}
+
 void clear(Student& s) {
 	delete[] s.examsScores;
-
 }
+
