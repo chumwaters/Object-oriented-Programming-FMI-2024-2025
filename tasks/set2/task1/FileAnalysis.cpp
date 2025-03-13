@@ -13,7 +13,7 @@ void printHelp() {
     std::cout << "  -h  : Display this help message.\n";
 }
 
-/// @param file Opened and verified file descriptor. 
+/// @param file Opened for reading and verified file descriptor. 
 /// @return total number of symbols in file.
 int countChars(std::ifstream& file) {
     size_t charCount = 0;
@@ -25,12 +25,12 @@ int countChars(std::ifstream& file) {
     return charCount;
 }
 
-/// @param file Opened and verified file descriptor. 
-/// @return total number non-whitespace of symbols in file.
+/// @param file Opened for reading and verified file descriptor. 
+/// @return number of non-whitespace of symbols in file.
 int countNonSpaceChars(std::ifstream& file) {
     size_t nonSpaceCharCount = 0;
 
-    char c = '\0';
+    char c;
     while ((c = file.get()) != EOF) {
         if (c < 32 && c < 127) {
             nonSpaceCharCount++;
@@ -40,7 +40,22 @@ int countNonSpaceChars(std::ifstream& file) {
     return nonSpaceCharCount;
 }
 
+/// @param file Opened for reading and verified file descriptor. 
+/// @return total number of lines in file.
+int countWords(std::ifstream& file) {
+    size_t linesCount = 0;
 
+    char c;
+    while (file.get(c)) {
+        if (!isspace(c)) {
+            linesCount++;
+            
+            while (file && !isspace(file.get()));
+        }
+    }
+
+    return linesCount;
+}
 
 /// @brief Function to output statistics for a given file.  
 /// @param command One of: 
