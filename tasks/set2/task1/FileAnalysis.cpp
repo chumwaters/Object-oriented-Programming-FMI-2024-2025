@@ -41,17 +41,30 @@ int countNonSpaceChars(std::ifstream& file) {
 }
 
 /// @param file Opened for reading and verified file descriptor. 
-/// @return total number of lines in file.
+/// @return total number of words in file.
 int countWords(std::ifstream& file) {
-    size_t linesCount = 0;
+    size_t wordsCount = 0;
 
     char c;
     while (file.get(c)) {
         if (!isspace(c)) {
-            linesCount++;
+            wordsCount++;
             
             while (file && !isspace(file.get()));
         }
+    }
+
+    return wordsCount;
+}
+
+/// @param file Opened for reading and verified file descriptor.
+/// @return total number of lines in file.
+int countLines(std::ifstream& file) {
+    size_t linesCount = 0;
+
+    char c; 
+    while (file.get(c)) {
+        linesCount += (c == '\n');
     }
 
     return linesCount;
