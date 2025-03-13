@@ -70,6 +70,23 @@ int countLines(std::ifstream& file) {
     return linesCount;
 }
 
+/// @param file Opened for reading and verified file descriptor.
+/// @return number of non-empty lines in file.
+int countNonEmptyLines(std::ifstream& file) {
+    size_t nonEmptyLinesCount = 0;
+
+    char c;
+    while (file.get(c)) {
+        if (!isspace(c)) {
+            nonEmptyLinesCount++;
+
+            while (file && file.get() != '\n');
+        }
+    }
+
+    return nonEmptyLinesCount;
+}
+
 /// @brief Function to output statistics for a given file.  
 /// @param command One of: 
 /// -c: for number of symbols in the file
