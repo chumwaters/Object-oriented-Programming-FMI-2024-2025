@@ -107,7 +107,7 @@ void printCharDistribution(std::ifstream& file, int numberOfChars) {
 
     for (int i = 33; i < 127; i++) {
         if (charFrequency[i] > 0) {
-            std::cout << "'" << (char)i << "' : " << (double)charFrequency[i] / (double) numberOfChars << '\n';
+            std::cout << "'" << (char)i << "' : " << (double)charFrequency[i] / (double)numberOfChars << '\n';
         }
     }
 }
