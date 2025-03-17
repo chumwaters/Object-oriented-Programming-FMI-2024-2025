@@ -109,4 +109,35 @@ void analyzeFile(const char* command, const char* filename) {
         std::cerr << "Couldn't open file " << filename << " for reading!\n";
         return;
     }
+
+    if (strcmp(command, "-c") || strcmp(command, "-s")) {
+        std::cout << "Number of characters in file: ";
+        countChars(file);
+        std::cout << '\n';
+    }
+    if (strcmp(command, "-C") || strcmp(command, "-s")) {
+        std::cout << "Number of non-whitespace characters in file: ";
+        countNonSpaceChars(file);
+        std::cout << '\n';
+    }
+    if (strcmp(command, "-w") || strcmp(command, "-s")) {
+        std::cout << "Number of words in file: ";
+        countWords(file);
+        std::cout << '\n';
+    }
+    if (strcmp(command, "-l") || strcmp(command, "-s")) {
+        std::cout << "Number of lines in file: ";
+        countLines(file);
+        std::cout << '\n';
+    }
+    if (strcmp(command, "-L") || strcmp(command, "-s")) {
+        std::cout << "Number of non-empty lines in file: ";
+        countNonEmptyLines(file);
+        std::cout << '\n';
+    }
+    if (strcmp(command, "-h")) {
+        printHelp();
+    }
+
+    file.close();
 }
