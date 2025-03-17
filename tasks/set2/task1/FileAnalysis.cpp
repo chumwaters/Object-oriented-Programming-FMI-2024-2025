@@ -32,7 +32,7 @@ int countNonSpaceChars(std::ifstream& file) {
 
     char c;
     while ((c = file.get()) != EOF) {
-        if (c < 32 && c < 127) {
+        if (c > 32 && c < 127) {
             nonSpaceCharCount++;
         }
     }
@@ -87,6 +87,24 @@ int countNonEmptyLines(std::ifstream& file) {
     return nonEmptyLinesCount;
 }
 
+/// @param file Opened for reading and verified file descriptor.
+void printCharDistribution(std::ifstream& file) {
+    int charFrequency[128] = { 0 };
+
+    char c;
+    while (file.get(c)) {
+        if (!isspace(c)) {
+            charFrequency[c]++;
+        }
+    }
+
+    for (int i = 33; i < 127; i++) {
+        if (charFrequency[i] > 0) {
+            std::cout << "'" << (char)i << "' : " << charFrequency[i] << '\n';
+        }
+    }
+}
+
 /// @brief Function to output statistics for a given file.  
 /// @param command One of: 
 /// -c: for number of symbols in the file
@@ -109,31 +127,39 @@ void analyzeFile(const char* command, const char* filename) {
         std::cerr << "Couldn't open file " << filename << " for reading!\n";
         return;
     }
+    
+    int numberOfWords = countWords(file); // saving in advance - will need for character distribution (-s) aswell as -w
+    file.clear();
+    file.seekg(0, std::ios::beg);
 
-    if (strcmp(command, "-c") || strcmp(command, "-s")) {
-        std::cout << "Number of characters in file: ";
-        countChars(file);
-        std::cout << '\n';
+    if (strcmp(command, "-c") == 0 || strcmp(command, "-s") == 0) {
+        std::cout << "Number of characters in file: " << countChars(file) << '\n';
+        file.clear();   
+        file.seekg(0, std::ios::beg);
+
     }
-    if (strcmp(command, "-C") || strcmp(command, "-s")) {
-        std::cout << "Number of non-whitespace characters in file: ";
-        countNonSpaceChars(file);
-        std::cout << '\n';
+    if (strcmp(command, "-C") == 0 || strcmp(command, "-s") == 0) {
+        std::cout << "Number of non-whitespace characters in file: " << countNonSpaceChars(file) << '\n';
+        file.clear();
+        file.seekg(0, std::ios::beg);
     }
-    if (strcmp(command, "-w") || strcmp(command, "-s")) {
-        std::cout << "Number of words in file: ";
-        countWords(file);
-        std::cout << '\n';
+    if (strcmp(command, "-w") == 0 || strcmp(command, "-s") == 0) {
+        std::cout << "Number of words in file: " << numberOfWords << '\n';    
     }
-    if (strcmp(command, "-l") || strcmp(command, "-s")) {
-        std::cout << "Number of lines in file: ";
-        countLines(file);
-        std::cout << '\n';
+    if (strcmp(command, "-l") == 0 || strcmp(command, "-s") == 0) {
+        std::cout << "Number of lines in file: " << countLines(file) << '\n';
+        file.clear();
+        file.seekg(0, std::ios::beg);
     }
-    if (strcmp(command, "-L") || strcmp(command, "-s")) {
-        std::cout << "Number of non-empty lines in file: ";
-        countNonEmptyLines(file);
-        std::cout << '\n';
+    if (strcmp(command, "-L") == 0 || strcmp(command, "-s") == 0) {
+        std::cout << "Number of non-empty lines in file: " << countNonEmptyLines(file) << '\n';
+        file.clear();
+        file.seekg(0, std::ios::beg);
+    }
+
+    if (strcmp(command, "-s") == 0) {
+        std::cout << "Statistics for distribution of characters in the file: \n";
+        printCharDistribution(file);
     }
 
     file.close();
