@@ -94,7 +94,8 @@ int countNonEmptyLines(std::ifstream& file) {
 }
 
 /// @param file Opened for reading and verified file descriptor.
-void printCharDistribution(std::ifstream& file) {
+/// @param numberOfChars total number of characters in file, calculated with countChars
+void printCharDistribution(std::ifstream& file, int numberOfChars) {
     int charFrequency[128] = { 0 };
 
     char c;
@@ -106,7 +107,7 @@ void printCharDistribution(std::ifstream& file) {
 
     for (int i = 33; i < 127; i++) {
         if (charFrequency[i] > 0) {
-            std::cout << "'" << (char)i << "' : " << charFrequency[i] << '\n';
+            std::cout << "'" << (char)i << "' : " << (double)charFrequency[i] / (double) numberOfChars << '\n';
         }
     }
 }
@@ -134,15 +135,12 @@ void analyzeFile(const char* command, const char* filename) {
         return;
     }
     
-    int numberOfWords = countWords(file); // saving in advance - will need for character distribution (-s) aswell as -w
+    int numberOfChars = countChars(file); // saving in advance - will need for character distribution (-s) aswell as -c
     file.clear();
     file.seekg(0, std::ios::beg);
 
     if (strcmp(command, "-c") == 0 || strcmp(command, "-s") == 0) {
-        std::cout << "Number of characters in file: " << countChars(file) << '\n';
-        file.clear();   
-        file.seekg(0, std::ios::beg);
-
+        std::cout << "Number of characters in file: " << numberOfChars << '\n';
     }
     if (strcmp(command, "-C") == 0 || strcmp(command, "-s") == 0) {
         std::cout << "Number of non-whitespace characters in file: " << countNonSpaceChars(file) << '\n';
@@ -150,7 +148,7 @@ void analyzeFile(const char* command, const char* filename) {
         file.seekg(0, std::ios::beg);
     }
     if (strcmp(command, "-w") == 0 || strcmp(command, "-s") == 0) {
-        std::cout << "Number of words in file: " << numberOfWords << '\n';    
+        std::cout << "Number of words in file: " << countWords(file) << '\n';    
     }
     if (strcmp(command, "-l") == 0 || strcmp(command, "-s") == 0) {
         std::cout << "Number of lines in file: " << countLines(file) << '\n';
@@ -165,7 +163,7 @@ void analyzeFile(const char* command, const char* filename) {
 
     if (strcmp(command, "-s") == 0) {
         std::cout << "Statistics for distribution of characters in the file: \n";
-        printCharDistribution(file);
+        printCharDistribution(file, numberOfChars);
     }
 
     file.close();
