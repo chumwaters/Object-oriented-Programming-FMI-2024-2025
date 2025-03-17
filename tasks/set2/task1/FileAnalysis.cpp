@@ -135,9 +135,25 @@ void analyzeFile(const char* command, const char* filename) {
         countNonEmptyLines(file);
         std::cout << '\n';
     }
-    if (strcmp(command, "-h")) {
-        printHelp();
-    }
 
     file.close();
+}
+
+int main(int argc, char* argv[]) {
+    if (argc < 2 || argc > 3) {
+        printHelp();
+        return 1;
+    }
+    if (strcmp(argv[1], "-h") == 0) {
+        printHelp();
+        return 0;
+    }
+    if (argc != 3) {
+        std::cerr << "Missing filename!\n";
+        return 1;
+    }
+
+    analyzeFile(argv[1], argv[2]);
+
+    return 0;
 }
