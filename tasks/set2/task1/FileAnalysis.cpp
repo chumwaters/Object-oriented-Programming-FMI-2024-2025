@@ -61,10 +61,16 @@ int countWords(std::ifstream& file) {
 /// @return total number of lines in file.
 int countLines(std::ifstream& file) {
     size_t linesCount = 0;
+    bool isEmpty = true;
 
     char c; 
     while (file.get(c)) {
+        isEmpty = false;
         linesCount += (c == '\n');
+    }
+
+    if (!isEmpty && file.eof() && c != '\n') {
+        linesCount++;
     }
 
     return linesCount;
