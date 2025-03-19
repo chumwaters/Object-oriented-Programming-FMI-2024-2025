@@ -13,7 +13,7 @@ void printHelp() {
     std::cout << "  -h  : Display this help message.\n";
 }
 
-/// @param file Opened for reading and verified file descriptor. 
+/// @param file : Opened for reading and verified file. 
 /// @return total number of symbols in file.
 int countChars(std::ifstream& file) {
     size_t charCount = 0;
@@ -25,7 +25,7 @@ int countChars(std::ifstream& file) {
     return charCount;
 }
 
-/// @param file Opened for reading and verified file descriptor. 
+/// @param file : Opened for reading and verified file. 
 /// @return number of non-whitespace of symbols in file.
 int countNonSpaceChars(std::ifstream& file) {
     size_t nonSpaceCharCount = 0;
@@ -40,7 +40,7 @@ int countNonSpaceChars(std::ifstream& file) {
     return nonSpaceCharCount;
 }
 
-/// @param file Opened for reading and verified file descriptor. 
+/// @param file : Opened for reading and verified file. 
 /// @return total number of words in file.
 int countWords(std::ifstream& file) {
     size_t wordsCount = 0;
@@ -57,7 +57,7 @@ int countWords(std::ifstream& file) {
     return wordsCount;
 }
 
-/// @param file Opened for reading and verified file descriptor.
+/// @param file : Opened for reading and verified file.
 /// @return total number of lines in file.
 int countLines(std::ifstream& file) {
     size_t linesCount = 0;
@@ -76,7 +76,7 @@ int countLines(std::ifstream& file) {
     return linesCount;
 }
 
-/// @param file Opened for reading and verified file descriptor.
+/// @param file : Opened for reading and verified file.
 /// @return number of non-empty lines in file.
 int countNonEmptyLines(std::ifstream& file) {
     size_t nonEmptyLinesCount = 0;
@@ -93,8 +93,8 @@ int countNonEmptyLines(std::ifstream& file) {
     return nonEmptyLinesCount;
 }
 
-/// @param file Opened for reading and verified file descriptor.
-/// @param numberOfChars total number of characters in file, calculated with countChars
+/// @param file : Opened for reading and verified file.
+/// @param numberOfChars : total number of characters in file, calculated with countChars
 void printCharDistribution(std::ifstream& file, int numberOfChars) {
     int charFrequency[128] = { 0 };
 
@@ -113,16 +113,14 @@ void printCharDistribution(std::ifstream& file, int numberOfChars) {
 }
 
 /// @brief Function to output statistics for a given file.  
-/// @param command One of: 
-/// -c: for number of symbols in the file
-/// -C: for number of non-whitespace symbols in the file
-/// -w: for number of words in the file
-/// -l: for number of lines in the file
-/// -L: for number of non-empty lines in the file
-/// -s: for all of the above and in addition, outputs statistics for each non-whitespace characters, 
-/// regarding their part (in percentage) of all characters.
-/// -h: to print a help-message using the printHelp() function
-/// @param filename: name of the file, for which to output statistic 
+/// @param command : One of: 
+///   -c  : Count all characters in the file.;
+///   -C  : Count non-whitespace printable characters.;
+///   -w  : Count words in the file.;
+///   -l  : Count lines in the file.; 
+///   -L  : Count non-empty lines in the file.;
+///   -s  : Display statistics including character frequency.;
+///   -h  : Display help message.;
 void analyzeFile(const char* command, const char* filename) {
     if (!filename) {
         std::cerr << "Bad name!\n";
@@ -139,31 +137,42 @@ void analyzeFile(const char* command, const char* filename) {
     file.clear();
     file.seekg(0, std::ios::beg);
 
+    bool isCorrectCommand = false;
+
     if (strcmp(command, "-c") == 0 || strcmp(command, "-s") == 0) {
+        isCorrectCommand = true;
         std::cout << "Number of characters in file: " << numberOfChars << '\n';
     }
     if (strcmp(command, "-C") == 0 || strcmp(command, "-s") == 0) {
+        isCorrectCommand = true;
         std::cout << "Number of non-whitespace characters in file: " << countNonSpaceChars(file) << '\n';
         file.clear();
         file.seekg(0, std::ios::beg);
     }
     if (strcmp(command, "-w") == 0 || strcmp(command, "-s") == 0) {
+        isCorrectCommand = true;
         std::cout << "Number of words in file: " << countWords(file) << '\n';    
     }
     if (strcmp(command, "-l") == 0 || strcmp(command, "-s") == 0) {
+        isCorrectCommand = true;
         std::cout << "Number of lines in file: " << countLines(file) << '\n';
         file.clear();
         file.seekg(0, std::ios::beg);
     }
     if (strcmp(command, "-L") == 0 || strcmp(command, "-s") == 0) {
+        isCorrectCommand = true;
         std::cout << "Number of non-empty lines in file: " << countNonEmptyLines(file) << '\n';
         file.clear();
         file.seekg(0, std::ios::beg);
     }
-
     if (strcmp(command, "-s") == 0) {
+        isCorrectCommand = true;
         std::cout << "Statistics for distribution of characters in the file: \n";
         printCharDistribution(file, numberOfChars);
+    }
+
+    if (!isCorrectCommand) {
+        std::cerr << command << " is not a valid command! Use -h for a list of valid commands.\n";
     }
 
     file.close();
