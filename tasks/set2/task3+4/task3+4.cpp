@@ -61,8 +61,8 @@ void mergeSortedFiles(std::fstream& file1, std::ifstream& file2) {
 		if (num1 <= num2) {
 			tempFile << num1 << " ";
 			hasNum1 = (file1 >> num1) ? true : false;  // Using implicit check here since conversion to bool 
-													   // doesn't happen automatically in assignment. Alternative is 
-													   // static_cast<bool> -- still not sure which is better.
+			// doesn't happen automatically in assignment. Alternative is 
+			// static_cast<bool> -- still not sure which is better.
 		}
 		else {
 			tempFile << num2 << " ";
