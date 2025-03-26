@@ -1,5 +1,7 @@
 #include "Address.h"
 
+#include <iostream>
+
 void read(Address& a) {
     std::cout << "Enter city: ";
     std::cin.getline(a.city, 32);
@@ -25,6 +27,25 @@ void read(Address& a) {
 
     std::cout << "Enter apartment: ";
     std::cin >> a.apartment;
+}
+
+void readFromFile(Address& a, std::ifstream& file) {
+    file.getline(a.city, 32);
+
+    file >> a.postCode;
+    file.ignore();
+
+    file.getline(a.street, 64);
+
+    file >> a.streetNumber;
+
+    file >> a.streetCharacter;
+
+    file >> a.entrance;
+
+    file >> a.floor;
+
+    file >> a.apartment;
 }
 
 void print(const Address& a) {
