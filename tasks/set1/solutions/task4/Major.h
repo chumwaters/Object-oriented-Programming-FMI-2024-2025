@@ -1,6 +1,6 @@
 #pragma once
 
-#include <iostream>
+#include <fstream>
 
 enum Major {
 	MAJOR_UNKNOWN = -1,
@@ -14,6 +14,8 @@ enum Major {
 bool isValidMajor(const Major& value);
 
 void read(Major& m);
+
+void readFromFile(Major& m, std::ifstream& file);
 
 void print(const Major& m);
 
