@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-/// @brief Function that checks that a file is the format specified in the task and is sorted in non-descending order.
+/// @brief Function that checks that a file is in the format specified in the task and is sorted in non-descending order.
 /// @param filename : Name of file to be checked. 
 /// @return True if file meets the requirements, false otherwise.
 bool isSorted(const char* filename) {
@@ -23,7 +23,7 @@ bool isSorted(const char* filename) {
 
 	while (file >> curr) {
 		if (curr < prev) {
-			std::cerr << "The numbers in file " << filename << " are not in ascending order!\n";
+			std::cerr << "The numbers in file " << filename << " are not in non-descending order!\n";
 			return false;
 		}
 
@@ -39,9 +39,10 @@ bool isSorted(const char* filename) {
 	return true;
 }
 
-/// @brief Function that merges two sorted files file1 and file2 inplace in file1.
-/// @param file1 : Validated file stream opened for reading and writing.
-/// @param file2 : Validated file stream opened for reading.
+/// @brief Function that merges two sorted files file1 and file2 in file1 
+/// by creating and using a temporary file.
+/// @param file1 : Opened for reading and writing and validated file stream .
+/// @param file2 : Opened for reading and validated file stream .
 void mergeSortedFiles(std::fstream& file1, std::ifstream& file2) {
 	std::ofstream tempFile("temp.txt");
 	if (!tempFile) {
@@ -86,9 +87,10 @@ void mergeSortedFiles(std::fstream& file1, std::ifstream& file2) {
 
 	// Overwriting file1 contents with merged content.
 	// First, moving the cursor in file1 back to the beginning:
+	file1.clear();
 	file1.seekp(0);
 	if (!file1) {
-		std::cerr << "Error moving cursor in merge-file!\n";
+		std::cerr << "Error moving write-cursor in merge-file!\n";
 		return;
 	}
 
@@ -99,7 +101,7 @@ void mergeSortedFiles(std::fstream& file1, std::ifstream& file2) {
 		return;
 	}
 
-	// Copying:
+	// Overwriting:
 	int tempNum;
 	while (tempReadFile >> tempNum) {
 		file1 << tempNum << " ";
@@ -128,11 +130,18 @@ int main(int argc, char* argv[]) {
 		std::ifstream inputFile(argv[i]);
 		if (!inputFile) {
 			std::cerr << "Couldn't open file " << argv[i] << " for reading!\n";
-			return 1;;
+			return 1;
 		}
 
 		mergeSortedFiles(mergeFile, inputFile);
+		mergeFile.clear();
+		mergeFile.seekg(0);	
+		if (!mergeFile) {
+			std::cerr << "Error moving read-cursor in merge-file to beginning!\n";
+		}
 	}
+
+	mergeFile.close();
 
 	return 0;
 }
