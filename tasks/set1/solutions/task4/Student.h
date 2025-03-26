@@ -3,6 +3,8 @@
 #include "Address.h";
 #include "Major.h";
 
+#include <fstream>
+
 struct Student {
 	char firstName[32];
 	char secondName[32];
@@ -19,6 +21,8 @@ struct Student {
 };
 
 void read(Student& s);
+
+void readFromFile(Student& s, std::ifstream& file);
 
 void print(const Student& s);
 
