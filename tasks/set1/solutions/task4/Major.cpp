@@ -1,5 +1,7 @@
 #include "Major.h"
 
+#include <iostream>
+
 bool isValidMajor(const Major& value) {
 	return value > Major::MAJOR_UNKNOWN && value < Major::MAJOR_COUNT;
 }
@@ -8,6 +10,12 @@ void read(Major& m) {
 	int majorVal = 0;
 	std::cout << "Enter students major (0 - Informatics, 1 - Computer Science, 2 - Information Systems, 3 - Software Engineering): ";
 	std::cin >> majorVal;
+	m = (Major)majorVal;
+}
+
+void readFromFile(Major& m, std::ifstream& file) {
+	int majorVal = 0;
+	file >> majorVal;
 	m = (Major)majorVal;
 }
 
