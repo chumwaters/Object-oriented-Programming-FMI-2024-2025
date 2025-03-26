@@ -1,5 +1,7 @@
 #include "Student.h"
 
+#include <iostream>
+
 void read(Student& s) {
     std::cout << "Enter first name: ";
     std::cin.getline(s.firstName, 32);
@@ -33,7 +35,7 @@ void read(Student& s) {
     std::cout << "Enter the number of passed exams: ";
     std::cin >> s.passedExamsCnt;
 
-    s.examsScores = new unsigned short[s.passedExamsCnt];
+    s.examsScores = new (std::nothrow) unsigned short[s.passedExamsCnt];
 
     if (!s.examsScores) {
         std::cerr << "Failed to allocate memory!\n";
@@ -43,6 +45,41 @@ void read(Student& s) {
     std::cout << "Enter exam scores: ";
     for (int i = 0; i < s.passedExamsCnt; i++) {
         std::cin >> s.examsScores[i];
+    }
+}
+
+void readFromFile(Student& s, std::ifstream& file) {
+    file.getline(s.firstName, 32);
+
+    file.getline(s.secondName, 32);
+
+    file.getline(s.lastName, 32);
+
+    readFromFile(s.address, file);
+
+    readFromFile(s.major, file);
+
+    file.getline(s.facultyNumber, 10);
+
+    file.getline(s.email, 32);
+
+    file >> s.year;
+    file >> s.cohort;
+    file >> s.group;
+
+    file >> s.passedExamsCnt;
+
+    delete[] s.examsScores;
+    s.examsScores = nullptr;
+
+    s.examsScores = new (std::nothrow) unsigned short[s.passedExamsCnt];
+    if (!s.examsScores) {
+        std::cerr << "Failed to allocate memory!\n";
+        return;
+    }
+
+    for (int i = 0; i < s.passedExamsCnt; i++) {
+        file >> s.examsScores[i];
     }
 }
 
