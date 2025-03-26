@@ -1,8 +1,6 @@
 #pragma once
 
-#include <iostream>
-
-#define _CRT_SECURE_NO_WARNINGS_
+#include <fstream>
 
 struct Address {
 	char city[32];
@@ -16,6 +14,8 @@ struct Address {
 };
 
 void read(Address& a);
+ 
+void readFromFile(Address& a, std::ifstream& file);
 
 void print(const Address& a);
 
