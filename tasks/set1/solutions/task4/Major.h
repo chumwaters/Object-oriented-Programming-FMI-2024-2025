@@ -19,4 +19,6 @@ void readFromFile(Major& m, std::ifstream& file);
 
 void print(const Major& m);
 
+void writeToFile(const Major& m, std::ofstream& file);
+
 void generateRandom(Major& m);
