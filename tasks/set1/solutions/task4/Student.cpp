@@ -59,6 +59,8 @@ void readFromFile(Student& s, std::ifstream& file) {
 
     readFromFile(s.major, file);
 
+    file.ignore();
+
     file.getline(s.facultyNumber, 10);
 
     file.getline(s.email, 32);
@@ -69,9 +71,6 @@ void readFromFile(Student& s, std::ifstream& file) {
 
     file >> s.passedExamsCnt;
 
-    delete[] s.examsScores;
-    s.examsScores = nullptr;
-
     s.examsScores = new (std::nothrow) unsigned short[s.passedExamsCnt];
     if (!s.examsScores) {
         std::cerr << "Failed to allocate memory!\n";
@@ -81,6 +80,7 @@ void readFromFile(Student& s, std::ifstream& file) {
     for (int i = 0; i < s.passedExamsCnt; i++) {
         file >> s.examsScores[i];
     }
+    
 }
 
 void print(const Student& s) {
@@ -96,15 +96,32 @@ void print(const Student& s) {
 	std::cout << "Group: " << s.group << '\n';
 	std::cout << "Number of passed exams: " << s.passedExamsCnt << '\n';
 	std::cout << "Passed exams scores: ";
-	printExamsScores(s);
-}
-
-void printExamsScores(const Student& s) {
     if (s.passedExamsCnt > 0) {
         std::cout << s.examsScores[0];
     }
     for (int i = 1; i < s.passedExamsCnt; i++) {
         std::cout << ", " << s.examsScores[i];
+    }
+}
+
+void writeToFile(const Student& s, std::ofstream& file) {
+    file << "Name: " << s.firstName << ' ' << s.secondName << ' ' << s.lastName << '\n';
+    file << "Address: ";
+    writeToFile(s.address, file);
+    file << "Major: ";
+    writeToFile(s.major, file);
+    file << "Faculty number: " << s.facultyNumber << '\n';
+    file << "Email: " << s.email << '\n';
+    file << "Year: " << s.year << '\n';
+    file << "Cohort: " << s.cohort << '\n';
+    file << "Group: " << s.group << '\n';
+    file << "Number of passed exams: " << s.passedExamsCnt << '\n';
+    file << "Passed exams scores: ";
+    if (s.passedExamsCnt > 0) {
+        file << s.examsScores[0];
+    }
+    for (int i = 1; i < s.passedExamsCnt; i++) {
+        file << ", " << s.examsScores[i];
     }
 }
 
