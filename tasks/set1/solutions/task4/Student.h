@@ -38,4 +38,6 @@ Student* filterAboveThreshold(Student* students, int size, int& filteredSize, un
 
 void sortByLastName(Student* students, int size);
 
+void printStraightAToFile(Student* students, int size, std::ofstream& file);
+
 void clear(Student& s);
