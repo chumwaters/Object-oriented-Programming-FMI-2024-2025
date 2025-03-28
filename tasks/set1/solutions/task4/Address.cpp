@@ -52,6 +52,10 @@ void print(const Address& a) {
 	std::cout << "\"" << a.city << "\"" << ", " << a.postCode << ", " << "\"" << "ul. " << a.street << "\"" << ", " << a.streetNumber << ' ' << a.streetCharacter << ", " << "vh. " << a.entrance << ", et." << a.floor << ", ap." << a.apartment << '\n';
 }
 
+void writeToFile(const Address& a, std::ofstream& file) {
+    file << "\"" << a.city << "\"" << ", " << a.postCode << ", " << "\"" << "ul. " << a.street << "\"" << ", " << a.streetNumber << ' ' << a.streetCharacter << ", " << "vh. " << a.entrance << ", et." << a.floor << ", ap." << a.apartment << '\n';
+}
+
 char generateRandomChar() {
     return 'A' + rand() % 26;
 }
