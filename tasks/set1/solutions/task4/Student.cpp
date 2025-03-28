@@ -211,6 +211,20 @@ Student* filterAboveThreshold(Student* students, int size, int& filteredSize, un
     return result;
 }
 
+void sortByLastName(Student* students, int size) {
+    for (int i = 0; i < size - 1; i++) {
+        int currMin = i;
+
+        for (int j = i; j < size; j++) {
+            if (strcmp(students[j].lastName, students[currMin].lastName) < 0) {
+                currMin = j;
+            }
+        }
+
+        std::swap(students[i], students[currMin]);
+    }
+}
+
 void clear(Student& s) {
 	delete[] s.examsScores;
 }
