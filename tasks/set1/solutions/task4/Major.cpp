@@ -29,6 +29,16 @@ void print(const Major& m) {
 	std::cout << majors[(int)m] << '\n';
 }
 
+void writeToFile(const Major& m, std::ofstream& file) {
+	if (!isValidMajor) {
+		std::cout << "Not a valid major!\n";
+		return;
+	}
+
+	static const char* majors[(int)Major::MAJOR_COUNT] = { "Informatics", "Computer Science", "Information Systems", "Software Engineering" };
+	file << majors[(int)m] << '\n';
+}
+
 void generateRandom(Major& m) {
 	m = (Major)((int)Major::INFORMATICS + rand() % (int)Major::MAJOR_COUNT);
 }
