@@ -26,7 +26,7 @@ void readFromFile(Student& s, std::ifstream& file);
 
 void print(const Student& s);
 
-void printExamsScores(const Student& s);
+void writeToFile(const Student& s, std::ofstream& file);
 
 void generateRandomFN(Student& s);
 
