@@ -225,6 +225,19 @@ void sortByLastName(Student* students, int size) {
     }
 }
 
+void printStraightAToFile(Student* students, int size, std::ofstream& file) {
+    int filteredSize = 0;
+    Student* filtered = filterAboveThreshold(students, size, filteredSize, 6);
+
+    sortByLastName(filtered, filteredSize);
+
+    for (int i = 0; i < filteredSize; i++) {
+        file << filtered[i].firstName << ' ' << filtered[i].secondName << ' ' << filtered[i].lastName << ' ' << "\n";
+    }
+
+    delete[] filtered;
+}
+
 void clear(Student& s) {
 	delete[] s.examsScores;
 }
