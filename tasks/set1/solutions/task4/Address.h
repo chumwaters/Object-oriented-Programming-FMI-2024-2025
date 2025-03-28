@@ -19,6 +19,8 @@ void readFromFile(Address& a, std::ifstream& file);
 
 void print(const Address& a);
 
+void writeToFile(const Address& a, std::ofstream& file);
+
 char generateRandomChar();
 
 void generateRandom(Address& a);
