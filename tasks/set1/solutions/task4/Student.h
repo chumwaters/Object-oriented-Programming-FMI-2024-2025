@@ -36,4 +36,6 @@ double calcAverageScore(const Student& s);
 
 Student* filterAboveThreshold(Student* students, int size, int& filteredSize, unsigned short threshold);
 
+void sortByName(Student* students, int size);
+
 void clear(Student& s);
