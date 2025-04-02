@@ -5,7 +5,7 @@
 
 int main() {
 
-	Student s;
+	/*Student s;
 
 	std::ifstream file("test.txt");
 	if (!file) {
@@ -27,13 +27,18 @@ int main() {
 	writeToFile(s, outFile);
 
 	outFile.close();
+	*/ 
 
-	/*Student s1;
+	Student s1;
 	Student s2;
 	Student s3;
+	Student s4;
+	Student s5;
 	generateRandom(s1);
 	generateRandom(s2);
 	generateRandom(s3);
+	generateRandom(s4);
+	generateRandom(s5);
 	print(s1);
 	std::cout << "\nAverage score : " << calcAverageScore(s1);
 	std::cout << "\n\n";
@@ -42,26 +47,25 @@ int main() {
 	std::cout << "\n\n";
 	print(s3);
 	std::cout << "\nAverage score : " << calcAverageScore(s3);
+	std::cout << "\n\n";
+	print(s4);
+	std::cout << "\nAverage score : " << calcAverageScore(s4);
+	std::cout << "\n\n";
+	print(s5);
+	std::cout << "\nAverage score : " << calcAverageScore(s5);
 
-	int size = 3;
-	Student students[3] = { s1, s2, s3 };
+	int size = 5;
+	Student students[5] = { s1, s2, s3, s4, s5 };
 
-	int filteredSize = 0;
-	unsigned short threshold = 5;
-	Student* filtered = filterAboveThreshold(students, size, filteredSize, threshold);
+	std::ofstream outFile("testOut1.txt");
 
-	std::cout << "\n\nStudents with average grade above " << threshold << ":\n";
-	std::cout << "------------------------------------\n";
-	for (int i = 0; i < filteredSize; i++) {
-		print(filtered[i]);
-		std::cout << "\n\n";;
-	}
+	printStraightAToFile(students, size, outFile);
 
-	delete[] filtered;
 	clear(s1);
 	clear(s2);
 	clear(s3);
-	*/
+	clear(s4);
+	clear(s5);
 
 	return 0;
 }
