@@ -173,7 +173,7 @@ void generateRandom(Student& s) {
     }
 
     for (int i = 0; i < s.passedExamsCnt; i++) {
-        s.examsScores[i] = 3 + rand() % 4;
+        s.examsScores[i] = 6;
     }
 
 }
@@ -232,7 +232,8 @@ void printStraightAToFile(Student* students, int size, std::ofstream& file) {
     sortByLastName(filtered, filteredSize);
 
     for (int i = 0; i < filteredSize; i++) {
-        file << filtered[i].firstName << ' ' << filtered[i].secondName << ' ' << filtered[i].lastName << ' ' << "\n";
+        file << filtered[i].firstName << ' ' << filtered[i].secondName << ' ' << filtered[i].lastName << ' ' 
+             << filtered[i].facultyNumber << "\n";
     }
 
     delete[] filtered;
