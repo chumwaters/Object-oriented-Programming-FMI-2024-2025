@@ -1,5 +1,7 @@
 #include "Date.h"
 
+#include <iostream>
+
 bool Date::validateDate(unsigned int day, unsigned int month, int year) {
 	if (month < 1 || month > 12)
 		return false;
@@ -32,4 +34,27 @@ bool Date::setDate(unsigned int day, unsigned int month, int year) {
 	}
 
 	return false;
+}
+
+bool Date::read() {
+	unsigned int day, month;
+	int year;
+	char delim1, delim2;
+
+	std::cout << "Enter sdate (DD/MM/YYYY): ";
+	std::cin >> day >> delim1 >> month >> delim2 >> year;
+	
+	if (!std::cin || delim1 != '/' || delim2 != '/') {
+		std::cin.clear();
+		std::cin.ignore(10000, '\n');
+		std::cout << "Invalid input format!\n";
+		return false;
+	}
+
+	if (!setDate(day, month, year)) {
+		std::cout << "Invalid date.\n";
+		return false;
+	}
+
+	return true;
 }
