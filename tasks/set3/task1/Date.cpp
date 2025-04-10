@@ -58,3 +58,13 @@ bool Date::read() {
 
 	return true;
 }
+
+void Date::print() const {
+	if (day < 10) std::cout << '0';
+	std::cout << day << '/';
+
+	if (month < 10) std::cout << '0';
+	std::cout << month << '/';
+
+	std::cout << year << "\n";
+}
