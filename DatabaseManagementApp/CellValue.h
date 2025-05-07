@@ -15,8 +15,8 @@ enum class DataType {
 /// @brief - tagged union that holds any supported type + NULL
 class CellValue {
 private:
-	DataType type = DataType::NULLTYPE;
-	bool	 null = true;		// explicit NULL flag
+	DataType type_ = DataType::NULLTYPE;
+	bool	 null_ = true;		// explicit NULL flag
 
 	// Single storage of all types (simple, but memory-heavier)
 	long long	intVal_ = 0;
