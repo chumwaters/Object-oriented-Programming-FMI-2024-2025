@@ -32,4 +32,11 @@ public:
 	CellValue(const Date& v) { setDate(v); }
 	CellValue(const std::string& v) { setString(v); }
 	CellValue(std::string&& v) { setString(std::move(v)); }
+
+	// Setters - set value AND type, clear NULL flag
+	void setInt(long long v);
+	void setFloat(double v);
+	void setDate(cosnt date& v);
+	void setString(const std::string& v);
+	void setString(std::string&& v);
 };
