@@ -36,7 +36,7 @@ public:
 	// Setters - set value AND type, clear NULL flag
 	void setInt(long long v);
 	void setFloat(double v);
-	void setDate(const date& v);
+	void setDate(const Date& v);
 	void setString(const std::string& v);
 	void setString(std::string&& v);
 };
