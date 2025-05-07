@@ -20,7 +20,7 @@ private:
 
 	// Single storage of all types (simple, but memory-heavier)
 	long long	intVal_ = 0;
-	double		floatVal = 0.0;
+	double		floatVal_ = 0.0;
 	Date		dateVal_{};
 	std::string strVal_ {};
 
