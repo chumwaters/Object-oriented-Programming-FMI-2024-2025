@@ -1,5 +1,6 @@
 #include "CellValue.h"
 
+// Setters
 void CellValue::setInt(long long v) {
 	type_ = DataType::INT;
 	null_ = false;
@@ -28,4 +29,10 @@ void CellValue::setString(std::string&& v) {
 	type_ = DataType::STRING; 
 	null_ = false; 
 	strVal_ = std::move(v);
+}
+
+// NULL handling
+void CellValue::setNull() {
+	null_ = true;
+	type_ = DataType::NULLTYPE;
 }
