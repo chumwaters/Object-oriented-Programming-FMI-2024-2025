@@ -39,4 +39,8 @@ public:
 	void setDate(const Date& v);
 	void setString(const std::string& v);
 	void setString(std::string&& v);
+
+	// NULL handling
+	void setNull();
+	bool isNull() const { return null_; }
 };
