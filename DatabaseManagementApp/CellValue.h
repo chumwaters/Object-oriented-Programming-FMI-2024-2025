@@ -23,4 +23,13 @@ private:
 	double		floatVal = 0.0;
 	Date		dateVal_{};
 	std::string strVal_ {};
+
+public:
+	// Constructors
+	CellValue() = default;		// null by default
+	CellValue(long long v) { setInt(v); }
+	CellValue(double v) { setFloat(v); }
+	CellValue(const Date& v) { setDate(v); }
+	CellValue(const std::string& v) { setString(v); }
+	CellValue(std::string&& v) { setString(std::move(v)); }
 };
