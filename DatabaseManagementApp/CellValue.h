@@ -52,4 +52,8 @@ public:
 
 	// Type query
 	DataType getType() const { return type_; }
+
+	/// @brief Transforms the cell value into string object
+	/// @return String object obtained from applied transformation
+	std::string toString() const;
 };
