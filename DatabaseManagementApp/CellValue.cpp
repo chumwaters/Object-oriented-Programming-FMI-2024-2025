@@ -57,3 +57,11 @@ std::string CellValue::toString() const {
 		default: return "NULL";
 	}
 }
+
+// containsSubstring(std::string&)
+bool CellValue::containsSubstring(const std::string& sub) const {
+	if (type_ != DataType::STRING)
+		return false;
+
+	return strVal_.find(sub) != std::string::npos;
+}
