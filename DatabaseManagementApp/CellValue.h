@@ -43,4 +43,10 @@ public:
 	// NULL handling
 	void setNull();
 	bool isNull() const { return null_; }
+
+	// Accessors - only call if type matches and !isNull()
+	long long          asInt()   const { return intVal_; }
+	double			   asFloat() const { return floatVal_; }
+	Date			   asDate()  const { return dateVal_; }
+	const std::string& asString() const { return strVal_; }
 };
