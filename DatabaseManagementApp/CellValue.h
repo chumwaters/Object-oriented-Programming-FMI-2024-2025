@@ -78,4 +78,5 @@ public:
 	// Equality – NULLs equal only to NULLs. Types must match.
 	//---------------------------------------------------------
 	bool operator==(const CellValue& rhs) const;
+	bool operator!=(const CellValue& rhs) const { return !(*this == rhs); }
 };
