@@ -8,7 +8,7 @@ enum class DataType {
 	INT,		// 64-bit signed integer
 	FLOAT,		// Double
 	DATE,		// Calendar date (dd.mm.yyyy, year >= 1900)
-	STRING,		// Quited string with C-style escapes
+	STRING,		// Quoted string with C-style escapes
 	NULLTYPE	// Explicit NULL (no value)
 };
 
