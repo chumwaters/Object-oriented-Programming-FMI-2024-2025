@@ -65,3 +65,20 @@ bool CellValue::containsSubstring(const std::string& sub) const {
 
 	return strVal_.find(sub) != std::string::npos;
 }
+
+// Equality
+bool CellValue::operator==(const CellValue& rhs) const {
+	if (null_ || rhs.isNull())
+		return null_ && rhs.isNull();
+
+	if (type_ != rhs.type_)
+		return false;
+
+	switch (type_) {
+		case DataType::INT:	   return intVal_  == rhs.intVal_;
+		case DataType::FLOAT:  return std::fabs(floatVal_ - rhs.floatVal_) < 1e-9;
+		case DataType::DATE:   return dateVal_ == rhs.dateVal_;
+		case DataType::STRING: return strVal_  == rhs.strVal_;
+		default: return false;
+	}
+}
