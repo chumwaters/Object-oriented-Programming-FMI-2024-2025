@@ -25,7 +25,9 @@ private:
 	std::string strVal_ {};
 
 public:
+	//-------------------------------------------------
 	// Constructors
+	//-------------------------------------------------
 	CellValue() = default;		// null by default
 	CellValue(long long v) { setInt(v); }
 	CellValue(double v) { setFloat(v); }
@@ -33,24 +35,32 @@ public:
 	CellValue(const std::string& v) { setString(v); }
 	CellValue(std::string&& v) { setString(std::move(v)); }
 
+	//-------------------------------------------------
 	// Setters - set value AND type, clear NULL flag
+	//-------------------------------------------------
 	void setInt(long long v);
 	void setFloat(double v);
 	void setDate(const Date& v);
 	void setString(const std::string& v);
 	void setString(std::string&& v);
 
+	//-------------------------------------------------
 	// NULL handling
+	//-------------------------------------------------
 	void setNull();
 	bool isNull() const { return null_; }
 
+	//-----------------------------------------------------
 	// Accessors - only call if type matches and !isNull()
+	//-----------------------------------------------------
 	long long          asInt()   const { return intVal_; }
 	double			   asFloat() const { return floatVal_; }
 	Date			   asDate()  const { return dateVal_; }
 	const std::string& asString() const { return strVal_; }
 
+	//-------------------------------------------------
 	// Type query
+	//-------------------------------------------------
 	DataType getType() const { return type_; }
 
 	/// @brief Transforms the cell value into string object
@@ -63,4 +73,9 @@ public:
 	/// @return True if substring is matched, false otherwise and
 	/// false if type is not STRING
 	bool containsSubstring(const std::string& sub) const;
+
+	//---------------------------------------------------------
+	// Equality – NULLs equal only to NULLs. Types must match.
+	//---------------------------------------------------------
+	bool operator==(const CellValue& rhs) const;
 };
