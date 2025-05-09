@@ -49,4 +49,7 @@ public:
 	double			   asFloat() const { return floatVal_; }
 	Date			   asDate()  const { return dateVal_; }
 	const std::string& asString() const { return strVal_; }
+
+	// Type query
+	DataType getType() const { return type_; }
 };
