@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <string.h>
+#include <string>
 
 /// @brief DataType - tag that describes the concrete cell type
 enum class DataType {
