@@ -56,4 +56,11 @@ public:
 	/// @brief Transforms the cell value into string object
 	/// @return String object obtained from applied transformation
 	std::string toString() const;
+
+	/// @brief Looks for substring in value. Only meaningful for
+	/// STRING DataType
+	/// @param sub Substring to match
+	/// @return True if substring is matched, false otherwise and
+	/// false if type is not STRING
+	bool containsSubstring(const std::string& sub) const;
 };
