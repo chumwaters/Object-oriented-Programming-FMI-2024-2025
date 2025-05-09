@@ -36,3 +36,24 @@ void CellValue::setNull() {
 	null_ = true;
 	type_ = DataType::NULLTYPE;
 }
+
+// toString()
+std::string CellValue::toString() const {
+	switch (type_) {
+		case DataType::INT: return std::to_string(intVal_);
+		case DataType::FLOAT: return std::to_string(floatVal_);
+		case DataType::DATE: return dateVal_.toString();
+		case DataType::STRING:
+		{
+			std::string out = "\"";
+			for (char c : strVal_) {
+				if (c == '"' || c == '\\')
+					out += '\\';
+				out += c;
+			}
+			out += '"';
+			return out;
+		}
+		default: return "NULL";
+	}
+}
