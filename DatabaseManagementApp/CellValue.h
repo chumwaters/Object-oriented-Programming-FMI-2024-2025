@@ -24,6 +24,9 @@ private:
 	Date		dateVal{};
 	std::string strVal {};
 
+	/// @brief Returns raw value as string WITHOUT surrounding quotes. 
+	/// Used internally.
+	std::string toStringRaw() const;
 public:
 	//-------------------------------------------------
 	// Constructors
