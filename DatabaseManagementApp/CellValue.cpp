@@ -172,3 +172,15 @@ bool CellValue::convertTo(DataType newType) {
 	null = true;
 	return false;
 }
+
+std::string CellValue::toStringRaw() const {
+	if (null) return "NULL";
+
+	switch (type) {
+		case DataType::INT:	   return std::to_string(intVal);
+		case DataType::FLOAT:  return std::to_string(floatVal);
+		case DataType::DATE:   return dateVal.toString();
+		case DataType::STRING: return strVal;
+		default:			   return "NULL";
+	}
+}
