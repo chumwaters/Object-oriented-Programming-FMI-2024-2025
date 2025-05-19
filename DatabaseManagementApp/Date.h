@@ -11,4 +11,6 @@ struct Date {
 	static bool isLeapYear(int y);
 	static int daysInMonth(int m, int y);
 	static bool isValid(int d, int m, int y);
+	bool isValid() const { return isValid(day, month, year); };
+
 };
