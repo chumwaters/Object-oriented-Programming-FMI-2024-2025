@@ -11,3 +11,11 @@ int Date::daysInMonth(int m, int y) {
 	
 	return days[m - 1];
 }
+
+bool Date::isValid(int d, int m, int y) {
+	if (y < 1900 || m < 1 || m > 12) return false;
+
+	int dim = daysInMonth(m, y);
+
+	return d >= 1 && d <= dim;
+}
