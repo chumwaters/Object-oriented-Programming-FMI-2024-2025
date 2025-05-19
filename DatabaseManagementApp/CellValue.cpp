@@ -2,51 +2,51 @@
 
 // Setters
 void CellValue::setInt(long long v) {
-	type_ = DataType::INT;
-	null_ = false;
-	intVal_ = v;
+	type = DataType::INT;
+	null = false;
+	intVal = v;
 }
 
 void CellValue::setFloat(double v) {
-	type_ = DataType::FLOAT; 
-	null_ = false;  
-	floatVal_ = v;
+	type = DataType::FLOAT; 
+	null = false;  
+	floatVal = v;
 }
 
 void CellValue::setDate(const Date& v) {
-	type_ = DataType::DATE;  
-	null_ = false;  
-	dateVal_ = v;
+	type = DataType::DATE;  
+	null = false;  
+	dateVal = v;
 }
 
 void CellValue::setString(const std::string& v) {
-	type_ = DataType::STRING; 
-	null_ = false; 
-	strVal_ = v;
+	type = DataType::STRING; 
+	null = false; 
+	strVal = v;
 }
 
 void CellValue::setString(std::string&& v) {
-	type_ = DataType::STRING; 
-	null_ = false; 
-	strVal_ = std::move(v);
+	type = DataType::STRING; 
+	null = false; 
+	strVal = std::move(v);
 }
 
 // NULL handling
 void CellValue::setNull() {
-	null_ = true;
-	type_ = DataType::NULLTYPE;
+	null = true;
+	type = DataType::NULLTYPE;
 }
 
 // toString()
 std::string CellValue::toString() const {
-	switch (type_) {
-		case DataType::INT: return std::to_string(intVal_);
-		case DataType::FLOAT: return std::to_string(floatVal_);
-		case DataType::DATE: return dateVal_.toString();
+	switch (type) {
+		case DataType::INT: return std::to_string(intVal);
+		case DataType::FLOAT: return std::to_string(floatVal);
+		case DataType::DATE: return dateVal.toString();
 		case DataType::STRING:
 		{
 			std::string out = "\"";
-			for (char c : strVal_) {
+			for (char c : strVal) {
 				if (c == '"' || c == '\\')
 					out += '\\';
 				out += c;
@@ -60,25 +60,115 @@ std::string CellValue::toString() const {
 
 // containsSubstring(std::string&)
 bool CellValue::containsSubstring(const std::string& sub) const {
-	if (type_ != DataType::STRING)
+	if (type != DataType::STRING)
 		return false;
 
-	return strVal_.find(sub) != std::string::npos;
+	return strVal.find(sub) != std::string::npos;
 }
 
 // Equality
 bool CellValue::operator==(const CellValue& rhs) const {
-	if (null_ || rhs.isNull())
-		return null_ && rhs.isNull();
+	if (null || rhs.isNull())
+		return null && rhs.isNull();
 
-	if (type_ != rhs.type_)
+	if (type != rhs.type)
 		return false;
 
-	switch (type_) {
-		case DataType::INT:	   return intVal_  == rhs.intVal_;
-		case DataType::FLOAT:  return std::fabs(floatVal_ - rhs.floatVal_) < 1e-9;
-		case DataType::DATE:   return dateVal_ == rhs.dateVal_;
-		case DataType::STRING: return strVal_  == rhs.strVal_;
+	switch (type) {
+		case DataType::INT:	   return intVal  == rhs.intVal;
+		case DataType::FLOAT:  return std::fabs(floatVal - rhs.floatVal) < 1e-9;
+		case DataType::DATE:   return dateVal == rhs.dateVal;
+		case DataType::STRING: return strVal  == rhs.strVal;
 		default: return false;
 	}
+}
+
+// Conversion
+bool CellValue::convertTo(DataType newType) {
+	if (null) {
+		type = newType; 
+		return true;
+	}
+	if (type == newType)
+		return true;
+
+	switch (newType) {
+		case DataType::INT:
+		{
+			long long tmp = 0;
+			bool ok = false;
+			
+			switch (type) {
+				case DataType::FLOAT:
+					tmp = static_cast<long long>(floatVal);
+					ok = true;
+					break;
+				case DataType::STRING:
+					char* endptr = nullptr;
+					tmp = std::strtoll(strVal.c_str(), &endptr, 10);
+					ok = (endptr && *endptr == '\0');
+					break;
+				default: 
+					ok = false;
+					break;
+			}
+			if (ok) { 
+				setInt(tmp);
+				return true;
+			}
+			break;
+		}
+		case DataType::FLOAT:
+		{
+			double tmp = 0.0;
+			bool ok = false;
+			switch (type) {
+				case DataType::INT:
+					tmp = static_cast<double>(intVal);
+					ok = true;
+					break;
+				case DataType::STRING:
+					char* endptr = nullptr;
+					tmp = std::strtod(strVal.c_str(), &endptr);
+					ok = (endptr && *endptr == '\0');
+					break;
+				default:
+					ok = false;
+					break;
+			}
+			if (ok) {
+				setFloat(tmp); 
+				return true;
+			}
+			break;
+		}
+		case DataType::STRING:
+		{
+			setString(toStringRaw());
+			return true;
+		}
+		case DataType::DATE:
+		{
+			Date tmp;
+			bool ok = false;
+			if (type == DataType::STRING) {
+				tmp = Date::fromString(strVal, ok);
+			}
+			if (ok) {
+				setDate(tmp);
+				return true;
+			}
+			break;
+		}
+		case DataType::NULLTYPE:
+		{
+			setNull();
+			return true;
+		}
+	}
+
+	// failure - convert to NULL of target type
+	type = newType;
+	null = true;
+	return false;
 }
