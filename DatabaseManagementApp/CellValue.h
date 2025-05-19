@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <iostream>
 #include <string>
@@ -15,14 +15,14 @@ enum class DataType {
 /// @brief - tagged union that holds any supported type + NULL
 class CellValue {
 private:
-	DataType type_ = DataType::NULLTYPE;
-	bool	 null_ = true;		// explicit NULL flag
+	DataType type = DataType::NULLTYPE;
+	bool	 null = true;		// explicit NULL flag
 
 	// Single storage of all types (simple, but memory-heavier)
-	long long	intVal_ = 0;
-	double		floatVal_ = 0.0;
-	Date		dateVal_{};
-	std::string strVal_ {};
+	long long	intVal = 0;
+	double		floatVal = 0.0;
+	Date		dateVal{};
+	std::string strVal {};
 
 public:
 	//-------------------------------------------------
@@ -48,20 +48,20 @@ public:
 	// NULL handling
 	//-------------------------------------------------
 	void setNull();
-	bool isNull() const { return null_; }
+	bool isNull() const { return null; }
 
 	//-----------------------------------------------------
 	// Accessors - only call if type matches and !isNull()
 	//-----------------------------------------------------
-	long long          asInt()   const { return intVal_; }
-	double			   asFloat() const { return floatVal_; }
-	Date			   asDate()  const { return dateVal_; }
-	const std::string& asString() const { return strVal_; }
+	long long          asInt()   const { return intVal; }
+	double			   asFloat() const { return floatVal; }
+	Date			   asDate()  const { return dateVal; }
+	const std::string& asString() const { return strVal; }
 
 	//-------------------------------------------------
 	// Type query
 	//-------------------------------------------------
-	DataType getType() const { return type_; }
+	DataType getType() const { return type; }
 
 	/// @brief Transforms the cell value into string object
 	/// @return String object obtained from applied transformation
@@ -75,8 +75,13 @@ public:
 	bool containsSubstring(const std::string& sub) const;
 
 	//---------------------------------------------------------
-	// Equality � NULLs equal only to NULLs. Types must match.
+	// Equality – NULLs equal only to NULLs. Types must match.
 	//---------------------------------------------------------
 	bool operator==(const CellValue& rhs) const;
 	bool operator!=(const CellValue& rhs) const { return !(*this == rhs); }
+
+	//---------------------------------------------------------------------
+	// convertTo – attempts in‑place type conversion; NULL on failure
+	//---------------------------------------------------------------------
+	bool convertTo(DataType newType);
 };
