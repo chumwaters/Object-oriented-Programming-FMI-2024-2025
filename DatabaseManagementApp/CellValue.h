@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+#include "Date.h"
+
 /// @brief DataType - tag that describes the concrete cell type
 enum class DataType {
 	INT,		// 64-bit signed integer
