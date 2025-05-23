@@ -28,4 +28,13 @@ struct Date {
 	/// @param ok Boolean value to report to outside world if parsing fails.
 	/// @return Parsed Date object from given string representation.
 	static Date fromString(const std::string& str, bool& ok);
+
+	//---------------------------------------------------------------------
+	// Comparison operators (needed for equality checks)
+	//---------------------------------------------------------------------
+
+	/// @brief Equality operator for Date class.  
+	/// @return True if rhs has the same day, month and year fields as 
+	/// this.
+	bool operator==(const Date& rhs) const;
 };
