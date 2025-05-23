@@ -33,8 +33,13 @@ struct Date {
 	// Comparison operators (needed for equality checks)
 	//---------------------------------------------------------------------
 
-	/// @brief Equality operator for Date class.  
+	/// @brief Equality operator overload for Date class.  
 	/// @return True if rhs has the same day, month and year fields as 
 	/// this.
 	bool operator==(const Date& rhs) const;
+
+	/// @brief Inequality operator overload for Date class.
+	/// @return True if rhs has atleast one of the day, month and year
+	/// fields are different in rhs and this.
+	bool operator!=(const Date& rhs) const { return !(*this == rhs); };
 };
