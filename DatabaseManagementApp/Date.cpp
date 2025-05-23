@@ -70,3 +70,7 @@ Date Date::fromString(const std::string& str, bool& ok) {
 	ok = d.isValid();
 	return d;
 }
+
+bool Date::operator==(const Date& rhs) const {
+	return day == rhs.day && month == rhs.month && year == rhs.year;
+}
