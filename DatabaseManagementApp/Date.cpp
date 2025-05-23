@@ -19,3 +19,21 @@ bool Date::isValid(int d, int m, int y) {
 
 	return d >= 1 && d <= dim;
 }
+
+std::string Date::toString() const {
+	if (!isValid()) return "INVALID_DATE";
+
+	std::string s;
+
+	if (day < 10) s += '0';
+	s += std::to_string(day);
+	s += '.';
+
+	if (month < 10) s += '0';
+	s += std::to_string(month);
+	s += '.';
+
+	s += std::to_string(year);
+
+	return s;
+}
