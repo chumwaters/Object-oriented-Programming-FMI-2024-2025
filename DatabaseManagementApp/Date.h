@@ -1,4 +1,6 @@
-#pragma once
+﻿#pragma once
+
+#include <string>
 
 struct Date {
 	int day	  = 1;
@@ -12,5 +14,10 @@ struct Date {
 	static int daysInMonth(int m, int y);
 	static bool isValid(int d, int m, int y);
 	bool isValid() const { return isValid(day, month, year); };
+	
+	//---------------------------------------------------------------------
+	// String conversion – format: "DD.MM.YYYY" (zero‑padded)
+	//---------------------------------------------------------------------
+	std::string toString() const;
 
 };
