@@ -37,3 +37,36 @@ std::string Date::toString() const {
 
 	return s;
 }
+
+Date Date::fromString(const std::string& str, bool& ok) {
+	ok = false; // Will only be set to true after parsing is complete 
+			    // and resulting Date is validated by isValid().
+	Date d{};
+
+	if (str.size() < 8) return d; // too short
+	
+	size_t firstDot = str.find('.');
+	if (firstDot == std::string::npos) return d;
+	
+	size_t secondDot = str.find('.', firstDot + 1);
+	if (secondDot == std::string::npos) return d;
+
+	// Extracting substrings
+	std::string dayStr   = str.substr(0, firstDot);
+	std::string monthStr = str.substr(firstDot + 1, secondDot - firstDot - 1);
+	std::string yearStr  = str.substr(secondDot + 1);
+	if (dayStr.empty() || monthStr.empty() || yearStr.empty()) return d;
+
+	// Converting them to ints; std::stoi may throw -- catch locally
+	try {
+		d.day   = std::stoi(dayStr);
+		d.month = std::stoi(monthStr);
+		d.year  = std::stoi(yearStr);
+	}
+	catch (const std::exception&) {
+		return d;
+	}
+
+	ok = d.isValid();
+	return d;
+}
