@@ -9,4 +9,6 @@ struct Row {
 
 	Row() = default;
 	Row(size_t columnCount) : cells(columnCount) {};
+
+	size_t size() const { return cells.size(); };
 };
