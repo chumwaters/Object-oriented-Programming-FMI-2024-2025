@@ -25,4 +25,8 @@ public:
 	const std::string& getName() const { return name; };
 	size_t columnCount() const { return columns.size(); };
 	size_t rowCount() const { return rows.size(); };
+
+	// For full column and row collections 
+	const std::vector<Column>& getColumns() const { return columns; };
+	const std::vector<Row>& getRows() const { return rows; };
 };
