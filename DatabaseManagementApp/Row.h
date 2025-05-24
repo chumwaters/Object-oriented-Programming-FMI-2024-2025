@@ -11,4 +11,5 @@ struct Row {
 	Row(size_t columnCount) : cells(columnCount) {};
 
 	size_t size() const { return cells.size(); };
+	CellValue& operator[](size_t i) { return cells[i]; };
 };
