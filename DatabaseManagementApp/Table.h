@@ -22,6 +22,8 @@ public:
 	//---------------------------------------
 	// Accessors
 	//---------------------------------------
+	
+	// For Table metadata
 	const std::string& getName() const { return name; };
 	size_t columnCount() const { return columns.size(); };
 	size_t rowCount() const { return rows.size(); };
@@ -29,4 +31,9 @@ public:
 	// For full column and row collections 
 	const std::vector<Column>& getColumns() const { return columns; };
 	const std::vector<Row>& getRows() const { return rows; };
+
+	//------------------------------------------
+	// Schema and data operations
+	//------------------------------------------
+	void addColumn(const std::string& colName, DataType type);
 };
