@@ -40,6 +40,11 @@ public:
 	//------------------------------------------
 	// Schema and data operations
 	//------------------------------------------
+	
+	/// @brief Adds an empty column with name @colName and type @type 
+	/// to the table.
 	void addColumn(const std::string& colName, DataType type);
+
+	/// @brief Adds an empty row to the table.
 	void addRow(const Row& r);
 };
