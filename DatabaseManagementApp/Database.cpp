@@ -26,3 +26,10 @@ const Table* Database::getTable(const std::string& name) const {
 
 	return nullptr;
 }
+
+void Database::showTables() const {
+	std::cout << "Tables in database:\n";
+	for (const Table& t : tables) {
+		std::cout << " - " << t.getName() << "\n";
+	}
+}
