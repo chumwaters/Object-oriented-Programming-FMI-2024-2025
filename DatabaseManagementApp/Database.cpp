@@ -10,3 +10,19 @@ void Database::addTable(const Table& t) {
 
 	tables.push_back(t);
 }
+
+Table* Database::getTable(const std::string& name) {
+	for (Table& t : tables) {
+		if (t.getName() == name) return &t;
+	}
+
+	return nullptr;
+}
+
+const Table* Database::getTable(const std::string& name) const {
+	for (const Table& t : tables) {
+		if (t.getName() == name) return &t;
+	}
+
+	return nullptr;
+}
