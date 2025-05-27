@@ -11,4 +11,7 @@ private:
 	std::vector<Table> tables;
 
 public:
+	/// @brief Adds a new table to the DB.
+	/// @param t Table to be added to the DB.
+	void addTable(const Table& t);
 };
