@@ -36,4 +36,5 @@ public:
 	// Schema and data operations
 	//------------------------------------------
 	void addColumn(const std::string& colName, DataType type);
+	void addRow(const Row& r);
 };
