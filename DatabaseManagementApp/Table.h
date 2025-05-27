@@ -32,6 +32,11 @@ public:
 	const std::vector<Column>& getColumns() const { return columns; };
 	const std::vector<Row>& getRows() const { return rows; };
 
+	// Individual element access
+	Column& getColumn(size_t i) { return columns[i]; };
+	Row& getRow(size_t i) { return rows[i]; };
+	const Row& getRow(size_t i) const { return rows[i]; };
+
 	//------------------------------------------
 	// Schema and data operations
 	//------------------------------------------
