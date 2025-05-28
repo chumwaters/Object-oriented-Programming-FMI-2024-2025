@@ -27,6 +27,18 @@ public:
 	/// @return True if the row was successfully inserted, false otherwise.
 	bool insertInto(const std::string& tableName, const std::vector<std::string>& rawValues);
 
+	/// @brief Prints the contents of a table by name.
+	/// 
+	/// Format:
+	/// - Names of all columns as a header row.
+	/// - A seprator line beneath the header.
+	/// - One line per row of data, formatted with `CellValue::toString`.
+	/// 
+	/// If the table is not found, an error message is printed to std::cerr.
+	/// 
+	/// @param tableName The name of the table to display.
+	void printTable(const std::string& tableName) const;
+
 	//---------------------------------------
 	// Accessors
 	//---------------------------------------
