@@ -47,4 +47,11 @@ public:
 
 	/// @brief Adds an empty row to the table.
 	void addRow(const Row& r);
+
+	//------------------------------------------
+	// Information
+	//------------------------------------------
+
+	/// @brief Prints the schema of the table: column names and their data types.
+	void describe() const;
 };
