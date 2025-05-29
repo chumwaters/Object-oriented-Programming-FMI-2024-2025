@@ -74,6 +74,17 @@ void CommandHandler::handleCommand(const std::string& line) {
 			}
 		}
 	}
+	else if (command == "select") {
+		if (tokens.size() != 4) {
+			std::cerr << "Usage: select <column-n> <value> <table>\n";
+		}
+		else {
+			std::size_t colIndex = static_cast<std::size_t>(std::atoi(tokens[1].c_str()));
+			const std::string& value = tokens[2];
+			const std::string& tableName = tokens[3];
+			db.selectMatchingRows(tableName, colIndex, value);
+		}
+	}
 	else {
 		std::cerr << "Unknown command: " << command << "\n";
 	}
