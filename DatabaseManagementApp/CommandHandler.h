@@ -4,12 +4,14 @@
 
 class CommandHandler {
 private:
-	Database& db;
+	Database& db; ///< Reference to the associated Database instance
 
 public:
 	/// @brief CommandHandler constructor from Database reference.
 	/// @param db Database reference to construct CommandHandler object from.
 	CommandHandler(Database& db);
 
-
+	/// @brief Parses and executes a user command line.
+	/// @param line The raw input command string.
+	void handleCommand(const std::string& line);
 };
