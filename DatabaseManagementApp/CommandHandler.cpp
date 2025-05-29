@@ -7,7 +7,7 @@ static std::vector<std::string> splitCommandLine(const std::string& line) {
 	std::vector<std::string> tokens;
 
 	const char* str = line.c_str();
-	while (*str) { // This semantically iterates through words, not characters
+	while (*str) {	// This semantically iterates through words, not characters
 		while (*str && std::isspace(*str)) ++str; // Skip whitespaces
 
 		const char* start = str; // Remember first character you find
@@ -15,6 +15,8 @@ static std::vector<std::string> splitCommandLine(const std::string& line) {
 		if (start != str)
 			tokens.emplace_back(start, str - start); // Construct directly in vector
 	}
+
+	return tokens;
 }
 
 CommandHandler::CommandHandler(Database& db) : db(db) {}
