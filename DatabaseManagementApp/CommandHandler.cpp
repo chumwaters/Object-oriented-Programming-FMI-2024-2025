@@ -54,6 +54,20 @@ void CommandHandler::handleCommand(const std::string& line) {
 			}
 		}
 	}
+	else if (command == "describe") {
+		if (tokens.size() < 2) {
+			std::cerr << "Usage: describe <table>\n";
+		}
+		else {
+			const Table* table = db.getTable(tokens[1]);
+			if (!table) {
+				std::cerr << "Table '" << tokens[1] << "' not found.\n";
+			}
+			else {
+				table->describe();
+			}
+		}
+	}
 	else {
 		std::cerr << "Unknown command: " << command << "\n";
 	}
