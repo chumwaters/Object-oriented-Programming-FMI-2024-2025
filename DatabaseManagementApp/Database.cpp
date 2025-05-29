@@ -175,9 +175,8 @@ void Database::printTable(const std::string& tableName) const {
 		// Add padding based on column size
 		std::size_t padding = colWidths[i] > columns[i].name.length() ? colWidths[i] - columns[i].name.length() : 0;
 		for (std::size_t p = 0; p < padding; ++p) std::cout << ' ';
-		std::cout << ' ';
 	}
-	std::cout << "|";
+	std::cout << "|" << std::endl;
 
 	// Print separator
 	for (std::size_t i = 0; i < columns.size(); ++i) {
@@ -186,7 +185,7 @@ void Database::printTable(const std::string& tableName) const {
 		for (std::size_t j = 0; j < colWidths[i]; ++j) std::cout << "-";
 		std::cout << "-";
 	}
-	std::cout << "|";
+	std::cout << "|" << std::endl;
 
 	// Print each row
 	for (std::size_t r = 0; r < rows.size(); ++r) {
@@ -198,6 +197,6 @@ void Database::printTable(const std::string& tableName) const {
 			for (std::size_t p = 0; p < padding; ++p) std::cout << ' ';
 			std::cout << ' ';
 		}
-		std::cout << "|";
+		std::cout << "|" << std::endl;
 	}
 }
