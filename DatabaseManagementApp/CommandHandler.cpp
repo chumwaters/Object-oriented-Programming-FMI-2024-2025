@@ -1,5 +1,19 @@
 #include "CommandHandler.h"
 
+static std::vector<std::string> splitCommandLine(const std::string& line) {
+	std::vector<std::string> tokens;
+
+	const char* str = line.c_str();
+	while (*str) { // This semantically iterates through words, not characters
+		while (*str && std::isspace(*str)) ++str; // Skip whitespaces
+
+		const char* start = str; // Remember first character you find
+		while (*str && !std::isspace(*str)) ++str; // Go to the end of the word
+		if (start != str)
+			tokens.emplace_back(start, str - start); // Construct directly in vector
+	}
+}
+
 CommandHandler::CommandHandler(Database& db) : db(db) {}
 
 void CommandHandler::handleCommand(const std::string& line) {
