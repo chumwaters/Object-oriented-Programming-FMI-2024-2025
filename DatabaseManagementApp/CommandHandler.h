@@ -7,4 +7,5 @@ private:
 	Database& db;
 
 public:
+	CommandHandler(Database& db);
 };
