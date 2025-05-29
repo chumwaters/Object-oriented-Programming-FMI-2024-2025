@@ -32,10 +32,16 @@ void CommandHandler::handleCommand(const std::string& line) {
 		exit(0);
 	}
 	else if (command == "showtables") {
-		db.showTables();
+		if (tokens.size() != 1) {
+			std::cerr << "Showtables command has no arguments!\n";
+		}
+		else {
+			db.showTables();
+		}
+		
 	}
 	else if (command == "print") {
-		if (tokens.size() < 2) {
+		if (tokens.size() != 2) {
 			std::cerr << "Usage: print <table>\n";
 		}
 		else {
@@ -43,7 +49,7 @@ void CommandHandler::handleCommand(const std::string& line) {
 		}
 	}
 	else if (command == "insert") {
-		if (tokens.size() < 3) {
+		if (tokens.size() != 3) {
 			std::cerr << "Usage: insert <table> <val1> <val2> ... \n";
 		}
 		else {
@@ -55,7 +61,7 @@ void CommandHandler::handleCommand(const std::string& line) {
 		}
 	}
 	else if (command == "describe") {
-		if (tokens.size() < 2) {
+		if (tokens.size() != 2) {
 			std::cerr << "Usage: describe <table>\n";
 		}
 		else {
