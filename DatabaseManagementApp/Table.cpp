@@ -15,3 +15,19 @@ void Table::addRow(const Row& r) {
 
 	rows.push_back(r);
 }
+
+void Table::describe() const {
+	for (std::size_t i = 0; i < columns.size(); ++i) {
+		std::cout << columns[i].name << ":";
+
+		switch (columns[i].type) {
+			case DataType::INT: std::cout << "INT"; break;
+			case DataType::FLOAT: std::cout << "FLOAT"; break;
+			case DataType::DATE: std::cout << "DATE"; break;
+			case DataType::STRING: std::cout << "STRING"; break;
+			case DataType::NULLTYPE: std::cout << "NULL"; break;
+		}
+
+		std::cout << "\n";
+	}
+}
