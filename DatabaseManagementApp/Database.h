@@ -38,6 +38,14 @@ public:
 	/// @param tableName The name of the table to display.
 	void printTable(const std::string& tableName) const;
 
+	/// @brief Prints all rows in a table where the specified column matches a given
+	/// value.
+	/// @param tableName Name of table to select from.
+	/// @param columnIndex Index of column in table to match.
+	/// @param searchValue String form of the value to match.
+	void selectMatchingRows(const std::string& tableName, std::size_t columnIndex,
+		const std::string& searchValue) const;
+
 	//---------------------------------------
 	// Accessors
 	//---------------------------------------
