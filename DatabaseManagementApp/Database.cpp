@@ -91,56 +91,7 @@ void Database::printTable(const std::string& tableName) const {
 		return;
 	}
 
-	const std::vector<Column>& columns = table->getColumns();
-	const std::vector<Row>& rows = table->getRows();
-
-	// Here we will store how wide each column is for proper formating.
-	std::vector<std::size_t> colWidths(columns.size(), 0);
-
-	// Fill the colWidths vector by determining maximum width for each column.
-	for (std::size_t i = 0; i < columns.size(); ++i) {
-
-		// Take into account the possibility for the column name to be the maximum.
-		std::size_t maxLen = columns[i].name.length();
-		for (std::size_t r = 0; r < rows.size(); ++r) {
-			std::size_t len = rows[r].cells[i].toString().length();
-			if (len > maxLen) maxLen = len;
-		}
-
-		colWidths[i] = maxLen;
-	}
-
-	// Print header
-	for (std::size_t i = 0; i < columns.size(); ++i) {
-		std::cout << "| " << columns[i].name << ' ';
-
-		// Add padding based on column size
-		std::size_t padding = colWidths[i] > columns[i].name.length() ? colWidths[i] - columns[i].name.length() : 0;
-		for (std::size_t p = 0; p < padding; ++p) std::cout << ' ';
-	}
-	std::cout << "|" << std::endl;
-
-	// Print separator
-	for (std::size_t i = 0; i < columns.size(); ++i) {
-		std::cout << "+-";
-
-		for (std::size_t j = 0; j < colWidths[i]; ++j) std::cout << "-";
-		std::cout << "-";
-	}
-	std::cout << "|" << std::endl;
-
-	// Print each row
-	for (std::size_t r = 0; r < rows.size(); ++r) {
-		for (std::size_t c = 0; c < columns.size(); ++c) {
-			std::string valStr = rows[r].cells[c].toString();
-			std::cout << "| " << valStr;
-
-			std::size_t padding = colWidths[c] > valStr.length() ? colWidths[c] - valStr.length() : 0;
-			for (std::size_t p = 0; p < padding; ++p) std::cout << ' ';
-			std::cout << ' ';
-		}
-		std::cout << "|" << std::endl;
-	}
+	printRowsFormatted(table->getColumns(), table->getRows());
 }
 
 void Database::selectMatchingRows(const std::string& tableName, std::size_t columnIndex,
