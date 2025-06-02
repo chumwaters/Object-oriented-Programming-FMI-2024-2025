@@ -27,4 +27,7 @@ public:
 
 	/// @return A new DateValue with the same content as this.
 	CellValue* clone() const override { return new DateValue(value); }
+
+	/// @brief Attempts to convert this value to DateValue or StringValue
+	bool convertTo(DataType target, CellValue*& out) const override;
 };
