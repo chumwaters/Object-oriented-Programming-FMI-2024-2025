@@ -1,4 +1,6 @@
 #include "IntValue.h"
+#include "FloatValue.h"
+#include "StringValue.h"
 
 bool IntValue::equals(const CellValue* other) const {
 	if (other->getType() != DataType::INT) return false;
