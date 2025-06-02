@@ -26,6 +26,9 @@ public:
 	/// @brief Copy assignment operator (deep copy)
 	Row& operator=(const Row& other);
 
+	/// @brief Move assignment operator
+	Row& operator=(Row&& other) noexcept;
+
 	size_t size() const { return cells.size(); };
 	CellValue& operator[](size_t i) { return cells[i]; };
 	const CellValue& operator[](size_t i) const { return cells[i]; };
