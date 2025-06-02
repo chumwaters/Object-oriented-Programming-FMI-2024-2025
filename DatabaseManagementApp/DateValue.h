@@ -21,4 +21,7 @@ public:
 
 	/// @return Always false.
 	bool isNull() const override { return false; }
+
+	/// @return True if both are DateValues and represent the same date.
+	bool equals(const CellValue* other) const override;
 };
