@@ -22,4 +22,11 @@ public:
 
 	/// @return A new NullValue instance.
 	CellValue* clone() const override { return new NullValue(); }
+
+	/// @brief Converts null to null.
+	/// @param target Ignored.
+	bool convertTo(DataType target, CellValue*& out) const override {
+		out = new NullValue();
+		return true;
+	}
 };
