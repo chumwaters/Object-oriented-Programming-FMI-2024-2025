@@ -12,4 +12,6 @@ public:
 	std::string toString() const override { return std::to_string(value); }
 
 	bool isNull() const override { return false; }
+
+	bool equals(const CellValue* other) const override;
 };
