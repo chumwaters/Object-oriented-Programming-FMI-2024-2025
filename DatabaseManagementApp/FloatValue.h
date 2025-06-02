@@ -27,4 +27,8 @@ public:
 
 	/// @return A new FloatValue with the same content as this.
 	CellValue* clone() const override { return new FloatValue(value); }
+
+	/// @brief Attempts to convert this value to IntValue, FloatValue
+	/// or StringValue.
+	bool convertTo(DataType target, CellValue*& out) const override;
 };
