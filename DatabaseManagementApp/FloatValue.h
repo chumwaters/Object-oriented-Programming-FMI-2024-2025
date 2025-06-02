@@ -17,4 +17,8 @@ public:
 
 	/// @return Always false.
 	bool isNull() const override { return false; }
+
+	/// @return True if both this and otherare FloatValues and are values 
+	/// within some epsilon tolerance (set in the definition) of eachother.
+	bool equals(const CellValue* other) const override;
 };
