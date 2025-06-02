@@ -11,4 +11,7 @@ public:
 	/// @brief Constructs a FloatValue from a given double value.
 	/// @param v The value to store.
 	FloatValue(double v) : value(v) {}
+
+	/// @return DataType::FLOAT
+	DataType getType() const override { return DataType::FLOAT; }
 };
