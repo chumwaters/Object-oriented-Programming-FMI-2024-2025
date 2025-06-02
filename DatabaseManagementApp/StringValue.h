@@ -24,4 +24,7 @@ public:
 	/// @return True if both this and other are StringValue and their
 	/// values match.
 	bool equals(const CellValue* other) const override;
+
+	/// @return A new StringValue with the same content.
+	CellValue* clone() const override { return new StringValue(value); }
 };
