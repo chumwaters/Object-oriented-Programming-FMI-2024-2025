@@ -29,6 +29,9 @@ public:
 	/// @brief Move assignment operator
 	Row& operator=(Row&& other) noexcept;
 
+	/// @brief Destructor
+	~Row();
+
 	size_t size() const { return cells.size(); };
 	CellValue& operator[](size_t i) { return cells[i]; };
 	const CellValue& operator[](size_t i) const { return cells[i]; };
