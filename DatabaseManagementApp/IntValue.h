@@ -14,4 +14,6 @@ public:
 	bool isNull() const override { return false; }
 
 	bool equals(const CellValue* other) const override;
+
+	CellValue* clone() const override { return new IntValue(value); }
 };
