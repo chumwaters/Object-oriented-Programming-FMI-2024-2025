@@ -20,3 +20,7 @@ bool StringValue::equals(const CellValue* other) const {
 
 	return value == sv->value;
 }
+
+bool StringValue::containsSubstring(const std::string& s) const {
+	return value.find(s) != std::string::npos;
+}
