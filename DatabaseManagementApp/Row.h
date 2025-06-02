@@ -5,9 +5,10 @@
 #include <vector>
 
 /// @brief Represents a row in a table, containing a sequence of CellValue pointers.
-class Row {
+class Row
+{
 private:
-	std::vector<CellValue*> cells;
+	std::vector<CellValue *> cells;
 
 public:
 	/// @brief Default constructor for Row class.
@@ -18,16 +19,16 @@ public:
 	Row(size_t columnCount);
 
 	/// @brief Copy constructor (deep copy)
-	Row(const Row& other);
+	Row(const Row &other);
 
-	/// @brief Move constructor 
-	Row(Row&& other) noexcept;
+	/// @brief Move constructor
+	Row(Row &&other) noexcept;
 
 	/// @brief Copy assignment operator (deep copy)
-	Row& operator=(const Row& other);
+	Row &operator=(const Row &other);
 
 	/// @brief Move assignment operator
-	Row& operator=(Row&& other) noexcept;
+	Row &operator=(Row &&other) noexcept;
 
 	/// @brief Destructor
 	~Row();
@@ -39,16 +40,16 @@ public:
 	/// @param i Index of the cell
 	/// @return Reference to the CellValue pointer of the i-th element
 	/// of cells.
-	CellValue*& operator[](size_t i);
+	CellValue *&operator[](size_t i);
 
-	/// @brief Access cell by index (const version). Throws if index 
+	/// @brief Access cell by index (const version). Throws if index
 	/// is out of range.
 	/// @param i Index of the cell
 	/// @return Const pointer to the CellValue at position i in
 	/// cells vector.
-	const CellValue* operator[](size_t i) const;
+	const CellValue *operator[](size_t i) const;
 
 	/// @brief Adds a cell to the row (takes ownership)
 	/// @param val The CellValue pointer to add
-	void addCell(CellValue* val);
+	void addCell(CellValue *val);
 };
