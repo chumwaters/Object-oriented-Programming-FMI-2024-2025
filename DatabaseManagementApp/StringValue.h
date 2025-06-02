@@ -29,4 +29,7 @@ public:
 	CellValue* clone() const override { return new StringValue(value); }
 
 	bool containsSubstring(const std::string& s) const override;
+
+	/// @brief Attempts to convert this value to IntValue, FloatValue or StringValue
+	bool convertTo(DataType target, CellValue*& out) const override;
 };
