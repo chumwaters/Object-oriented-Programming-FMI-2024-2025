@@ -9,5 +9,7 @@ public:
 
 	DataType getType() const override { return DataType::INT; }
 
+	std::string toString() const override { return std::to_string(value); }
+
 
 };
