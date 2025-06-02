@@ -6,3 +6,9 @@ Row::Row(size_t columnCount) {
 		cells.push_back(new NullValue());
 	}
 }
+
+Row::Row(const Row& other) {
+	for (const CellValue* val : other.cells) {
+		cells.push_back(val->clone());
+	}
+}
