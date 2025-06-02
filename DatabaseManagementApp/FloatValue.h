@@ -24,4 +24,7 @@ public:
 	/// @return True if both this and other are FloatValues and are values 
 	/// within some epsilon tolerance (set in the definition) of eachother.
 	bool equals(const CellValue* other) const override;
+
+	/// @return A new FloatValue with the same content as this.
+	CellValue* clone() const override { return new FloatValue(value); }
 };
