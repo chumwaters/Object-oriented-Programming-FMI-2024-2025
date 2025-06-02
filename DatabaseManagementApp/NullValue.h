@@ -19,4 +19,7 @@ public:
 
 	/// @return True if other is also null.
 	bool equals(const CellValue* other) const override { return other->isNull(); }
+
+	/// @return A new NullValue instance.
+	CellValue* clone() const override { return new NullValue(); }
 };
