@@ -41,6 +41,10 @@ public:
 	/// of cells.
 	CellValue*& operator[](size_t i);
 
-
-	const CellValue& operator[](size_t i) const { return cells[i]; };
+	/// @brief Access cell by index (const version). Throws if index 
+	/// is out of range.
+	/// @param i Index of the cell
+	/// @return Const pointer to the CellValue at position i in
+	/// cells vector.
+	const CellValue* operator[](size_t i) const;
 };
