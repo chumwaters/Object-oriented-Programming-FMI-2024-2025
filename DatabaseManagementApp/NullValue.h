@@ -16,4 +16,7 @@ public:
 
 	/// @return Always true.
 	bool isNull() const override { return true; };
+
+	/// @return True if other is also null.
+	bool equals(const CellValue* other) const override { return other->isNull(); }
 };
