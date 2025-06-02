@@ -30,3 +30,15 @@ Row& Row::operator=(const Row& other) {
 
 	return *this;
 }
+
+Row& Row::operator=(Row&& other) noexcept {
+	if (this != &other) {
+		for (CellValue* val : cells) delete val;
+
+		cells = std::move(other.cells);
+
+		other.cells.clear();
+	}
+
+	return *this;
+}
