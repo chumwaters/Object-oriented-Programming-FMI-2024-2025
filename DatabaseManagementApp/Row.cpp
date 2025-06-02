@@ -47,3 +47,9 @@ Row::~Row() {
 	for (CellValue* val : cells) delete val;
 	cells.clear();
 }
+
+CellValue*& Row::operator[](size_t i) {
+	if (i >= cells.size()) throw std::out_of_range("Row index is out of bounds");
+
+	return cells[i];
+}
