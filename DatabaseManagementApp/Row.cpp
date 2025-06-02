@@ -53,3 +53,9 @@ CellValue*& Row::operator[](size_t i) {
 
 	return cells[i];
 }
+
+const CellValue* Row::operator[](size_t i) const {
+	if (i >= cells.size()) throw std::out_of_range("Row index is out of bounds.");
+
+	return cells[i];
+}
