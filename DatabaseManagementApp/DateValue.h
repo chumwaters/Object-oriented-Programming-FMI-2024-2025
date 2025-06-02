@@ -16,6 +16,9 @@ public:
 	/// @return DataType::DATE
 	DataType getType() const override { return DataType::DATE; }
 
-	/// @return String representation of the date (DD.MM.YYYY)
+	/// @return String representation of the date (DD.MM.YYYY).
 	std::string toString() const override { return value.toString(); }
+
+	/// @return Always false.
+	bool isNull() const override { return false; }
 };
