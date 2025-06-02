@@ -16,3 +16,17 @@ Row::Row(const Row& other) {
 Row::Row(Row&& other) noexcept : cells(std::move(other.cells)) {
 	other.cells.clear();
 }
+
+Row& Row::operator=(const Row& other) {
+	if (this != &other) {
+		for (CellValue* val : cells) delete val;
+		
+		cells.clear();
+
+		for (const CellValue* val : other.cells) {
+			cells.push_back(val->clone());
+		}
+	}
+
+	return *this;
+}
