@@ -12,3 +12,7 @@ Row::Row(const Row& other) {
 		cells.push_back(val->clone());
 	}
 }
+
+Row::Row(Row&& other) noexcept : cells(std::move(other.cells)) {
+	other.cells.clear();
+}
