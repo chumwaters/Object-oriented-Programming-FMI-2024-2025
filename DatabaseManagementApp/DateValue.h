@@ -12,4 +12,7 @@ public:
 	/// @brief Constructs a DateValue from a given Date object.
 	/// @param d The Date object to store.
 	DateValue(const Date& d) : value(d) {}
+
+	/// @return DataType::DATE
+	DataType getType() const override { return DataType::DATE; }
 };
