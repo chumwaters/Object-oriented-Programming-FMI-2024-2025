@@ -42,3 +42,8 @@ Row& Row::operator=(Row&& other) noexcept {
 
 	return *this;
 }
+
+Row::~Row() {
+	for (CellValue* val : cells) delete val;
+	cells.clear();
+}
