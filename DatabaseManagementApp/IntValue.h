@@ -16,4 +16,6 @@ public:
 	bool equals(const CellValue* other) const override;
 
 	CellValue* clone() const override { return new IntValue(value); }
+
+	bool convertTo(DataType target, CellValue*& out) const override;
 };
