@@ -6,4 +6,8 @@ private:
 
 public:
 	IntValue(long long v) : value(v) {}
+
+	DataType getType() const override { return DataType::INT; }
+
+
 };
