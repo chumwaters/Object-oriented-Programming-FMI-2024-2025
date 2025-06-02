@@ -15,10 +15,13 @@ public:
 	/// @return DataType::FLOAT
 	DataType getType() const override { return DataType::FLOAT; }
 
+	/// @return String representation of the float value.
+	std::string toString() const override { return std::to_string(value); }
+
 	/// @return Always false.
 	bool isNull() const override { return false; }
 
-	/// @return True if both this and otherare FloatValues and are values 
+	/// @return True if both this and other are FloatValues and are values 
 	/// within some epsilon tolerance (set in the definition) of eachother.
 	bool equals(const CellValue* other) const override;
 };
