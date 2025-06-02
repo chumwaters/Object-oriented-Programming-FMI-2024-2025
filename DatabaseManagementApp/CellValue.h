@@ -6,7 +6,7 @@
 #include "Date.h"
 #include "DataType.h"
 
-/// @brief - tagged union that holds any supported type + NULL
+/// @brief Abstract base class representing a value in a table cell.
 class CellValue {
 public:
 	/// @return Whether the cell is null
