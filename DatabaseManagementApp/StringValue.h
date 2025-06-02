@@ -27,4 +27,6 @@ public:
 
 	/// @return A new StringValue with the same content.
 	CellValue* clone() const override { return new StringValue(value); }
+
+	bool containsSubstring(const std::string& s) const override;
 };
