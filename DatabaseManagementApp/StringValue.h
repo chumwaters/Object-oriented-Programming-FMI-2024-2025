@@ -20,4 +20,8 @@ public:
 
 	/// @return Always false.
 	bool isNull() const override { return false; }
+ 
+	/// @return True if both this and other are StringValue and their
+	/// values match.
+	bool equals(const CellValue* other) const override;
 };
