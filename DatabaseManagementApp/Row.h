@@ -4,9 +4,12 @@
 
 #include <vector>
 
-struct Row {
-	std::vector<CellValue> cells;
+/// @brief Represents a row in a table, containing a sequence of CellValue pointers.
+class Row {
+private:
+	std::vector<CellValue*> cells;
 
+public:
 	Row() = default;
 	Row(size_t columnCount) : cells(columnCount) {};
 
