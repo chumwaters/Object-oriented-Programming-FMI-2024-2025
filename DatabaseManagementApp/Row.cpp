@@ -59,3 +59,7 @@ const CellValue* Row::operator[](size_t i) const {
 
 	return cells[i];
 }
+
+void Row::addCell(CellValue* val) {
+	cells.push_back(val);
+}
