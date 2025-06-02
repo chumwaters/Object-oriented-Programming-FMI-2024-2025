@@ -14,4 +14,7 @@ public:
 
 	/// @return DataType::FLOAT
 	DataType getType() const override { return DataType::FLOAT; }
+
+	/// @return Always false.
+	bool isNull() const override { return false; }
 };
