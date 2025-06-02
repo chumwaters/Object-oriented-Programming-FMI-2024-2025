@@ -14,4 +14,7 @@ public:
 
 	/// @return DataType::STRING
 	DataType getType() const override { return DataType::STRING; }
+
+	/// @return String representation of the value, quoted and escaped.
+	std::string toString() const override;
 };
