@@ -24,4 +24,7 @@ public:
 
 	/// @return True if both are DateValues and represent the same date.
 	bool equals(const CellValue* other) const override;
+
+	/// @return A new DateValue with the same content as this.
+	CellValue* clone() const override { return new DateValue(value); }
 };
