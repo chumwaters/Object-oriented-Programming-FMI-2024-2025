@@ -13,4 +13,7 @@ public:
 
 	/// @return The string "NULL".
 	std::string toString() const override {	return "NULL"; };
+
+	/// @return Always true.
+	bool isNull() const override { return true; };
 };
