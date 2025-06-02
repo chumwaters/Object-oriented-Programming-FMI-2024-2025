@@ -47,4 +47,8 @@ public:
 	/// @return Const pointer to the CellValue at position i in
 	/// cells vector.
 	const CellValue* operator[](size_t i) const;
+
+	/// @brief Adds a cell to the row (takes ownership)
+	/// @param val The CellValue pointer to add
+	void addCell(CellValue* val);
 };
