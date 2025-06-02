@@ -2,6 +2,7 @@
 
 #include "CellValue.h"
 
+/// @brief Represents a string value in a table cell.
 class StringValue : public CellValue {
 private:
 	std::string value;
@@ -9,5 +10,8 @@ private:
 public:
 	/// @brief Constructs a StringValue from a given std::string object.
 	/// @param v The string to store.
-	StringValue(const std::string& v);
+	StringValue(const std::string& v) : value(v) {}
+
+	/// @return DataType::STRING
+	DataType getType() const override { return DataType::STRING; }
 };
