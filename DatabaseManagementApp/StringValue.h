@@ -17,4 +17,7 @@ public:
 
 	/// @return String representation of the value, quoted and escaped.
 	std::string toString() const override;
+
+	/// @return Always false.
+	bool isNull() const override { return false; }
 };
