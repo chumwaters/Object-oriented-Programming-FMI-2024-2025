@@ -18,14 +18,6 @@ public:
 	/// @param t Table to be added to the DB.
 	void addTable(const Table& t);
 
-	/// @brief Inserts a new row into the specified table using raw
-	/// string values. 
-	/// @param tableName The name of the table to insert into.
-	/// @param rawValues A vector of strings representing the values to
-	/// insert.
-	/// @return True if the row was successfully inserted, false otherwise.
-	bool insertInto(const std::string& tableName, const std::vector<std::string>& rawValues);
-
 	/// @brief Prints the contents of a table by name.
 	/// 
 	/// Format:
