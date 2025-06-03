@@ -37,6 +37,45 @@ std::vector<Row> Table::selectSubstringMatches(size_t colIndex, const std::strin
 	return result;
 }
 
+void Table::modifyColumnType(size_t colIndex, DataType newType) {
+	if (colIndex >= columns.size()) {
+		throw std::out_of_range("Column index out of bounds in modifyColumnType.");
+	}
+
+	int successCount = 0;
+	std::vector<size_t> failedRows;
+
+	for (size_t r = 0; r < rows.size(); ++r) {
+		CellValue* converted = nullptr;
+
+		if (rows[r][colIndex]->convertTo(newType, converted)) {
+			delete rows[r][colIndex];
+			rows[r][colIndex] = converted;
+			++successCount;
+		}
+		else {
+			delete rows[r][colIndex];
+			rows[r][colIndex] = new NullValue();
+			failedRows.push_back(r);
+		}
+	}
+
+	columns[colIndex].type = newType;
+
+	std::cout << "Modified column to " << static_cast<int>(newType) << ".\n";
+	std::cout << "Success count: " << successCount << ", Failures: " << failedRows.size() << '\n';
+
+	if (!failedRows.empty()) {
+		std::cout << "Failed rows: ";
+
+		for (size_t i = 0; i < failedRows.size(); ++i) {
+			std::cout << failedRows[i];
+			if (i + 1 < failedRows.size()) std::cout << ", ";
+		}
+		std::cout << '\n';
+	}
+}
+
 void Table::describe() const {
 	std::cout << "Table '" << name << "' structure:\n";
 
