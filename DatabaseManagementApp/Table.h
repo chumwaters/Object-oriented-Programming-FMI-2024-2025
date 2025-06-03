@@ -62,6 +62,13 @@ public:
 	/// @param newType New data type to convert to.
 	void modifyColumnType(size_t colIndex, DataType newType);
 
+	/// @brief Inserts a new row into the table using raw
+	/// string values.
+	/// @param rawValues A vector of strings representing the values to
+	/// insert.
+	/// @return True if the row was successfully inserted, false otherwise.
+	void insert(const std::vector<std::string>& rawValues);
+
 	//------------------------------------------
 	// Information
 	//------------------------------------------
