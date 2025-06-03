@@ -1,6 +1,7 @@
 #pragma once
 
-class Date {
+class Date
+{
 private:
 	unsigned int day;
 	unsigned int month;

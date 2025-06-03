@@ -2,23 +2,24 @@
 
 #include <string>
 
-struct Date {
-	int day	  = 1;
+struct Date
+{
+	int day = 1;
 	int month = 1;
-	int year  = 1900;
+	int year = 1900;
 
 	//-----------------------------------
 	// Helpers
 	//-----------------------------------
-	static bool isLeapYear(int y);
+	static bool isLeapYear(int y); // TODO Class DateUtils -> all static methods, then call with DateUtils::helper1(..)
 	static int daysInMonth(int m, int y);
 	static bool isValid(int d, int m, int y);
 	bool isValid() const { return isValid(day, month, year); };
-	
+
 	//-------------------------------------
 	// String conversion and parsing
 	//-------------------------------------
-	
+
 	/// @brief Method to convert Date object into string representation.
 	/// @return String representation of Date object.
 	std::string toString() const;
@@ -27,19 +28,19 @@ struct Date {
 	/// @param str String representation of Date object.
 	/// @param ok Boolean value to report to outside world if parsing fails.
 	/// @return Parsed Date object from given string representation.
-	static Date fromString(const std::string& str, bool& ok);
+	static Date fromString(const std::string &str, bool &ok);
 
 	//---------------------------------------------------------------------
 	// Comparison operators (needed for equality checks)
 	//---------------------------------------------------------------------
 
-	/// @brief Equality operator overload for Date class.  
-	/// @return True if rhs has the same day, month and year fields as 
+	/// @brief Equality operator overload for Date class.
+	/// @return True if rhs has the same day, month and year fields as
 	/// this.
-	bool operator==(const Date& rhs) const;
+	bool operator==(const Date &rhs) const;
 
 	/// @brief Inequality operator overload for Date class.
 	/// @return True if rhs has atleast one of the day, month and year
 	/// fields are different in rhs and this.
-	bool operator!=(const Date& rhs) const { return !(*this == rhs); };
+	bool operator!=(const Date &rhs) const { return !(*this == rhs); };
 };

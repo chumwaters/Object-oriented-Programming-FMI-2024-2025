@@ -4,14 +4,15 @@
 #include "Date.h"
 
 /// @brief Represents a calendar date value in a table cell.
-class DateValue : public CellValue {
+class DateValue : public CellValue
+{
 private:
 	Date value;
 
 public:
 	/// @brief Constructs a DateValue from a given Date object.
 	/// @param d The Date object to store.
-	DateValue(const Date& d) : value(d) {}
+	DateValue(const Date &d) : value(d) {}
 
 	/// @return DataType::DATE
 	DataType getType() const override { return DataType::DATE; }
@@ -23,11 +24,11 @@ public:
 	bool isNull() const override { return false; }
 
 	/// @return True if both are DateValues and represent the same date.
-	bool equals(const CellValue* other) const override;
+	bool equals(const CellValue *other) const override;
 
 	/// @return A new DateValue with the same content as this.
-	CellValue* clone() const override { return new DateValue(value); }
+	CellValue *clone() const override { return new DateValue(value); }
 
 	/// @brief Attempts to convert this value to DateValue or StringValue
-	bool convertTo(DataType target, CellValue*& out) const override;
+	bool convertTo(DataType target, CellValue *&out) const override;
 };
