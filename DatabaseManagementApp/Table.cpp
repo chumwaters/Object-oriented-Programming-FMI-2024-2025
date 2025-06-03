@@ -18,8 +18,10 @@ void Table::addRow(const Row& r) {
 }
 
 void Table::describe() const {
+	std::cout << "Table '" << name << "' structure:\n";
+
 	for (std::size_t i = 0; i < columns.size(); ++i) {
-		std::cout << columns[i].name << ":";
+		std::cout << "Column " << i << ": " << columns[i].name << " (";
 
 		switch (columns[i].type) {
 			case DataType::INT: std::cout << "INT"; break;
@@ -29,6 +31,6 @@ void Table::describe() const {
 			case DataType::NULLTYPE: std::cout << "NULL"; break;
 		}
 
-		std::cout << "\n";
+		std::cout << ")\n";
 	}
 }
