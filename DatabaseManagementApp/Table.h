@@ -41,12 +41,19 @@ public:
 	// Schema and data operations
 	//------------------------------------------
 	
-	/// @brief Adds an empty column with name @colName and type @type 
+	/// @brief Adds an empty column with name <colName> and type <type> 
 	/// to the table.
 	void addColumn(const std::string& colName, DataType type);
 
 	/// @brief Adds an empty row to the table.
 	void addRow(const Row& r);
+
+	/// @brief Selects and returns rows the contain the given substring in 
+	/// the specified column.
+	/// @param colIndex Index of the column to search.
+	/// @param value Substring to match.
+	/// @return A vector of rows that matched the criteria.
+	std::vector<Row> selectSubstringMatches(size_t colIndex, const std::string& value) const;
 
 	//------------------------------------------
 	// Information
