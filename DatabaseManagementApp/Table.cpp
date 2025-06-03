@@ -1,4 +1,8 @@
 #include "Table.h"
+#include "IntValue.h"
+#include "FloatValue.h"
+#include "DateValue.h"
+#include "StringValue.h"
 #include "NullValue.h"
 
 static std::string unescapeString(const std::string& val) {
@@ -95,6 +99,71 @@ void Table::modifyColumnType(size_t colIndex, DataType newType) {
 			if (i + 1 < failedRows.size()) std::cout << ", ";
 		}
 		std::cout << '\n';
+	}
+}
+
+void Table::insert(const std::vector<std::string>& rawValues) {
+	if (rawValues.size() != columns.size()) {
+		throw std::runtime_error("Expected " + std::to_string(columns.size()) 
+			+ " values, got " + std::to_string(rawValues.size()));
+	}
+
+	Row row(columns.size());
+	for (size_t i = 0; i < columns.size(); ++i) {
+		// Storing for string parsing in STRING case of switch-case
+		const std::string& val = rawValues[i]; 
+
+		if (val == "NULL") {
+			row[i] = new NullValue();
+		}
+		else {
+			try {
+				switch (columns[i].type) {
+				case DataType::INT:
+					row[i] = new IntValue(std::stoll(val));
+					break;
+				case DataType::FLOAT:
+					row[i] = new FloatValue(std::stod(val));
+					break;
+				case DataType::DATE: {
+					bool ok = false;
+
+					Date d = Date::fromString(val, ok);
+					if (!ok) throw std::runtime_error("Invalid date format for value: " + val);
+
+					row[i] = new DateValue(d);
+					break;
+				}
+				case DataType::STRING: {
+					if (val.size() < 2 || val.front() != '"' || val.back() != '"') {
+						throw std::runtime_error("Invalid string format for value: " + val);
+					}
+
+					row[i] = new StringValue(unescapeString(val));
+					break;
+				}
+				default:
+					row[i] = new NullValue();
+					break;
+				}
+			}
+			catch (const std::exception& e) {
+				row.clear();
+				throw std::runtime_error("Failed to insert value '" + val + "' into column '"
+					+ columns[i].name + "': " + e.what());
+			}
+		}
+	}
+
+	// We exited the for-loop, meaning all cells have been parsed
+	// and the complete row is ready for insertion into the table.
+	try {
+		addRow(row);
+	}
+	catch (...) {
+		row.clear();
+		throw; // rethrowing -- we've cleaned up in time, but any callers
+			   // should know something happened so they can inform the user
 	}
 }
 
