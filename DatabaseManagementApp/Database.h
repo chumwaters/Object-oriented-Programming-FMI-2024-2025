@@ -18,18 +18,6 @@ public:
 	/// @param t Table to be added to the DB.
 	void addTable(const Table& t);
 
-	/// @brief Prints the contents of a table by name.
-	/// 
-	/// Format:
-	/// - Names of all columns as a header row.
-	/// - A seprator line beneath the header.
-	/// - One line per row of data, formatted with `CellValue::toString`.
-	/// 
-	/// If the table is not found, an error message is printed to std::cerr.
-	/// 
-	/// @param tableName The name of the table to display.
-	void printTable(const std::string& tableName) const;
-
 	/// @brief Prints all rows in a table where the specified column matches a given
 	/// value.
 	/// @param tableName Name of table to select from.
