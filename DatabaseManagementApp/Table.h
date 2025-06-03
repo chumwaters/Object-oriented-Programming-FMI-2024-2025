@@ -55,6 +55,13 @@ public:
 	/// @return A vector of rows that matched the criteria.
 	std::vector<Row> selectSubstringMatches(size_t colIndex, const std::string& value) const;
 
+	/// @brief Modifies the type of a column, attempting conversion.
+	/// Outputs information reagarding success and failure count on 
+	/// conversions, as well as row-indexes of failures.
+	/// @param colIndex Index of the column to change.
+	/// @param newType New data type to convert to.
+	void modifyColumnType(size_t colIndex, DataType newType);
+
 	//------------------------------------------
 	// Information
 	//------------------------------------------
