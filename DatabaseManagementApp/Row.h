@@ -36,6 +36,9 @@ public:
 	/// @return Number of cells in the Row.
 	size_t size() const { return cells.size(); };
 
+	/// @brief Frees memory for cells.
+	void clear();
+
 	/// @brief Access cell by index. Throws if index is out of range.
 	/// @param i Index of the cell
 	/// @return Reference to the CellValue pointer of the i-th element
