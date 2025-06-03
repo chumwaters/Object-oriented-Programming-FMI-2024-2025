@@ -75,4 +75,12 @@ public:
 
 	/// @brief Prints the schema of the table: column names and their data types.
 	void describe() const;
+
+	/// @brief Prints the contents of the table.
+	/// 
+	/// Format:
+	/// - Names of all columns as a header row.
+	/// - A separator line beneath the header.
+	/// - One line per row of data, formatted with `CellValue::toString`.
+	void print() const;
 };
