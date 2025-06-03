@@ -57,9 +57,7 @@ Row &Row::operator=(Row &&other) noexcept
 
 Row::~Row()
 {
-	for (CellValue *val : cells)
-		delete val;
-	cells.clear();
+	clear();
 }
 
 CellValue *&Row::operator[](size_t i)
@@ -68,6 +66,13 @@ CellValue *&Row::operator[](size_t i)
 		throw std::out_of_range("Row index is out of bounds");
 
 	return cells[i];
+}
+
+void Row::clear() {
+	for (size_t i = 0; i < cells.size(); ++i) {
+		delete cells[i];
+		cells[i] = nullptr;
+	}
 }
 
 const CellValue *Row::operator[](size_t i) const
