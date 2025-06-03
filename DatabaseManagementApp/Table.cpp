@@ -1,6 +1,28 @@
 #include "Table.h"
 #include "NullValue.h"
 
+static std::string unescapeString(const std::string& val) {
+	std::string parsed;
+
+	for (size_t j = 1; j + 1 < val.size(); ++j) {
+		if (val[j] == '\\' && j + 1 < val.size() - 1) {
+			char next = val[j + 1];
+			if (next == '"' || next == '\\') {
+				parsed += next;
+				++j;
+			}
+			else {
+				parsed += val[j];
+			}
+		}
+		else {
+			parsed += val[j];
+		}
+	}
+
+	return parsed;
+}
+
 Table::Table(const std::string& tableName) : name(tableName) {}
 
 void Table::addColumn(const std::string& colName, DataType type) {
