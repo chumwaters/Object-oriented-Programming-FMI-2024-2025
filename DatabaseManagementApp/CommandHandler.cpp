@@ -58,6 +58,23 @@ void CommandHandler::handleCommand(const std::string& line) {
 
 			table->selectMatchingRows(colIndex, value);
 		}
+		else if (command == "modify" && tokens.size() == 4) {
+			const char* idxStr = tokens[1].c_str();
+			char* endptr = nullptr;
+			long parsedIndex = std::strtol(idxStr, &endptr, 10);
+			if (*endptr != '\0' || parsedIndex < 0)
+				throw std::runtime_error("Invalid column index: " + tokens[1]);
+			std::size_t colIndex = static_cast<std::size_t>(parsedIndex);
+
+			Table* table = db.getTable(tokens[1]);
+			if (!table) throw std::runtime_error("Table not found: " + tokens[1]);
+
+			DataType newType;
+			if (!DataTypeHelpers::fromString(tokens[3], newType)) 
+				throw std::runtime_error("Invalid data type: " + tokens[3]);
+
+			table->modifyColumnType(static_cast<std::size_t>(colIndex), newType);
+		}
 		else {
 			std::cerr << "Unknown or malformed command: " << command << " " << tokens.size() << '\n';
 		}
