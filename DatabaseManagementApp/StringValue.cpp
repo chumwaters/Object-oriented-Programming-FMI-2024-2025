@@ -1,5 +1,6 @@
 #include "StringValue.h"
 #include "IntValue.h"
+#include "FloatValue.h"
 
 std::string StringValue::toString() const
 {
@@ -54,12 +55,12 @@ bool StringValue::convertTo(DataType target, CellValue *&out) const
 	case DataType::FLOAT:
 	{
 		char *endptr = nullptr;
-		long long val = std::strtod(value.c_str(), &endptr);
+		double val = std::strtod(value.c_str(), &endptr);
 
 		if (*endptr != '\0')
 			return false;
 
-		out = new IntValue(val); // TODO make FLOAT
+		out = new FloatValue(val);
 
 		return true;
 	}
