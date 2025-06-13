@@ -55,6 +55,13 @@ public:
 	/// @return A vector of rows that matched the criteria.
 	std::vector<Row> selectSubstringMatches(size_t colIndex, const std::string& value) const;
 
+
+	/// @brief Prints all rows in the table where the specified column matches a given
+	/// value.
+	/// @param columnIndex Index of column in table to match.
+	/// @param searchValue String form of the value to match.
+	void selectMatchingRows(std::size_t columnIndex, const std::string& searchValue) const;
+
 	/// @brief Modifies the type of a column, attempting conversion.
 	/// Outputs information reagarding success and failure count on 
 	/// conversions, as well as row-indexes of failures.
