@@ -16,8 +16,9 @@ public:
 	/// @return DataType::FLOAT
 	DataType getType() const override { return DataType::FLOAT; }
 
-	/// @return String representation of the float value.
-	std::string toString() const override { return std::to_string(value); }
+	/// @return String representation of the float value. Manual formatting 
+	/// to 2 symbols after the floating point instead of using to_string. 
+	std::string toString() const override;
 
 	/// @return Always false.
 	bool isNull() const override { return false; }
