@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 
-#include "Date.h"
 #include "DataType.h"
 
 /// @brief Abstract base class representing a value in a table cell.
