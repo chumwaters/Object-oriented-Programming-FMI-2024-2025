@@ -30,7 +30,7 @@ bool FloatValue::convertTo(DataType target, CellValue *&out) const
 		out = new IntValue(static_cast<long long>(value));
 		return true;
 	case DataType::STRING:
-		out = new StringValue(std::to_string(value));
+		out = new StringValue(this->toString());
 		return true;
 	default:
 		return false;
