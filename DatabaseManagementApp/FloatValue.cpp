@@ -2,6 +2,13 @@
 #include "IntValue.h"
 #include "StringValue.h"
 
+std::string FloatValue::toString() const {
+	char buff[32];
+	std::snprintf(buff, sizeof(buff), "%.2f", value);
+
+	return std::string(buff);
+}
+
 bool FloatValue::equals(const CellValue *other) const
 {
 	if (other->getType() != DataType::FLOAT)
