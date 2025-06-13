@@ -9,3 +9,26 @@ enum class DataType
 	STRING,	 // Quoted string with C-style escapes
 	NULLTYPE // Explicit NULL (no value)
 };
+
+struct DataTypeHelpers {
+    static bool fromString(const std::string& str, DataType& out) {
+        if (str == "INT") {
+            out = DataType::INT;
+            return true;
+        }
+        else if (str == "FLOAT") {
+            out = DataType::FLOAT;
+            return true;
+        }
+        else if (str == "DATE") {
+            out = DataType::DATE;
+            return true;
+        }
+        else if (str == "STRING") {
+            out = DataType::STRING;
+            return true;
+        }
+
+        return false;
+    }
+};

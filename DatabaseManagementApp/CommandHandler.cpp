@@ -25,6 +25,17 @@ void CommandHandler::handleCommand(const std::string& line) {
 
 			table->describe();
 		}
+		else if (command == "addcolumn" && tokens.size() == 4) {
+			Table* table = db.getTable(tokens[1]);
+			if (!table) throw std::runtime_error("Table not found: " + tokens[1]);
+
+			DataType type;
+			if (!DataTypeHelpers::fromString(tokens[3], type)) {
+				throw std::runtime_error("Invalid data type: " + tokens[3]);
+			}
+
+			table->addColumn(tokens[2], type);
+		}
 		else if (command == "insert" && tokens.size() >= 3) {
 			Table* table = db.getTable(tokens[1]);
 			if (!table) throw std::runtime_error("Table not found: " + tokens[1]);
@@ -48,7 +59,7 @@ void CommandHandler::handleCommand(const std::string& line) {
 			table->selectMatchingRows(colIndex, value);
 		}
 		else {
-			std::cerr << "Unknown or malformed command: " << command << '\n';
+			std::cerr << "Unknown or malformed command: " << command << " " << tokens.size() << '\n';
 		}
 	}
 	catch (const std::exception& e) {
