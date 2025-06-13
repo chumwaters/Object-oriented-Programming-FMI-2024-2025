@@ -27,65 +27,49 @@ void CommandHandler::handleCommand(const std::string& line) {
 
 	const std::string& command = tokens[0];
 
-	if (command == "exit") {
-		std::cout << "Exiting.\n";
-		exit(0);
-	}
-	else if (command == "showtables") {
-		if (tokens.size() != 1) {
-			std::cerr << "Showtables command has no arguments!\n";
-		}
-		else {
+	try {
+		if (command == "showtables") {
 			db.showTables();
 		}
-		
-	}
-	else if (command == "print") {
-		if (tokens.size() != 2) {
-			std::cerr << "Usage: print <table>\n";
+		else if (command == "print" && tokens.size() == 2) {
+			Table* table = db.getTable(tokens[1]);
+			if (!table) throw std::runtime_error("Table not found: " + tokens[1]);
+
+			table->print();
 		}
-		else {
-			db.printTable(tokens[1]);
+		else if (command == "describe" && tokens.size() == 2) {
+			Table* table = db.getTable(tokens[1]);
+			if (!table) throw std::runtime_error("Table not found: " + tokens[1]);
+
+			table->describe();
 		}
-	}
-	else if (command == "insert") {
-		if (tokens.size() != 3) {
-			std::cerr << "Usage: insert <table> <val1> <val2> ... \n";
-		}
-		else {
-			const std::string& tableName = tokens[1];
+		else if (command == "insert" && tokens.size() >= 3) {
+			Table* table = db.getTable(tokens[1]);
+			if (!table) throw std::runtime_error("Table not found: " + tokens[1]);
+			
 			std::vector<std::string> values(tokens.begin() + 2, tokens.end());
-			if (!db.insertInto(tableName, values)) {
-				std::cerr << "Insert failed.\n";
-			}
+			table->insert(values);
 		}
-	}
-	else if (command == "describe") {
-		if (tokens.size() != 2) {
-			std::cerr << "Usage: describe <table>\n";
-		}
-		else {
-			const Table* table = db.getTable(tokens[1]);
-			if (!table) {
-				std::cerr << "Table '" << tokens[1] << "' not found.\n";
-			}
-			else {
-				table->describe();
-			}
-		}
-	}
-	else if (command == "select") {
-		if (tokens.size() != 4) {
-			std::cerr << "Usage: select <column-n> <value> <table>\n";
-		}
-		else {
-			std::size_t colIndex = static_cast<std::size_t>(std::atoi(tokens[1].c_str()));
+		else if (command == "select" && tokens.size() == 4) {
+			const char* idxStr = tokens[1].c_str();
+			char* endptr = nullptr;
+			long parsedIndex = std::strtol(idxStr, &endptr, 10);
+			if (*endptr != '\0' || parsedIndex < 0)
+				throw std::runtime_error("Invalid column index: " + tokens[1]);
+			std::size_t colIndex = static_cast<std::size_t>(parsedIndex);
+
 			const std::string& value = tokens[2];
-			const std::string& tableName = tokens[3];
-			db.selectMatchingRows(tableName, colIndex, value);
+			
+			Table* table = db.getTable(tokens[3]);
+			if (!table) throw std::runtime_error("Table not found: " + tokens[3]);
+
+			table->selectMatchingRows(colIndex, value);
+		}
+		else {
+			std::cerr << "Unknown or malformed command: " << command << '\n';
 		}
 	}
-	else {
-		std::cerr << "Unknown command: " << command << "\n";
+	catch (const std::exception& e) {
+		std::cerr << "Error: " << e.what() << '\n';
 	}
 }
