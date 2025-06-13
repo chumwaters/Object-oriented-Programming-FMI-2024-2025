@@ -35,7 +35,16 @@ int main() {
 	std::cout << "\n=== Select: ID equals '2' ===\n";
 	handler.handleCommand("select 0 2 people");  // Should match Bob only
 
-	// Step 5: Command prompt-and-execute loop
+	// Step 5: Modify tests
+	//		5.1 Modify GPA column (index 3) to STRING
+	std::cout << "\n=== Modify: GPA (column 3) to STRING ===\n";
+	handler.handleCommand("modify people 3 STRING");
+
+	//		5.2 Print again to confirm changes
+	std::cout << "\n=== Table after GPA converted to STRING ===\n";
+	handler.handleCommand("print people");
+
+	// Step 6: Command prompt-and-execute loop
 	std::string input;
 
 	while (true) {
