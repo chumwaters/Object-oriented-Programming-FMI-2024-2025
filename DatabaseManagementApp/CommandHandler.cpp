@@ -5,15 +5,43 @@
 /// @return Vector of space-separated words of input line.
 static std::vector<std::string> splitCommandLine(const std::string& line) {
 	std::vector<std::string> tokens;
+	std::string current;
+	bool inQuotes = false;
 
-	const char* str = line.c_str();
-	while (*str) {	// This semantically iterates through words, not characters
-		while (*str && std::isspace(*str)) ++str; // Skip whitespaces
+	for (std::size_t i = 0; i < line.length(); ++i) {
+		char c = line[i];
 
-		const char* start = str; // Remember first character you find
-		while (*str && !std::isspace(*str)) ++str; // Go to the end of the word
-		if (start != str)
-			tokens.emplace_back(start, str - start); // Construct directly in vector
+		if (inQuotes) {
+			if (c == '\\' && i + 1 < line.length()) {
+				// Handle escaped characters
+				current += line[i + 1];
+				++i;
+			}
+			else if (c == '"') {
+				inQuotes = false;
+			}
+			else {
+				current += c;
+			}
+		}
+		else {
+			if (c == '"') {
+				inQuotes = true;
+			}
+			else if (std::isspace(c)) {
+				if (!current.empty()) {
+					tokens.push_back(current);
+					current.clear();
+				}
+			}
+			else {
+				current += c;
+			}
+		}
+	}
+
+	if (!current.empty()) {
+		tokens.push_back(current);
 	}
 
 	return tokens;
