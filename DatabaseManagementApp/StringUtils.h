@@ -9,7 +9,7 @@
 static std::string unescapeString(const std::string& val) {
 	std::string parsed;
 
-	for (size_t j = 1; j + 1 < val.size(); ++j) {
+	for (size_t j = 0; j < val.size(); ++j) {
 		if (val[j] == '\\' && j + 1 < val.size() - 1) {
 			char next = val[j + 1];
 			if (next == '"' || next == '\\') {
