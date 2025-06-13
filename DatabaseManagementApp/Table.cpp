@@ -31,7 +31,7 @@ static std::string unescapeString(const std::string& val) {
 }
 
 /// @brief Prints a collection of Rows with a common column structure to standart output with aligned
-/// columns.
+/// columns. Used in print and select.
 /// @param columns The metadata describing each column (names and types).
 /// @param rows The rows of data to print. These must match the column structure.
 static void printRowsFormatted(const std::vector<Column>& columns, const std::vector<Row>& rows) {
@@ -114,6 +114,30 @@ std::vector<Row> Table::selectSubstringMatches(size_t colIndex, const std::strin
 
 	return result;
 }
+
+void Table::selectMatchingRows(std::size_t columnIndex, const std::string& searchValue) const
+{
+	if (columnIndex >= columns.size()) {
+		throw std::out_of_range("Column index out of bounds in selectMatchingRows.");
+	}
+
+	std::vector<Row> filtered;
+	for (const Row& row : rows) {
+		const CellValue* cell = row[columnIndex];
+
+		if (columns[columnIndex].type == DataType::STRING) {
+			if (cell->containsSubstring(searchValue))
+				filtered.push_back(row);
+		}
+		else {
+			if (cell->toString() == searchValue)
+				filtered.push_back(row);
+		}
+	}
+
+	printRowsFormatted(columns, filtered);
+}
+
 
 void Table::modifyColumnType(size_t colIndex, DataType newType) {
 	if (colIndex >= columns.size()) {
