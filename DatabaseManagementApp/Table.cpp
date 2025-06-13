@@ -4,31 +4,7 @@
 #include "DateValue.h"
 #include "StringValue.h"
 #include "NullValue.h"
-
-/// @brief Unescapes C++-style string literals.
-/// @param val string literal to unescape.
-/// @return Unescaped modification of val parameter.
-static std::string unescapeString(const std::string& val) {
-	std::string parsed;
-
-	for (size_t j = 1; j + 1 < val.size(); ++j) {
-		if (val[j] == '\\' && j + 1 < val.size() - 1) {
-			char next = val[j + 1];
-			if (next == '"' || next == '\\') {
-				parsed += next;
-				++j;
-			}
-			else {
-				parsed += val[j];
-			}
-		}
-		else {
-			parsed += val[j];
-		}
-	}
-
-	return parsed;
-}
+#include "StringUtils.h"
 
 /// @brief Prints a collection of Rows with a common column structure to standart output with aligned
 /// columns. Used in print and select.
