@@ -1,3 +1,5 @@
+#pragma once
+
 #include "CellValue.h"
 
 /// @brief Represents an integer value in a table cell.
@@ -25,6 +27,7 @@ public:
 	/// @return A new IntValue with the same content.
 	CellValue* clone() const override { return new IntValue(value); }
 
-	/// @brief Converts IntValue to IntValue, FloatValue or StringValue.
+	/// @brief Attempts to convert IntValue to IntValue, FloatValue or 
+	/// StringValue.
 	bool convertTo(DataType target, CellValue*& out) const override;
 };
