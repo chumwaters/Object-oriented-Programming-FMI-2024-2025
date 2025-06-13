@@ -35,7 +35,7 @@ static void printRowsFormatted(const std::vector<Column>& columns, const std::ve
 		for (std::size_t p = 0; p < padding; ++p) std::cout << ' ';
 		if (i + 1 < columns.size()) std::cout << "| ";
 	}
-	std::cout << "|\n";
+	std::cout << " |\n";
 
 	// Printing  the line on the second row of the visualization
 	std::cout << '|';
@@ -43,7 +43,7 @@ static void printRowsFormatted(const std::vector<Column>& columns, const std::ve
 		for (std::size_t j = 0; j < widths[i] + 1; ++j) std::cout << '-';
 		if (i + 1 < columns.size()) std::cout << "+";
 	}
-	std::cout << '|';
+	std::cout << "-|";
 	std::cout << "\n";
 
 	// Printing rows
@@ -55,7 +55,7 @@ static void printRowsFormatted(const std::vector<Column>& columns, const std::ve
 
 			for (std::size_t p = 0; p < padding; ++p) std::cout << ' ';
 		}
-		std::cout << "|\n";
+		std::cout << " |\n";
 	}
 }
 
