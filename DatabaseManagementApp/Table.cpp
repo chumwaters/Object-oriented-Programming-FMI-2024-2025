@@ -57,16 +57,17 @@ static void printRowsFormatted(const std::vector<Column>& columns, const std::ve
 
 		std::size_t padding = widths[i] > columns[i].name.size() ? widths[i] - columns[i].name.size() : 0;
 		for (std::size_t p = 0; p < padding; ++p) std::cout << ' ';
-		if (i + 1 < columns.size()) std::cout << " | ";
+		if (i + 1 < columns.size()) std::cout << "| ";
 	}
 	std::cout << "|\n";
 
-	// Printing appropriate number of dashes for each collumn to form the 
-	// line on the second row of the visualization
+	// Printing  the line on the second row of the visualization
+	std::cout << '|';
 	for (std::size_t i = 0; i < columns.size(); ++i) {
-		for (std::size_t j = 0; j < widths[i]; ++j) std::cout << '-';
-		if (i + 1 < columns.size()) std::cout << "-+-";
+		for (std::size_t j = 0; j < widths[i] + 1; ++j) std::cout << '-';
+		if (i + 1 < columns.size()) std::cout << "+";
 	}
+	std::cout << '|';
 	std::cout << "\n";
 
 	// Printing rows
