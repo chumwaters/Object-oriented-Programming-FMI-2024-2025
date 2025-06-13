@@ -46,11 +46,14 @@ static void printRowsFormatted(const std::vector<Column>& columns, const std::ve
 
 			if (len > maxLen) maxLen = len;
 		}
+
+		widths[c] = maxLen;
 	}
 
 	// Printing header
+	std::cout << "| ";
 	for (std::size_t i = 0; i < columns.size(); ++i) {
-		std::cout << "| " << columns[i].name;
+		std::cout << columns[i].name;
 
 		std::size_t padding = widths[i] > columns[i].name.size() ? widths[i] - columns[i].name.size() : 0;
 		for (std::size_t p = 0; p < padding; ++p) std::cout << ' ';
@@ -137,7 +140,6 @@ void Table::selectMatchingRows(std::size_t columnIndex, const std::string& searc
 
 	printRowsFormatted(columns, filtered);
 }
-
 
 void Table::modifyColumnType(size_t colIndex, DataType newType) {
 	if (colIndex >= columns.size()) {
