@@ -49,7 +49,7 @@ static void printRowsFormatted(const std::vector<Column>& columns, const std::ve
 	// Printing rows
 	for (std::size_t r = 0; r < rows.size(); ++r) {
 		for (std::size_t c = 0; c < columns.size(); ++c) {
-			std::string cellStr = rows[r][c]->toString();
+			std::string cellStr = rows[r][c]->toHumanString();
 			std::cout << "| " << cellStr;
 			std::size_t padding = widths[c] > cellStr.size() ? widths[c] - cellStr.size() : 0;
 

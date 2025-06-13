@@ -19,6 +19,11 @@ public:
 	/// @return String object obtained from applied transformation
 	virtual std::string toString() const = 0;
 
+	/// @brief Returns a printable, non-escaped version of the string for display
+	virtual std::string toHumanString() const {
+		return toString(); // default fallback
+	}
+
 	/// @brief Checks if another cell is equal to this one.
 	/// @param other Cell to compare with
 	/// @return True if values are equal
