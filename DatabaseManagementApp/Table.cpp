@@ -214,11 +214,7 @@ void Table::insert(const std::vector<std::string>& rawValues) {
 					break;
 				}
 				case DataType::STRING: {
-					if (val.size() < 2 || val.front() != '"' || val.back() != '"') {
-						throw std::runtime_error("Invalid string format for value: " + val);
-					}
-
-					row[i] = new StringValue(unescapeString(val));
+					row[i] = new StringValue(val);
 					break;
 				}
 				default:
