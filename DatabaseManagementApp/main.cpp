@@ -15,36 +15,23 @@ int main() {
 	db.addTable(people);
 
 	// Step 2: Insert sample data
-	db.insertInto("people", { "1", "\"Alice\"", "01.01.2000", "3.75" });
-	db.insertInto("people", { "2", "\"Bob\"", "15.06.1999", "NULL" });
-	db.insertInto("people", { "3", "\"Carol\"", "28.02.2001", "4.00" });
-
+	people.insert({ "1", "\"Alice\"", "01.01.2000", "3.75" });
+	people.insert({ "2", "\"Bob\"", "15.06.1999", "NULL" });
+	people.insert({ "3", "\"Carol\"", "28.02.2001", "4.00" });
+	people.insert({ "4", "\"Bobby\"", "15.06.1999", "3.50" });
 
 	// Step 3: Print table
-	db.printTable("people");
+	people.print();
 
 	// Step 4: Select tests
-	std::cout << "\n=== SELECT Name contains 'li' ===\n";
-	db.selectMatchingRows("people", 1, "li");
+	std::cout << "\n=== Select: Name contains 'Bob' ===\n";
+	people.selectMatchingRows(1, "Bob");  // Should match "Bob" and "Bobby"
 
-	std::cout << "\n=== SELECT ID = 2 ===\n";
-	db.selectMatchingRows("people", 0, "2");
+	std::cout << "\n=== Select: GPA equals '4.00' ===\n";
+	people.selectMatchingRows(3, "4.00");  // Should match Carol only
 
-	std::cout << "\n=== SELECT GPA = 4.00 ===\n";
-	db.selectMatchingRows("people", 3, "4.00");
-
-	std::cout << "\n=== SELECT Birthday = 28.02.2001 ===\n";
-	db.selectMatchingRows("people", 2, "28.02.2001");
-
-	std::cout << "\n=== SELECT Name contains 'x' (no match) ===\n";
-	db.selectMatchingRows("people", 1, "x");
-
-	std::cout << "\n=== SELECT on invalid column index ===\n";
-	db.selectMatchingRows("people", 5, "something");
-
-	std::cout << "\n=== SELECT with invalid int value ===\n";
-	db.selectMatchingRows("people", 0, "notanint");
-
-
+	std::cout << "\n=== Select: ID equals '2' ===\n";
+	people.selectMatchingRows(0, "2");  // Should match Bob only
+	
 	return 0;
 }
