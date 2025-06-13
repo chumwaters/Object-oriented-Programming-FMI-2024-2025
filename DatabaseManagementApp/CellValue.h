@@ -10,7 +10,7 @@ class CellValue
 {
 public:
 	/// @return Whether the cell is null
-	virtual bool isNull() const = 0; // TODO: pls just check table[i][j] == nullptr
+	virtual bool isNull() const = 0;
 
 	/// @return The type of this cell
 	virtual DataType getType() const = 0;
