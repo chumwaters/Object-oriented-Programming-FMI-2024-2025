@@ -110,8 +110,12 @@ void Table::selectMatchingRows(std::size_t columnIndex, const std::string& searc
 				filtered.push_back(row);
 		}
 		else {
-			if (cell->toString() == searchValue)
+			bool ok = false;
+			CellValue* query = CellValue::fromString(searchValue, columns[columnIndex].type, ok);
+			if (ok && cell->equals(query))
 				filtered.push_back(row);
+
+			delete query;
 		}
 	}
 
