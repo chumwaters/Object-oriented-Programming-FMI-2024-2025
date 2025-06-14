@@ -27,13 +27,13 @@ int main() {
 
 	// Step 4: Select tests
 	std::cout << "\n=== Select: Name contains 'Bob' ===\n";
-	handler.handleCommand("select 1 Bob people");  // Should match "Bob" and "Bobby"
+	handler.handleCommand("select 1 Bob people");
 
 	std::cout << "\n=== Select: GPA equals '4.00' ===\n";
-	handler.handleCommand("select 3 4.00 people");  // Should match Carol only
+	handler.handleCommand("select 3 4.00 people");
 
 	std::cout << "\n=== Select: ID equals '2' ===\n";
-	handler.handleCommand("select 0 2 people");  // Should match Bob only
+	handler.handleCommand("select 0 2 people"); 
 
 	// Step 6: Update tests
 	std::cout << "\n=== Update: Set GPA to 3.90 for ID == 4 ===\n";
@@ -55,22 +55,44 @@ int main() {
 	handler.handleCommand("print people");
 	
 	// Step 6: Modify tests
-	//		6.1 Modify GPA column (index 3) to STRING
 	std::cout << "\n=== Modify: GPA (column 3) to STRING ===\n";
 	handler.handleCommand("modify people 3 STRING");
 
-	//		6.2 Print again to confirm changes
 	std::cout << "\n=== Table after GPA converted to STRING ===\n";
 	handler.handleCommand("print people");
 
-	//		6.3 Force a failed conversion: turn Name (index 1) into INT
 	std::cout << "\n=== Modify: Name (column 1) to INT (expect failures) ===\n";
 	handler.handleCommand("modify people 1 INT");
 
 	std::cout << "\n=== Table after Name converted to INT ===\n";
 	handler.handleCommand("print people");
 
-	// Step 7: Command prompt-and-execute loop
+	// Step 7: Delete tests
+	std::cout << "\n=== Delete: Delete rows where ID == 99 ===\n";
+	handler.handleCommand("delete people 0 99");
+
+	std::cout << "\n=== Table after deleting ID == 99 ===\n";
+	handler.handleCommand("print people");
+
+	std::cout << "\n=== Delete: Delete rows where GPA == NULL ===\n";
+	handler.handleCommand("delete people 3 NULL"); 
+
+	std::cout << "\n=== Table after deleting GPA == NULL ===\n";
+	handler.handleCommand("print people");
+
+	std::cout << "\n=== Delete: Delete rows where Birthday == 28.02.2001 ===\n";
+	handler.handleCommand("delete people 2 28.02.2001");
+
+	std::cout << "\n=== Table after deleting Birthday == 28.02.2001 ===\n";
+	handler.handleCommand("print people");
+
+	std::cout << "\n=== Delete: Attempt to delete rows where Name == 999 (no match expected) ===\n";
+	handler.handleCommand("delete people 1 999");
+
+	std::cout << "\n=== Table after no-match delete ===\n";
+	handler.handleCommand("print people");
+
+	// Step 8: Command prompt-and-execute loop
 	std::string input;
 
 	while (true) {
