@@ -184,6 +184,44 @@ void Table::updateMatchingRows(std::size_t searchCol, const std::string& searchV
 	delete newValue;
 }
 
+void Table::deleteMatchingRows(std::size_t columnIndex, const std::string& matchValue) {
+	if (columnIndex >= columns.size()) {
+		throw std::out_of_range("Column index out of bounds in deleteMatchingRows.");
+	}
+
+	std::vector<Row> remaining;
+
+	for (const Row& row : rows) {
+		const CellValue* cell = row[columnIndex];
+
+		if (matchValue == "NULL") {
+			if (!cell->isNull()) {
+				remaining.push_back(row);
+			}
+		} 
+		else {
+			bool validSearch = false;
+			bool match = false;
+			CellValue* query = CellValue::fromString(matchValue, columns[columnIndex].type,
+				validSearch);
+
+			if (validSearch && cell->equals(query))
+				match = true;
+
+
+			delete query;
+
+			if (!match)
+				remaining.push_back(row);
+		}
+	}
+
+	std::size_t deletedCount = rows.size() - remaining.size();
+	rows = std::move(remaining);
+
+	std::cout << "Deleted " << deletedCount << " row(s).\n";
+}
+
 void Table::insert(const std::vector<std::string>& rawValues) {
 	if (rawValues.size() != columns.size()) {
 		throw std::runtime_error("Expected " + std::to_string(columns.size()) 
