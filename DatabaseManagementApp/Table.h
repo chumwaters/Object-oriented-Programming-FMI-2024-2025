@@ -71,6 +71,20 @@ public:
 	void updateMatchingRows(std::size_t searchCol, const std::string& searchValue,
 		std::size_t targetCol, const std::string& targetValue);
 
+	/// @brief Deletes all rows where the value in the specified column matches 
+	/// the given value. 
+	/// 
+	/// The comparison is exact:
+	///		- Strings must match fully (no substring check).
+	///		- All other types are compared using their equals() implementations.
+	///		- The special value "NULL" matches cells that are null.
+	/// 
+	/// @param columnIndex Index of the column to search.
+	/// @param matchValue Value to match against.
+	/// 
+	/// @throws std::out_of_range if columnIndex is invalid.
+	void deleteMatchingRows(std::size_t columnIndex, const std::string& matchValue);
+
 	/// @brief Inserts a new row into the table using raw
 	/// string values.
 	/// @param rawValues A vector of strings representing the values to
