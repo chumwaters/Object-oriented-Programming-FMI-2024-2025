@@ -68,6 +68,16 @@ public:
 	/// @param colIndex Index of the column to change.
 	/// @param newType New data type to convert to.
 	void modifyColumnType(size_t colIndex, DataType newType);
+	
+	/// @brief Updates all rows where one column matches a given value,
+	/// replacing another column's value.
+	/// @param searchCol The index of the column to search for matches.
+	/// @param searchValue The value to look for.
+	/// @param targetCol The index of the column to update.
+	/// @param targetValue The value to assign.
+	/// @throws std::runtime_error on bad input or failed conversion.
+	void updateMatchingRows(std::size_t searchCol, const std::string& searchValue,
+		std::size_t targetCol, const std::string& targetValue);
 
 	/// @brief Inserts a new row into the table using raw
 	/// string values.
