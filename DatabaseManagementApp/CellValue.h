@@ -19,10 +19,15 @@ public:
 	/// @return String object obtained from applied transformation
 	virtual std::string toString() const = 0;
 
+	/// @brief Parses a string into a CellValue* of the corresponding type.
+	/// @param str The raw input string.
+	/// @param type The type to convert to.
+	/// @param ок Set to true if parsing succeeds.
+	/// @return A dynamically allocated CellValue, or nullptr on failure.
+	static CellValue* fromString(const std::string& str, DataType type, bool& ок);
+
 	/// @brief Returns a printable, non-escaped version of the string for display
-	virtual std::string toHumanString() const {
-		return toString(); // default fallback
-	}
+	virtual std::string toHumanString() const { return toString(); }
 
 	/// @brief Checks if another cell is equal to this one.
 	/// @param other Cell to compare with
