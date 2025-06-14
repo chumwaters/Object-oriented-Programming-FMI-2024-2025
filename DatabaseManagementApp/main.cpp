@@ -20,7 +20,7 @@ int main() {
 	handler.handleCommand("insert people 1 \"Alice\" 01.01.2000 3.75");
 	handler.handleCommand("insert people 2 \"Bob\" 15.06.1999 NULL");
 	handler.handleCommand("insert people 3 \"Carol\" 28.02.2001 4.00");
-	handler.handleCommand("insert people 4 \"Bobby\" 15.06.1999 3.50");
+	handler.handleCommand("insert people 4 \"Bobby John\" 15.06.1999 3.50");
 
 	// Step 3: Print table
 	handler.handleCommand("print people");
@@ -35,16 +35,42 @@ int main() {
 	std::cout << "\n=== Select: ID equals '2' ===\n";
 	handler.handleCommand("select 0 2 people");  // Should match Bob only
 
-	// Step 5: Modify tests
-	//		5.1 Modify GPA column (index 3) to STRING
+	// Step 6: Update tests
+	std::cout << "\n=== Update: Set GPA to 3.90 for ID == 4 ===\n";
+	handler.handleCommand("update people 0 4 3 3.90");
+
+	std::cout << "\n=== Table after GPA update ===\n";
+	handler.handleCommand("print people");
+
+	std::cout << "\n=== Update: Set ID to 99 for rows where Name contains 'Bob' ===\n";
+	handler.handleCommand("update people 1 Bob 0 99");
+
+	std::cout << "\n=== Table after ID update ===\n";
+	handler.handleCommand("print people");
+
+	std::cout << "\n=== Update: Attempt to update GPA where ID == 999 (no match expected) ===\n";
+	handler.handleCommand("update people 0 999 3 2.50");
+
+	std::cout << "\n=== Table after no-match update ===\n";
+	handler.handleCommand("print people");
+	
+	// Step 6: Modify tests
+	//		6.1 Modify GPA column (index 3) to STRING
 	std::cout << "\n=== Modify: GPA (column 3) to STRING ===\n";
 	handler.handleCommand("modify people 3 STRING");
 
-	//		5.2 Print again to confirm changes
+	//		6.2 Print again to confirm changes
 	std::cout << "\n=== Table after GPA converted to STRING ===\n";
 	handler.handleCommand("print people");
 
-	// Step 6: Command prompt-and-execute loop
+	//		6.3 Force a failed conversion: turn Name (index 1) into INT
+	std::cout << "\n=== Modify: Name (column 1) to INT (expect failures) ===\n";
+	handler.handleCommand("modify people 1 INT");
+
+	std::cout << "\n=== Table after Name converted to INT ===\n";
+	handler.handleCommand("print people");
+
+	// Step 7: Command prompt-and-execute loop
 	std::string input;
 
 	while (true) {
