@@ -59,7 +59,7 @@ void CommandHandler::handleCommand(const std::string& line) {
 			table->selectMatchingRows(colIndex, value);
 		}
 		else if (command == "modify" && tokens.size() == 4) {
-			const char* idxStr = tokens[1].c_str();
+			const char* idxStr = tokens[2].c_str();
 			char* endptr = nullptr;
 			long parsedIndex = std::strtol(idxStr, &endptr, 10);
 			if (*endptr != '\0' || parsedIndex < 0)
@@ -74,6 +74,23 @@ void CommandHandler::handleCommand(const std::string& line) {
 				throw std::runtime_error("Invalid data type: " + tokens[3]);
 
 			table->modifyColumnType(static_cast<std::size_t>(colIndex), newType);
+		}
+		else if (command == "update" && tokens.size() == 6) {
+			const char* srchIdxStr = tokens[2].c_str();
+			const char* trgtIdxStr = tokens[4].c_str();
+			char* endptr1 = nullptr;
+			char* endptr2 = nullptr;
+			long parsedSrchIndex = std::strtol(srchIdxStr, &endptr1, 10);
+			long parsedTrgtIndex = std::strtol(trgtIdxStr, &endptr1, 10);
+			if (*endptr1 != '\0' || *endptr2 != '\0' || 
+				parsedSrchIndex < 0 || parsedTrgtIndex < 0)
+				throw std::runtime_error("Invalid column indices: " + tokens[2] + ' ' + tokens[4]);
+
+			Table* table = db.getTable(tokens[1]);
+			if (!table) throw std::runtime_error("Table not found: " + tokens[1]);
+
+			table->updateMatchingRows(static_cast<std::size_t>(parsedSrchIndex), tokens[3], 
+				static_cast<std::size_t>(parsedTrgtIndex), tokens[5]);
 		}
 		else {
 			std::cerr << "Unknown or malformed command: " << command << " " << tokens.size() << '\n';
