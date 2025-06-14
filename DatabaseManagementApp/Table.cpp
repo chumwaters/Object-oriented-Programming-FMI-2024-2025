@@ -75,26 +75,6 @@ void Table::addRow(const Row& r) {
 	rows.push_back(r);
 }
 
-std::vector<Row> Table::selectSubstringMatches(size_t colIndex, const std::string & value) const {
-	std::vector<Row> result;
-
-	if (colIndex >= columns.size()) {
-		throw std::out_of_range("Column index out of bounds in selectSubstringMatches.");
-	}
-
-	for (const Row& row : rows) {
-		const CellValue* cell = row[colIndex];
-		
-		if (columns[colIndex].type == DataType::STRING && cell &&
-			cell->containsSubstring(value)) 
-		{
-			result.push_back(row);
-		}
-	}
-
-	return result;
-}
-
 void Table::selectMatchingRows(std::size_t columnIndex, const std::string& searchValue) const
 {
 	if (columnIndex >= columns.size()) {
