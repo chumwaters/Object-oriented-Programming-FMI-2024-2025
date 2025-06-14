@@ -157,6 +157,49 @@ void Table::modifyColumnType(size_t colIndex, DataType newType) {
 	}
 }
 
+void Table::updateMatchingRows(std::size_t searchCol, const std::string& searchValue,
+	std::size_t targetCol, const std::string& targetValue)
+{
+	if (searchCol >= columns.size() || targetCol >= columns.size())
+		throw std::out_of_range("Column index out of range in updateMatchingRows.");
+
+	bool ok = false;
+
+	// Convert target value
+	CellValue* newValue = CellValue::fromString(targetValue, columns[targetCol].type, ok);
+	if (!ok || newValue == nullptr) 
+		throw std::runtime_error("Invalid target value " + targetValue);
+
+	int updateCount = 0;
+
+	for (Row& row : rows) {
+		bool match = false;
+
+		if (columns[searchCol].type == DataType::STRING)
+			match = row[searchCol]->containsSubstring(searchValue);
+		else {
+			bool validSearch = false;
+			CellValue* query = CellValue::fromString(searchValue, columns[searchCol].type,
+				validSearch);
+
+			if (validSearch && row[searchCol]->equals(query))
+				match = true;
+
+			delete query;
+		}
+
+		if (match) {
+			delete row[targetCol];
+			row[targetCol] = newValue->clone(); // use a copy
+			++updateCount;
+		}
+	}
+
+	std::cout << "Updated " << updateCount << " row(s).\n";
+
+	delete newValue;
+}
+
 void Table::insert(const std::vector<std::string>& rawValues) {
 	if (rawValues.size() != columns.size()) {
 		throw std::runtime_error("Expected " + std::to_string(columns.size()) 
