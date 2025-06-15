@@ -92,7 +92,11 @@ int main() {
 	std::cout << "\n=== Table after no-match delete ===\n";
 	handler.handleCommand("print people");
 
-	// Step 8: Command prompt-and-execute loop
+	// Step 8: Export test
+	std::cout << "\n=== Export: Save table to file ===\n";
+	handler.handleCommand("export people people_export.txt");
+
+	// Step 9: Command prompt-and-execute loop
 	std::string input;
 
 	while (true) {
