@@ -119,6 +119,15 @@ public:
 	/// @throws std::runtime_error if the file cannot be opened.
 	void exportToFile(const std::string& fileName) const;
 
+	/// @brief Imports a Table from the given imput stream.
+	///
+	/// The input is expected to be in the format defined in the exportToStream()
+	/// method. Any deviation will throw.
+	/// 
+	/// @param in the input stream to read the table definition and data from.
+	/// @throws std::runtime_error If the input format is invalid or incomplete.
+	static Table importFromStream(std::istream& in);
+
 	//------------------------------------------
 	// Information
 	//------------------------------------------
