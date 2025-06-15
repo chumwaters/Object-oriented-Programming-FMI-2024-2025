@@ -7,7 +7,8 @@ int main() {
 	Database db;
 	CommandHandler handler(db);
 
-	// Step 1: Create a table
+	/*
+	// Step 1 (var 1): Create a table
 	Table people("people");
 	db.addTable(people);
 
@@ -21,6 +22,16 @@ int main() {
 	handler.handleCommand("insert people 2 \"Bob\" 15.06.1999 NULL");
 	handler.handleCommand("insert people 3 \"Carol\" 28.02.2001 4.00");
 	handler.handleCommand("insert people 4 \"Bobby John\" 15.06.1999 3.50");
+	*/
+
+	// Step 1 (var 2): Load table(s) from file
+	try {
+		db.loadFromFile("people_export.txt");
+	}
+	catch (const std::exception& ex) {
+		std::cerr << "Load failed: " << ex.what() << '\n';
+		return 1;
+	}
 
 	// Step 3: Print table
 	handler.handleCommand("print people");
