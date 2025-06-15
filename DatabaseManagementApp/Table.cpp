@@ -6,6 +6,8 @@
 #include "NullValue.h"
 #include "StringUtils.h"
 
+#include <fstream>
+
 /// @brief Prints a collection of Rows with a common column structure to standart output with aligned
 /// columns. Used in print and select.
 /// @param columns The metadata describing each column (names and types).
@@ -306,6 +308,15 @@ void Table::exportToStream(std::ostream& out) const {
 	}
 
 	out << "END\n";
+}
+
+void Table::exportToFile(const std::string& fileName) const {
+	std::ofstream out(fileName);
+	if (!out.is_open()) {
+		throw std::runtime_error("Failed to open file for writing: " + fileName);
+	}
+
+	exportToStream(out);
 }
 
 void Table::describe() const {
