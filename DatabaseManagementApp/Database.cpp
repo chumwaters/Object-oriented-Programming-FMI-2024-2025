@@ -1,5 +1,6 @@
 #include "Database.h"
 
+#include <fstream>
 #include <exception>
 
 void Database::addTable(const Table& t) {
@@ -27,6 +28,26 @@ const Table* Database::getTable(const std::string& name) const {
 	}
 
 	return nullptr;
+}
+
+void Database::loadFromFile(const std::string& fileName) {
+	std::ifstream in(fileName);
+	if (!in.is_open())
+		throw std::runtime_error("Failed to open file for import: " + fileName);
+
+	while (in) {
+		// Skip empty lines or whitespace-only lines
+		std::string peekLine;
+		std::getline(in, peekLine);
+
+		if (peekLine.empty()) continue;
+
+		// Rewind to just before the line
+		in.seekg(-static_cast<int>(peekLine.length()) - 1, std::ios_base::cur);
+
+		Table table = Table::importFromStream(in);
+		addTable(table);
+	}
 }
 
 void Database::showTables() const {

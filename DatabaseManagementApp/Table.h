@@ -119,7 +119,8 @@ public:
 	/// @throws std::runtime_error if the file cannot be opened.
 	void exportToFile(const std::string& fileName) const;
 
-	/// @brief Imports a Table from the given imput stream.
+	/// @brief Imports a Table from the given input stream. 
+	/// Used in Database::loadFromFile().
 	///
 	/// The input is expected to be in the format defined in the exportToStream()
 	/// method. Any deviation will throw.
