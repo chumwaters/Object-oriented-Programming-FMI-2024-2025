@@ -93,6 +93,27 @@ public:
 	void insert(const std::vector<std::string>& rawValues);
 
 	//------------------------------------------
+	// Stream import/export
+	//------------------------------------------
+	
+	/// @brief Exports the structure and contents of the table to the given
+	/// output stream in a format designed to be human readable and suitable 
+	/// for later parsing.
+	/// 
+	/// Example output:
+	/// @code
+	/// TABLE people
+	/// COLUMN "ID" INT
+	/// COLUMN "Name" STRING
+	///	COLUMN "Birthday" DATE
+	///	COLUMN "GPA" FLOAT
+	/// ROW 1 "Alice" 01.01.2000 3.75
+	/// ROW 2 "Bob" 15.06.1999 NULL
+	/// END
+	///	@endcode
+	void exportToStream(std::ostream& out) const;
+
+	//------------------------------------------
 	// Information
 	//------------------------------------------
 
