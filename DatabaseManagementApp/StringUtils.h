@@ -31,7 +31,7 @@ static std::string unescapeString(const std::string& val) {
 /// @brief Simple token splitter helper method.
 /// @param line Line to split up.
 /// @return Vector of space-separated words of input line.
-static std::vector<std::string> splitCommandLine(const std::string& line) {
+static std::vector<std::string> tokenize(const std::string& line) {
 	std::vector<std::string> tokens;
 	std::string current;
 	bool inQuotes = false;
@@ -76,3 +76,4 @@ static std::vector<std::string> splitCommandLine(const std::string& line) {
 
 	return tokens;
 }
+

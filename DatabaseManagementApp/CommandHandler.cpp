@@ -4,7 +4,7 @@
 CommandHandler::CommandHandler(Database& db) : db(db) {}
 
 void CommandHandler::handleCommand(const std::string& line) {
-	std::vector<std::string> tokens = splitCommandLine(line);
+	std::vector<std::string> tokens = tokenize(line);
 	if (tokens.empty()) return;
 
 	const std::string& command = tokens[0];

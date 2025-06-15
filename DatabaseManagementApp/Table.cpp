@@ -360,7 +360,7 @@ Table Table::importFromStream(std::istream& in) {
 		}
 
 		if (line.substr(0, 6) == "ROW") {
-			std::vector<std::string> values = splitCommandLine(line.substr(3));
+			std::vector<std::string> values = tokenize(line.substr(3));
 			table.insert(values);
 			break; // Moving to next state "reading ROW"
 		}
@@ -379,7 +379,7 @@ Table Table::importFromStream(std::istream& in) {
 		if (line.substr(0, 4) != "ROW ")
 			throw std::runtime_error("Unexpected line in import: " + line);
 
-		std::vector<std::string> values = splitCommandLine(line.substr(3));
+		std::vector<std::string> values = tokenize(line.substr(3));
 		table.insert(values);
 	}
 
