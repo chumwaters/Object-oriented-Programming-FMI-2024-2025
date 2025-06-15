@@ -286,7 +286,7 @@ void Table::insert(const std::vector<std::string>& rawValues) {
 }
 
 void Table::exportToStream(std::ostream& out) const {
-	out << "TABLE: " << name << "\n";
+	out << "TABLE " << name << "\n";
 
 	for (const Column& col : columns) {
 		out << "COLUMN \"" << col.name << "\" "
@@ -324,7 +324,7 @@ Table Table::importFromStream(std::istream& in) {
 
 	// Reading TABLE definition
 	if (!std::getline(in, line) || line.substr(0, 6) != "TABLE ")
-		throw std::runtime_error("Missing TABLE declaration.");
+		throw std::runtime_error("Missing TABLE declaration." + line);
 
 
 	std::string tableName = line.substr(6);
