@@ -25,6 +25,12 @@ void CommandHandler::handleCommand(const std::string& line) {
 
 			table->describe();
 		}
+		else if (command == "export" && tokens.size() == 3) {
+			Table* table = db.getTable(tokens[1]);
+			if (!table) throw std::runtime_error("Table not found: " + tokens[1]);
+
+			table->exportToFile(tokens[2]);
+		}
 		else if (command == "addcolumn" && tokens.size() == 4) {
 			Table* table = db.getTable(tokens[1]);
 			if (!table) throw std::runtime_error("Table not found: " + tokens[1]);
