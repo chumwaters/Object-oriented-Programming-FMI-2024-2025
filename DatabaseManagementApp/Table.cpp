@@ -283,6 +283,31 @@ void Table::insert(const std::vector<std::string>& rawValues) {
 	}
 }
 
+void Table::exportToStream(std::ostream& out) const {
+	out << "TABLE: " << name << "\n";
+
+	for (const Column& col : columns) {
+		out << "COLUMN \"" << col.name << "\" "
+			<< DataTypeHelpers::toString(col.type) << "\n";
+	}
+
+	for (const Row& row : rows) {
+		out << "ROW";
+		for (std::size_t i = 0; i < row.size(); ++i) {
+			const CellValue* cell = row[i];
+
+			if (cell == nullptr || cell->isNull())
+				out << " NULL";
+			else
+				out << ' ' << cell->toString();
+		}
+
+		out << "\n";
+	}
+
+	out << "END\n";
+}
+
 void Table::describe() const {
 	std::cout << "Table '" << name << "' structure:\n";
 
