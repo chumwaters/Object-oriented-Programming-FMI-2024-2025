@@ -319,6 +319,76 @@ void Table::exportToFile(const std::string& fileName) const {
 	exportToStream(out);
 }
 
+Table Table::importFromStream(std::istream& in) {
+	std::string line;
+
+	// Reading TABLE definition
+	if (!std::getline(in, line) || line.substr(0, 6) != "TABLE ")
+		throw std::runtime_error("Missing TABLE declaration.");
+
+
+	std::string tableName = line.substr(6);
+	Table table(tableName);
+
+	bool done = false; // set to true when END is read
+
+	// Reading COLUMN definitions
+	while (std::getline(in, line)) {
+		if (line == "END") {
+			done = true;
+			break;
+		}
+
+		if (line.substr(0, 7) != "COLUMN " && line.substr(0, 4) != "ROW ")
+			throw std::runtime_error("Unexpected line in import: " + line);
+
+		if (line.substr(0, 6) == "COLUMN") {
+			std::size_t firstQuote = line.find('\"');
+			std::size_t lastQuote = line.find_last_of('\"');
+
+			if (firstQuote == lastQuote)
+				throw std::runtime_error("Invalid COLUMN declaration.");
+
+			std::string colName = line.substr(firstQuote + 1, lastQuote - firstQuote - 1);
+			std::string typeStr = line.substr(lastQuote + 2);
+
+			DataType type;
+			if (!DataTypeHelpers::fromString(typeStr, type))
+				throw std::runtime_error("Unknown data type: " + typeStr);
+
+			table.addColumn(colName, type);
+		}
+
+		if (line.substr(0, 6) == "ROW") {
+			std::vector<std::string> values = splitCommandLine(line.substr(3));
+			table.insert(values);
+			break; // Moving to next state "reading ROW"
+		}
+	}
+
+	// Reading ROW definitions
+	while (std::getline(in, line)) {
+		if (done) // We'll land here if the table doesnt have inserted rows
+			break;
+
+		if (line.substr(0, 3) == "END") {
+			done = true;
+			break;
+		}
+
+		if (line.substr(0, 4) != "ROW ")
+			throw std::runtime_error("Unexpected line in import: " + line);
+
+		std::vector<std::string> values = splitCommandLine(line.substr(3));
+		table.insert(values);
+	}
+
+	if (!done)
+		throw std::runtime_error("Missing END statement.");
+
+	return table;
+}
+
 void Table::describe() const {
 	std::cout << "Table '" << name << "' structure:\n";
 
