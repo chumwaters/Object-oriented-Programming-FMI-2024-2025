@@ -359,7 +359,7 @@ Table Table::importFromStream(std::istream& in) {
 			table.addColumn(colName, type);
 		}
 
-		if (line.substr(0, 6) == "ROW") {
+		if (line.substr(0, 4) == "ROW ") {
 			std::vector<std::string> values = tokenize(line.substr(3));
 			table.insert(values);
 			break; // Moving to next state "reading ROW"
