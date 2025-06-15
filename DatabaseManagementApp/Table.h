@@ -113,6 +113,12 @@ public:
 	///	@endcode
 	void exportToStream(std::ostream& out) const;
 
+	/// @brief Exports the contents of the table to a specified text file in
+	/// the format of exportToStream().
+	/// @param fileName The name of the file to write to.
+	/// @throws std::runtime_error if the file cannot be opened.
+	void exportToFile(const std::string& fileName) const;
+
 	//------------------------------------------
 	// Information
 	//------------------------------------------
