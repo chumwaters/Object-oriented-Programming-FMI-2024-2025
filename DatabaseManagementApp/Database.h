@@ -10,11 +10,6 @@ private:
 	std::vector<Table> tables;
 	std::string filePath;
 
-	/// @brief Loads a Database from a file. Reconstruction logic for each table
-	/// is found in Table::importFromStream(). Used in Database(const std::string&) c-tor.
-	/// @param fileName The path to the file containing the database representation.
-	/// @throws std::runtime_error if the file cannot be opened or parsing fails.
-	void load();
 public:
 	//--------------------------------------
 	// Constructors
@@ -33,6 +28,11 @@ public:
 	/// @brief Adds a new table to the DB.
 	/// @param t Table to be added to the DB.
 	void addTable(const Table& t);
+
+	/// @brief Loads a Database from associated file. Reconstruction logic for each table
+	/// is found in Table::importFromStream(). Used in Database(const std::string&) c-tor.
+	/// @throws std::runtime_error if the file cannot be opened or parsing fails.
+	void load();
 
 	/// @brief Savees the current database to its associated file.
 	/// This overwrites the file with the latest table data.
