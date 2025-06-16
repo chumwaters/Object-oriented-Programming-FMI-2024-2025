@@ -43,7 +43,7 @@ const Table* Database::getTable(const std::string& name) const {
 void Database::load(const std::string& file) {
 	std::ifstream in(file);
 	if (!in.is_open())
-		throw std::runtime_error("Failed to open file for import: " + filePath);
+		throw std::runtime_error("Failed to open file for import: " + file);
 
 	tables.clear();
 	filePath.clear();
