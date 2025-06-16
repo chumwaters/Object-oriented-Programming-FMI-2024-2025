@@ -8,7 +8,7 @@
 class Database {
 private:
 	std::vector<Table> tables;
-
+	std::string filePath;
 public:
 	//--------------------------------------
 	// Operations
