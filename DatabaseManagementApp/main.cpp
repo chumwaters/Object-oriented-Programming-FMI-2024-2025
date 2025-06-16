@@ -102,7 +102,11 @@ int main() {
 		std::cout << "\n=== Export: Save people table to file ===\n";
 		handler.handleCommand("export people people_export.txt");
 
-		// Step 8: Command prompt-and-execute loop
+		// Step 8: Save test 
+		std::cout << "\n=== Save: Save database table to file ===\n";
+		handler.handleCommand("save");
+
+		// Step 9: Command prompt-and-execute loop
 		std::string input;
 
 		while (true) {
