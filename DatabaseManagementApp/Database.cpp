@@ -8,6 +8,9 @@ Database::Database(const std::string& file) {
 }
 
 void Database::addTable(const Table& t) {
+	if (!isOpen)
+		throw std::runtime_error("Operation failed. Database is not opened.");
+
 	for (const Table& tbl : tables) {
 		if (tbl.getName() == t.getName()) {
 			throw std::runtime_error("Table with name '" + t.getName()
