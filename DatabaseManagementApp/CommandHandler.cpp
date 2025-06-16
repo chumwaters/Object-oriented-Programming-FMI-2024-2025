@@ -110,6 +110,9 @@ void CommandHandler::handleCommand(const std::string& line) {
 
 			table->deleteMatchingRows(static_cast<std::size_t>(parsedIndex), tokens[3]);
 		}
+		else if (command == "close" && tokens.size() == 1) {
+			db.close();
+		}
 		else if (command == "save" && tokens.size() == 1) {
 			db.save();
 		}
