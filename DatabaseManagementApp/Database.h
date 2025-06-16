@@ -9,11 +9,14 @@ class Database {
 private:
 	std::vector<Table> tables;
 	std::string filePath;
+	bool isOpen = false;
 
 public:
 	//--------------------------------------
 	// Constructors
 	//--------------------------------------
+
+	Database() = default;
 
 	/// @brief Loads and binds database to the given file path.
 	/// @param file The path to the database file to load.
@@ -32,7 +35,7 @@ public:
 	/// @brief Loads a Database from associated file. Reconstruction logic for each table
 	/// is found in Table::importFromStream(). Used in Database(const std::string&) c-tor.
 	/// @throws std::runtime_error if the file cannot be opened or parsing fails.
-	void load();
+	void load(const std::string& file);
 	
 	/// @brief Closes the current database by clearing all tables and disassociating the 
 	/// working file.

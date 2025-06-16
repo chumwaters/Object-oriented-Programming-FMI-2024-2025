@@ -3,8 +3,8 @@
 #include <fstream>
 #include <exception>
 
-Database::Database(const std::string& file) : filePath(file) {
-	load();
+Database::Database(const std::string& file) {
+	load(file);
 }
 
 void Database::addTable(const Table& t) {
@@ -19,6 +19,9 @@ void Database::addTable(const Table& t) {
 }
 
 Table* Database::getTable(const std::string& name) {
+	if (!isOpen)
+		throw std::runtime_error("Operation failed. Database is not opened.");
+
 	for (Table& t : tables) {
 		if (t.getName() == name) return &t;
 	}
@@ -27,6 +30,9 @@ Table* Database::getTable(const std::string& name) {
 }
 
 const Table* Database::getTable(const std::string& name) const {
+	if (!isOpen)
+		throw std::runtime_error("Operation failed. Database is not opened.");
+
 	for (const Table& t : tables) {
 		if (t.getName() == name) return &t;
 	}
@@ -34,10 +40,15 @@ const Table* Database::getTable(const std::string& name) const {
 	return nullptr;
 }
 
-void Database::load() {
-	std::ifstream in(filePath);
+void Database::load(const std::string& file) {
+	std::ifstream in(file);
 	if (!in.is_open())
 		throw std::runtime_error("Failed to open file for import: " + filePath);
+
+	tables.clear();
+	filePath.clear();
+	filePath = file;
+	isOpen = true;
 
 	while (in) {
 		// Skip empty lines or whitespace-only lines
@@ -57,12 +68,19 @@ void Database::load() {
 }
 
 void Database::close() {
+	if (!isOpen)
+		throw std::runtime_error("Operation failed. Database is not opened.");
+
 	tables.clear();
 	filePath.clear();
+	isOpen = false;
 	std::cout << "Database closed successfuly.\n";
 }
 
 void Database::save() const {
+	if (!isOpen)
+		throw std::runtime_error("Operation failed. Database is not opened.");
+
 	std::ofstream out(filePath);
 	if (!out) {
 		throw std::runtime_error("Failed to open file for saving: " + filePath);
@@ -77,6 +95,9 @@ void Database::save() const {
 }
 
 void Database::saveAs(const std::string& newFilePath) {
+	if (!isOpen)
+		throw std::runtime_error("Operation failed. Database is not opened.");
+
 	std::ofstream out(newFilePath);
 	if (!out)
 		throw std::runtime_error("Failed to open file for writing: " + newFilePath);
@@ -91,6 +112,9 @@ void Database::saveAs(const std::string& newFilePath) {
 }
 
 void Database::showTables() const {
+	if (!isOpen)
+		throw std::runtime_error("Operation failed. Database is not opened.");
+
 	std::cout << "Tables in database:\n";
 	for (const Table& t : tables) {
 		std::cout << " - " << t.getName() << "\n";
