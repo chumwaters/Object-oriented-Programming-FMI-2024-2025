@@ -39,6 +39,12 @@ public:
 	/// @throws std::runtime_error if writing fails or file cannot be opened.
 	void save() const;
 
+	/// @brief Saves the database to the given file path and updates the 
+	/// working file path.
+	/// @param newFilePath The file path to save the database to.
+	/// @throws std::runtime_error if the file cannot be opened for writing. 
+	void saveAs(const std::string& newFilePath);
+
 	//---------------------------------------
 	// Accessors
 	//---------------------------------------

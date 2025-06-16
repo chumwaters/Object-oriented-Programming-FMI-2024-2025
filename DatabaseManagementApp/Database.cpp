@@ -70,6 +70,20 @@ void Database::save() const {
 	out.close();
 }
 
+void Database::saveAs(const std::string& newFilePath) {
+	std::ofstream out(newFilePath);
+	if (!out)
+		throw std::runtime_error("Failed to open file for writing: " + newFilePath);
+
+	for (const Table& table : tables) {
+		table.exportToStream(out);
+		out << '\n';
+	}
+
+	out.close();
+	filePath = newFilePath;
+}
+
 void Database::showTables() const {
 	std::cout << "Tables in database:\n";
 	for (const Table& t : tables) {
