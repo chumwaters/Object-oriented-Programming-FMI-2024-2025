@@ -110,7 +110,15 @@ int main() {
 		std::cout << "\n=== SaveAs: Save database to new file ===\n";
 		handler.handleCommand("saveas database_file1.txt");
 
-		// Step 10: Command prompt-and-execute loop
+		// Step 10: Close test
+		std::cout << "\n=== Close: Close current database ===\n";
+		handler.handleCommand("close");
+
+		// Step 11: Open test
+		std::cout << "\n=== Open: Open original file ===\n";
+		handler.handleCommand("open database_file.txt");
+
+		// Step 12: Command prompt-and-execute loop
 		std::string input;
 
 		while (true) {
