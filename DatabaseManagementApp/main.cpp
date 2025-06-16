@@ -6,7 +6,7 @@
 int main() {
 	try {
 		// Step 1: Load Database from file
-		Database db("people_export.txt");
+		Database db("database_file.txt");
 		CommandHandler handler(db);
 
 		// Step 2: Print table
@@ -99,7 +99,7 @@ int main() {
 		handler.handleCommand("print pets");
 
 		// Step 7: Export test
-		std::cout << "\n=== Export: Save table to file ===\n";
+		std::cout << "\n=== Export: Save people table to file ===\n";
 		handler.handleCommand("export people people_export.txt");
 
 		// Step 8: Command prompt-and-execute loop
