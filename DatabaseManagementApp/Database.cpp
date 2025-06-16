@@ -43,7 +43,7 @@ void Database::loadFromFile(const std::string& fileName) {
 		if (peekLine.empty()) continue;
 
 		// Rewind to just before the line
-		in.seekg(-static_cast<int>(peekLine.length()) - 1, std::ios_base::cur);
+		in.seekg(-static_cast<int>(peekLine.length()) - 2, std::ios_base::cur);
 
 		Table table = Table::importFromStream(in);
 		addTable(table);
