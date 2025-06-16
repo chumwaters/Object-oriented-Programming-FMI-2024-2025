@@ -56,6 +56,12 @@ void Database::load() {
 	in.close();
 }
 
+void Database::close() {
+	tables.clear();
+	filePath.clear();
+	std::cout << "Database closed successfuly.\n";
+}
+
 void Database::save() const {
 	std::ofstream out(filePath);
 	if (!out) {

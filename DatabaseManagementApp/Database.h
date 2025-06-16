@@ -33,6 +33,10 @@ public:
 	/// is found in Table::importFromStream(). Used in Database(const std::string&) c-tor.
 	/// @throws std::runtime_error if the file cannot be opened or parsing fails.
 	void load();
+	
+	/// @brief Closes the current database by clearing all tables and disassociating the 
+	/// working file.
+	void close();
 
 	/// @brief Savees the current database to its associated file.
 	/// This overwrites the file with the latest table data.
