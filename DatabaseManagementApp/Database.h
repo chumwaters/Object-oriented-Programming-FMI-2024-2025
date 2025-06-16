@@ -11,6 +11,15 @@ private:
 	std::string filePath;
 public:
 	//--------------------------------------
+	// Constructors
+	//--------------------------------------
+	/// @brief Loads and binds database to the given file path.
+	/// @param file The path to the database file to load.
+	/// @throws std std::runtime_error If the file cannot be opened 
+	/// or if parsing fails.
+	Database(const std::string& file);
+
+	//--------------------------------------
 	// Operations
 	//--------------------------------------
 

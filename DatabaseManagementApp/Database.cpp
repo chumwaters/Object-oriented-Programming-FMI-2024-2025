@@ -3,6 +3,10 @@
 #include <fstream>
 #include <exception>
 
+Database::Database(const std::string& file) : filePath(file) {
+	loadFromFile(filePath);
+}
+
 void Database::addTable(const Table& t) {
 	for (const Table& tbl : tables) {
 		if (tbl.getName() == t.getName()) {
