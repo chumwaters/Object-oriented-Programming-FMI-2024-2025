@@ -9,6 +9,12 @@ class Database {
 private:
 	std::vector<Table> tables;
 	std::string filePath;
+
+	/// @brief Loads a Database from a file. Reconstruction logic for each table
+	///  is found in Table::importFromStream().
+	/// @param fileName The path to the file containing the database representation.
+	/// @throws std::runtime_error if the file cannot be opened or parsing fails.
+	void loadFromFile(const std::string& fileName);
 public:
 	//--------------------------------------
 	// Constructors
@@ -38,12 +44,6 @@ public:
 	/// @brief Returns const pointer to a table by name,
 	/// or nullptr if not found.
 	const Table* getTable(const std::string& name) const;
-
-	/// @brief Loads a Database from a file. Reconstruction logic for each table
-	///  is found in Table::importFromStream().
-	/// @param fileName The path to the file containing the database representation.
-	/// @throws std::runtime_error if the file cannot be opened or parsing fails.
-	void loadFromFile(const std::string& fileName);
 
 	// --------------------------------------
 	//	Information
