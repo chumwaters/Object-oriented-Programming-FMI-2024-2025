@@ -11,10 +11,10 @@ private:
 	std::string filePath;
 
 	/// @brief Loads a Database from a file. Reconstruction logic for each table
-	///  is found in Table::importFromStream().
+	/// is found in Table::importFromStream().
 	/// @param fileName The path to the file containing the database representation.
 	/// @throws std::runtime_error if the file cannot be opened or parsing fails.
-	void loadFromFile(const std::string& fileName);
+	void load();
 public:
 	//--------------------------------------
 	// Constructors

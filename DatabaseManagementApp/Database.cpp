@@ -4,7 +4,7 @@
 #include <exception>
 
 Database::Database(const std::string& file) : filePath(file) {
-	loadFromFile(filePath);
+	load();
 }
 
 void Database::addTable(const Table& t) {
@@ -34,10 +34,10 @@ const Table* Database::getTable(const std::string& name) const {
 	return nullptr;
 }
 
-void Database::loadFromFile(const std::string& fileName) {
-	std::ifstream in(fileName);
+void Database::load() {
+	std::ifstream in(filePath);
 	if (!in.is_open())
-		throw std::runtime_error("Failed to open file for import: " + fileName);
+		throw std::runtime_error("Failed to open file for import: " + filePath);
 
 	while (in) {
 		// Skip empty lines or whitespace-only lines
