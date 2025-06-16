@@ -65,6 +65,8 @@ void Database::load(const std::string& file) {
 	}
 
 	in.close();
+
+	std::cout << "Database loaded from " << file << "\n";
 }
 
 void Database::close() {
@@ -92,6 +94,8 @@ void Database::save() const {
 	}
 
 	out.close();
+
+	std::cout << "Database saved to " << filePath << "\n";
 }
 
 void Database::saveAs(const std::string& newFilePath) {
@@ -109,6 +113,8 @@ void Database::saveAs(const std::string& newFilePath) {
 
 	out.close();
 	filePath = newFilePath;
+
+	std::cout << "Database saved to " << filePath << "\n";
 }
 
 void Database::showTables() const {
