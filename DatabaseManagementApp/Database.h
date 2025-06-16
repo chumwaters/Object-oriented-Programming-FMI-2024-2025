@@ -11,7 +11,7 @@ private:
 	std::string filePath;
 
 	/// @brief Loads a Database from a file. Reconstruction logic for each table
-	/// is found in Table::importFromStream().
+	/// is found in Table::importFromStream(). Used in Database(const std::string&) c-tor.
 	/// @param fileName The path to the file containing the database representation.
 	/// @throws std::runtime_error if the file cannot be opened or parsing fails.
 	void load();
@@ -19,6 +19,7 @@ public:
 	//--------------------------------------
 	// Constructors
 	//--------------------------------------
+
 	/// @brief Loads and binds database to the given file path.
 	/// @param file The path to the database file to load.
 	/// @throws std std::runtime_error If the file cannot be opened 
@@ -32,6 +33,11 @@ public:
 	/// @brief Adds a new table to the DB.
 	/// @param t Table to be added to the DB.
 	void addTable(const Table& t);
+
+	/// @brief Savees the current database to its associated file.
+	/// This overwrites the file with the latest table data.
+	/// @throws std::runtime_error if writing fails or file cannot be opened.
+	void save() const;
 
 	//---------------------------------------
 	// Accessors

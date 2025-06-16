@@ -54,6 +54,20 @@ void Database::load() {
 	}
 }
 
+void Database::save() const {
+	std::ofstream out(filePath);
+	if (!out) {
+		throw std::runtime_error("Failed to open file for saving: " + filePath);
+	}
+
+	for (const Table& table : tables) {
+		table.exportToStream(out);
+		out << "\n";
+	}
+
+	out.close();
+}
+
 void Database::showTables() const {
 	std::cout << "Tables in database:\n";
 	for (const Table& t : tables) {
