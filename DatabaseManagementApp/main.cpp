@@ -103,10 +103,14 @@ int main() {
 		handler.handleCommand("export people people_export.txt");
 
 		// Step 8: Save test 
-		std::cout << "\n=== Save: Save database table to file ===\n";
+		std::cout << "\n=== Save: Save database to file ===\n";
 		handler.handleCommand("save");
 
-		// Step 9: Command prompt-and-execute loop
+		// Step 9: SaveAs test
+		std::cout << "\n=== SaveAs: Save database to new file ===\n";
+		handler.handleCommand("saveas database_file1.txt");
+
+		// Step 10: Command prompt-and-execute loop
 		std::string input;
 
 		while (true) {
@@ -127,7 +131,6 @@ int main() {
 				std::cerr << "Fatal error: " << e.what() << "\n";
 			}
 		}
-
 	}
 	catch (const std::exception& ex) {
 		std::cerr << "Load failed: " << ex.what() << '\n';
