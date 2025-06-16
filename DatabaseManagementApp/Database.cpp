@@ -52,6 +52,8 @@ void Database::load() {
 		Table table = Table::importFromStream(in);
 		addTable(table);
 	}
+
+	in.close();
 }
 
 void Database::save() const {
