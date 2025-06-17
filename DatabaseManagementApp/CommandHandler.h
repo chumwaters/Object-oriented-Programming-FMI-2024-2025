@@ -11,7 +11,7 @@ public:
 	/// @param db Database reference to construct CommandHandler object from.
 	CommandHandler(Database& db);
 
-	/// @brief Prints a summary of available commands and their usage.
+	/// @brief Prints a summary of available commands and their usage and function.
 	void printHelp() const;
 
 	/// @brief Parses and executes a user command line.

@@ -4,22 +4,52 @@
 CommandHandler::CommandHandler(Database& db) : db(db) {}
 
 void CommandHandler::printHelp() const {
-	std::cout << "Available commands:\n";
-	std::cout << "  showtables\n";
-	std::cout << "  print <table>\n";
-	std::cout << "  describe <table>\n";
-	std::cout << "  export <table> <file>\n";
-	std::cout << "  addcolumn <table> <\"column\"> <type>\n";
-	std::cout << "  insert <table> <value1> <value2> ...\n";
-	std::cout << "  select <columnIndex> <value> <table>\n";
-	std::cout << "  update <table> <searchColumnIndex> <match> <targetColumnIndex> <newValue>\n";
-	std::cout << "  modify <table> <columnIndex> <newType>\n";
-	std::cout << "  delete <table> <columnIndex> <value>\n";
-	std::cout << "  save\n";
-	std::cout << "  saveas <file>\n";
-	std::cout << "  close\n";
-	std::cout << "  help\n";
-	std::cout << "  exit\n";
+	std::cout << "Available commands:\n\n";
+
+	std::cout << "  showtables\n"
+		<< "    - Lists the names of all tables in the database.\n\n";
+
+	std::cout << "  print <table>\n"
+		<< "    - Displays the contents of the specified table.\n\n";
+
+	std::cout << "  describe <table>\n"
+		<< "    - Shows column names and types of the specified table.\n\n";
+
+	std::cout << "  export <table> <file>\n"
+		<< "    - Exports a single table to a specified file.\n\n";
+
+	std::cout << "  addcolumn <table> <\"column\"> <type>\n"
+		<< "    - Adds a new column with the given name and type to the table.\n\n";
+
+	std::cout << "  insert <table> <value1> <value2> ...\n"
+		<< "    - Inserts a new row into the table with the specified values.\n\n";
+
+	std::cout << "  select <columnIndex> <value> <table>\n"
+		<< "    - Prints rows in the table where the given column matches the value.\n\n";
+
+	std::cout << "  update <table> <searchCol> <searchVal> <targetCol> <newVal>\n"
+		<< "    - Updates values in a column where a condition is matched.\n\n";
+
+	std::cout << "  modify <table> <columnIndex> <newType>\n"
+		<< "    - Converts the data type of a column, if conversion is possible.\n\n";
+
+	std::cout << "  delete <table> <columnIndex> <value>\n"
+		<< "    - Deletes rows where the column matches the given value.\n\n";
+
+	std::cout << "  save\n"
+		<< "    - Saves the entire database to its associated file.\n\n";
+
+	std::cout << "  saveas <file>\n"
+		<< "    - Saves the database to a new file and updates the working file.\n\n";
+
+	std::cout << "  close\n"
+		<< "    - Closes the currently loaded database and clears all tables.\n\n";
+
+	std::cout << "  help\n"
+		<< "    - Displays this help message.\n\n";
+
+	std::cout << "  exit\n"
+		<< "    - Exits the program.\n\n";
 }
 
 void CommandHandler::handleCommand(const std::string& line) {
