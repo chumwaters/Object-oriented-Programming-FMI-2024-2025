@@ -119,6 +119,7 @@ static void printRowsFormatted(const std::vector<Column>& columns, const std::ve
 				validCommand = true;
 			}
 			else if (input == "exit") {
+				std::cout << "Exiting dialogue mode.";
 				return;
 			}
 			else {
