@@ -355,6 +355,6 @@ void Table::describe() const {
 	}
 }
 
-void Table::print() const {
-	printRowsFormatted(columns, rows);
+void Table::print(std::size_t rowsPerPage) const {
+	printRowsFormatted(columns, rows, rowsPerPage);
 }

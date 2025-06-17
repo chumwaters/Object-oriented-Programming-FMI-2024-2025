@@ -142,5 +142,7 @@ public:
 	/// - Names of all columns as a header row.
 	/// - A separator line beneath the header.
 	/// - One line per row of data, formatted with `CellValue::toString`.
-	void print() const;
+	/// 
+	/// @param rowsPerPage Number of rows to output per page (0 = all at once).
+	void print(std::size_t rowsPerPage = 0) const;
 };
