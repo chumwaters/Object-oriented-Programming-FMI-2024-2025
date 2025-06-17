@@ -130,7 +130,7 @@ int main() {
 		std::cout << "\n=== Paginated Select: Name contains 'a' (case-sensitive) ===\n";
 		handler.handleCommand("select 1 a people");
 
-		// Step 13: Command prompt-and-execute loop
+		// Step 15: Command prompt-and-execute loop
 		std::string input;
 
 		while (true) {
