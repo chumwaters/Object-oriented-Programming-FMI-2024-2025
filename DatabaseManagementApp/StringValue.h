@@ -19,7 +19,7 @@ public:
 	/// @return String representation of the value, quoted and escaped.
 	std::string toString() const override;
 
-	/// Returns a printable, non-escaped version of the string for display
+	/// @return a printable, non-escaped version of the string for display
 	std::string toHumanString() const override { return value; }
 
 	/// @return Always false.
