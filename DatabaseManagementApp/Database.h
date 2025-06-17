@@ -41,7 +41,7 @@ public:
 	/// working file.
 	void close();
 
-	/// @brief Savees the current database to its associated file.
+	/// @brief Saves the current database to its associated file.
 	/// This overwrites the file with the latest table data.
 	/// @throws std::runtime_error if writing fails or file cannot be opened.
 	void save() const;
