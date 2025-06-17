@@ -62,11 +62,23 @@ void CommandHandler::handleCommand(const std::string& line) {
 		if (command == "showtables") {
 			db.showTables();
 		}
-		else if (command == "print" && tokens.size() == 2) {
+		else if (command == "print" && 
+			(tokens.size() == 2 || tokens.size() == 3)) 
+		{
 			Table* table = db.getTable(tokens[1]);
 			if (!table) throw std::runtime_error("Table not found: " + tokens[1]);
 
-			table->print();
+			std::size_t rpn = 0;
+			if (tokens.size() == 3) {
+				const char* rpnStr = tokens[2].c_str();
+				char* endptr = nullptr;
+				long parsed = std::strtol(rpnStr, &endptr, 10);
+				if (*endptr != '\0' || parsed < 0)
+					throw std::runtime_error("Invalid number for rows per page: " + tokens[2]);
+				rpn = static_cast<std::size_t>(parsed);
+			}
+
+			table->print(rpn);
 		}
 		else if (command == "describe" && tokens.size() == 2) {
 			Table* table = db.getTable(tokens[1]);
