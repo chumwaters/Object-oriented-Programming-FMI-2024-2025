@@ -101,7 +101,7 @@ static void printRowsFormatted(const std::vector<Column>& columns, const std::ve
 			std::cout << "\n<first page>, <next page>, <previous page>, <last page>, <exit>\n> ";
 			std::getline(std::cin, input);
 
-			if (input == "<next page>" && currentPage + 1 < pageCount) {
+			if (input == "next page" && currentPage + 1 < pageCount) {
 				++currentPage;
 				validCommand = true;
 			}
