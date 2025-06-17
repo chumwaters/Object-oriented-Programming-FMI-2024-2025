@@ -98,7 +98,8 @@ static void printRowsFormatted(const std::vector<Column>& columns, const std::ve
 
 		bool validCommand = false;
 		do {
-			std::cout << "\n<first page>, <next page>, <previous page>, <last page>, <exit>\n> ";
+			std::cout << "\nAvailable options (exit will exit dialogue mode, but not program): \n"
+				"<first page>, <next page>, <previous page>, <last page>, <exit>\n> ";
 			std::getline(std::cin, input);
 
 			if (input == "next page" && currentPage + 1 < pageCount) {
