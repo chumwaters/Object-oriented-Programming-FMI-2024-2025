@@ -93,37 +93,36 @@ static void printRowsFormatted(const std::vector<Column>& columns, const std::ve
 				std::size_t padding = widths[c] > cellStr.size() ? widths[c] - cellStr.size() : 0;
 				for (std::size_t p = 0; p < padding; ++p) std::cout << ' ';
 			}
-
 			std::cout << " |\n";
-
-			bool validCommand = false;
-			do {
-				std::cout << "\n<first page>, <next page>, <previous page>, <last page>, <exit>\n> ";
-				std::getline(std::cin, input);
-
-				if (input == "<next page>" && currentPage + 1 < pageCount) {
-					++currentPage;
-					validCommand = true;
-				}
-				else if (input == "previous page" && currentPage > 0) {
-					--currentPage;
-					validCommand = true;
-				}
-				else if (input == "first page") {
-					currentPage = 0;
-					validCommand = true;
-				}
-				else if (input == "last page") {
-					currentPage = pageCount - 1;
-					validCommand = true;
-				}
-				else if (input == "exit") {
-					return;
-				}
-				else {
-					std::cout << "Invalid command. Please try again.\n";
-				}
-			} while (!validCommand);
 		}
+
+		bool validCommand = false;
+		do {
+			std::cout << "\n<first page>, <next page>, <previous page>, <last page>, <exit>\n> ";
+			std::getline(std::cin, input);
+
+			if (input == "<next page>" && currentPage + 1 < pageCount) {
+				++currentPage;
+				validCommand = true;
+			}
+			else if (input == "previous page" && currentPage > 0) {
+				--currentPage;
+				validCommand = true;
+			}
+			else if (input == "first page") {
+				currentPage = 0;
+				validCommand = true;
+			}
+			else if (input == "last page") {
+				currentPage = pageCount - 1;
+				validCommand = true;
+			}
+			else if (input == "exit") {
+				return;
+			}
+			else {
+				std::cout << "Invalid command. Please try again.\n";
+			}
+		} while (!validCommand);
 	}
 }
