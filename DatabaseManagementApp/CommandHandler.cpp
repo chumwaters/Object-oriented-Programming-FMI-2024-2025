@@ -141,6 +141,9 @@ void CommandHandler::handleCommand(const std::string& line) {
 		else if (command == "saveas" && tokens.size() == 2) {
 			db.saveAs(tokens[1]);
 		}
+		else if (command == "help" && tokens.size() == 1) {
+			printHelp();
+		}
 		else {
 			std::cerr << "Unknown or malformed command: " << command << " " << tokens.size() << '\n';
 		}
