@@ -3,6 +3,25 @@
 
 CommandHandler::CommandHandler(Database& db) : db(db) {}
 
+void CommandHandler::printHelp() const {
+	std::cout << "Available commands:\n";
+	std::cout << "  showtables\n";
+	std::cout << "  print <table>\n";
+	std::cout << "  describe <table>\n";
+	std::cout << "  export <table> <file>\n";
+	std::cout << "  addcolumn <table> <\"column\"> <type>\n";
+	std::cout << "  insert <table> <value1> <value2> ...\n";
+	std::cout << "  select <columnIndex> <value> <table>\n";
+	std::cout << "  update <table> <searchColumnIndex> <match> <targetColumnIndex> <newValue>\n";
+	std::cout << "  modify <table> <columnIndex> <newType>\n";
+	std::cout << "  delete <table> <columnIndex> <value>\n";
+	std::cout << "  save\n";
+	std::cout << "  saveas <file>\n";
+	std::cout << "  close\n";
+	std::cout << "  help\n";
+	std::cout << "  exit\n";
+}
+
 void CommandHandler::handleCommand(const std::string& line) {
 	std::vector<std::string> tokens = tokenize(line);
 	if (tokens.empty()) return;
