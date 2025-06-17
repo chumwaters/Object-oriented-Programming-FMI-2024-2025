@@ -118,6 +118,10 @@ int main() {
 		std::cout << "\n=== Open: Open original file ===\n";
 		handler.handleCommand("open database_file.txt");
 
+		// Step 12: Help test
+		std::cout << "\n=== Help: Show a list of commands and their usage ===\n";
+		handler.handleCommand("help");
+
 		// Step 12: Command prompt-and-execute loop
 		std::string input;
 
