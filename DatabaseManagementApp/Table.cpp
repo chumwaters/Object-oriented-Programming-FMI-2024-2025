@@ -49,7 +49,8 @@ void Table::selectMatchingRows(std::size_t columnIndex, const std::string& searc
 		}
 	}
 
-	printRowsFormatted(columns, filtered);
+	const std::size_t rowsPerPage = 5;
+	printRowsFormatted(columns, filtered, rowsPerPage);
 }
 
 void Table::modifyColumnType(size_t colIndex, DataType newType) {
