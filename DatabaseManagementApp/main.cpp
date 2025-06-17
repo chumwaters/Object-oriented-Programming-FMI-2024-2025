@@ -116,13 +116,21 @@ int main() {
 
 		// Step 11: Open test
 		std::cout << "\n=== Open: Open original file ===\n";
-		handler.handleCommand("open database_file.txt");
+		handler.handleCommand("open big_table.txt");
 
 		// Step 12: Help test
 		std::cout << "\n=== Help: Show a list of commands and their usage ===\n";
 		handler.handleCommand("help");
 
-		// Step 12: Command prompt-and-execute loop
+		// Step 13: Paginated print test
+		std::cout << "\n=== Paginated Print: 5 rows per page ===\n";
+		handler.handleCommand("print people 5");
+
+		// Step 14: Paginated select test
+		std::cout << "\n=== Paginated Select: Name contains 'a' (case-sensitive) ===\n";
+		handler.handleCommand("select 1 a people");
+
+		// Step 13: Command prompt-and-execute loop
 		std::string input;
 
 		while (true) {
