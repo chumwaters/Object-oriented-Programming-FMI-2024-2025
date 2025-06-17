@@ -5,61 +5,9 @@
 #include "StringValue.h"
 #include "NullValue.h"
 #include "StringUtils.h"
+#include "TablePrintUtils.h"
 
 #include <fstream>
-
-/// @brief Prints a collection of Rows with a common column structure to standart output with aligned
-/// columns. Used in print and select.
-/// @param columns The metadata describing each column (names and types).
-/// @param rows The rows of data to print. These must match the column structure.
-static void printRowsFormatted(const std::vector<Column>& columns, const std::vector<Row>& rows) {
-	std::vector<std::size_t> widths(columns.size(), 0);
-
-	// Finding the maximum entry size in each column and storing in widths
-	for (std::size_t c = 0; c < columns.size(); ++c) {
-		std::size_t maxLen = columns[c].name.length();
-
-		for (std::size_t r = 0; r < rows.size(); ++r) {
-			std::size_t len = rows[r][c]->toString().length();
-
-			if (len > maxLen) maxLen = len;
-		}
-
-		widths[c] = maxLen;
-	}
-
-	// Printing header
-	std::cout << "| ";
-	for (std::size_t i = 0; i < columns.size(); ++i) {
-		std::cout << columns[i].name;
-
-		std::size_t padding = widths[i] > columns[i].name.size() ? widths[i] - columns[i].name.size() : 0;
-		for (std::size_t p = 0; p < padding; ++p) std::cout << ' ';
-		if (i + 1 < columns.size()) std::cout << "| ";
-	}
-	std::cout << " |\n";
-
-	// Printing  the line on the second row of the visualization
-	std::cout << '|';
-	for (std::size_t i = 0; i < columns.size(); ++i) {
-		for (std::size_t j = 0; j < widths[i] + 1; ++j) std::cout << '-';
-		if (i + 1 < columns.size()) std::cout << "+";
-	}
-	std::cout << "-|";
-	std::cout << "\n";
-
-	// Printing rows
-	for (std::size_t r = 0; r < rows.size(); ++r) {
-		for (std::size_t c = 0; c < columns.size(); ++c) {
-			std::string cellStr = rows[r][c]->toHumanString();
-			std::cout << "| " << cellStr;
-			std::size_t padding = widths[c] > cellStr.size() ? widths[c] - cellStr.size() : 0;
-
-			for (std::size_t p = 0; p < padding; ++p) std::cout << ' ';
-		}
-		std::cout << " |\n";
-	}
-}
 
 Table::Table(const std::string& tableName) : name(tableName) {}
 
