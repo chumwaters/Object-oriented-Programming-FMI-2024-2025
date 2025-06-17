@@ -187,7 +187,7 @@ void CommandHandler::handleCommand(const std::string& line) {
 			printHelp();
 		}
 		else {
-			std::cerr << "Unknown or malformed command: " << command << " " << tokens.size() << '\n';
+			std::cerr << "Unknown or malformed command: " << command << '\n';
 		}
 	}
 	catch (const std::exception& e) {
