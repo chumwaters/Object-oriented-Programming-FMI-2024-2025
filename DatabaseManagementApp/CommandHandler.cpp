@@ -59,7 +59,7 @@ void CommandHandler::handleCommand(const std::string& line) {
 	const std::string& command = tokens[0];
 
 	try {
-		if (command == "showtables") {
+		if (command == "showtables" && tokens.size() == 1) {
 			db.showTables();
 		}
 		else if (command == "print" && 
