@@ -42,7 +42,7 @@ int main() {
 		std::cout << "\n=== Describe: wrong argument count (should fail) ===\n";
 		handler.handleCommand("describe people pets");
 
-		// Step 5x: Select tests
+		// Step 5: Select tests
 		std::cout << "\n=== Select: (People) Name contains 'Bob' ===\n";
 		handler.handleCommand("select 1 Bob people");
 
@@ -58,8 +58,20 @@ int main() {
 		std::cout << "\n=== Select: (Pets) Name == 3 (expect 0 results) ===\n";
 		handler.handleCommand("select 2 3 pets");
 
-		std::cout << "\n=== Select: (Pets) PetID == Banana Peel (expect 0 results) ===\n";
+		std::cout << "\n=== Select: (Pets) PetID == \"Banana Peel\" (expect 0 results) ===\n";
 		handler.handleCommand("select 0 \"Banana Peel\" pets");
+
+		std::cout << "\n=== Select: (Pets) PetID == \"1\" (expect Fluffy) === \n";
+		handler.handleCommand("select 0 \"1\" pets");
+
+		std::cout << "\n=== Select: (People) Birthday == \"Pirate Ship\" (expect 0 results) ===\n";
+		handler.handleCommand("select 2 \"Pirate Ship\" people");
+
+		std::cout << "\n=== Select: (People) Birthday == 01.01.2000 (expect Alice) ===\n";
+		handler.handleCommand("select 2 01.01.2000 people");
+
+		std::cout << "\n=== Select: (People) Birthday == 01.01.2000.AC (expect 0 results) ===\n";
+		handler.handleCommand("select 2 01.01.2000 people");
 
 		// Step 4: Update tests
 		std::cout << "\n=== Update: Set GPA to 3.90 for ID == 4 ===\n";
