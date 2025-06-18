@@ -61,9 +61,16 @@ Date Date::fromString(const std::string& str, bool& ok) {
 
 	// Converting them to ints; std::stoi may throw -- catch locally
 	try {
-		d.day   = std::stoi(dayStr);
-		d.month = std::stoi(monthStr);
-		d.year  = std::stoi(yearStr);
+		size_t posDay, posMonth, posYear;
+
+		d.day = std::stoi(dayStr, &posDay);
+		if (posDay != dayStr.size()) return d;
+
+		d.month = std::stoi(monthStr, &posMonth);
+		if (posMonth != monthStr.size()) return d;
+
+		d.year = std::stoi(yearStr, &posYear);
+		if (posYear != yearStr.size()) return d;
 	}
 	catch (const std::exception&) {
 		return d;
