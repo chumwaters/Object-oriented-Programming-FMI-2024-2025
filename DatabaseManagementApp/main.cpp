@@ -71,7 +71,7 @@ int main() {
 		handler.handleCommand("select 2 01.01.2000 people");
 
 		std::cout << "\n=== Select: (People) Birthday == 01.01.2000.AC (expect 0 results) ===\n";
-		handler.handleCommand("select 2 01.01.2000 people");
+		handler.handleCommand("select 2 01.01.2000.AC people");
 
 		// Step 4: Update tests
 		std::cout << "\n=== Update: Set GPA to 3.90 for ID == 4 ===\n";
