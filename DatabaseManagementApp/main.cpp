@@ -27,6 +27,9 @@ int main() {
 		std::cout << "\n=== Describe: pets ===\n";
 		handler.handleCommand("describe pets");
 
+		std::cout << "\n=== Describe: non_existing_table (should fail) ===\n";
+		handler.handleCommand("describe non_existing_table");
+
 		// Step 3: Select tests
 		std::cout << "\n=== Select: Name contains 'Bob' ===\n";
 		handler.handleCommand("select 1 Bob people");
