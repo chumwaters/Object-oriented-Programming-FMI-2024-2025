@@ -42,7 +42,7 @@ int main() {
 		std::cout << "\n=== Describe: wrong argument count (should fail) ===\n";
 		handler.handleCommand("describe people pets");
 
-		// Step 5: Select tests
+		// Step 5: Non-paginated Select tests
 		std::cout << "\n=== Select: (People) Name contains 'Bob' ===\n";
 		handler.handleCommand("select 1 Bob people");
 
@@ -87,6 +87,21 @@ int main() {
 
 		std::cout << "\n=== Select: wrong argument count (should fail) ===\n";
 		handler.handleCommand("select 2 Max pets fourth");
+
+		std::cout << "\n=== Select: (People) GPA equals 4 (expect Carol) ===\n";
+		handler.handleCommand("select 3 4 people");
+
+		std::cout << "\n=== Select: (People) GPA equals 4.0000000000000001 (expect Carol) ===\n";
+		handler.handleCommand("select 3 4.0000000000000001 people");
+
+		std::cout << "\n=== Select: (People) GPA equals 3.501 (expect no results) ===\n";
+		handler.handleCommand("select 3 3.501 people");
+
+		std::cout << "\n=== Select: (People) GPA equals 3.50.14 (expect no results) ===\n";
+		handler.handleCommand("select 3 3.50.14 people");
+
+		std::cout << "\n=== Select: (People) ID equals 1asdf (expect no results) ===\n";
+		handler.handleCommand("select 0 1asdf people");
 
 		// Step 6: Update tests
 		std::cout << "\n=== Update: Set GPA to 3.90 for ID == 4 ===\n";
