@@ -32,21 +32,26 @@ void Table::selectMatchingRows(std::size_t columnIndex, const std::string& searc
 	}
 
 	std::vector<Row> filtered;
-	for (const Row& row : rows) {
-		const CellValue* cell = row[columnIndex];
-
-		if (columns[columnIndex].type == DataType::STRING) {
+	if (columns[columnIndex].type == DataType::STRING) {
+		for (const Row& row : rows) {
+			const CellValue* cell = row[columnIndex];
 			if (cell->containsSubstring(searchValue))
 				filtered.push_back(row);
 		}
-		else {
-			bool ok = false;
-			CellValue* query = CellValue::fromString(searchValue, columns[columnIndex].type, ok);
-			if (ok && cell->equals(query))
-				filtered.push_back(row);
+	}
+	else {
+		bool ok = false;
+		CellValue* query = CellValue::fromString(searchValue, columns[columnIndex].type, ok);
 
-			delete query;
+		if (ok) {
+			for (const Row& row : rows) {
+				const CellValue* cell = row[columnIndex];
+				if (cell->equals(query))
+					filtered.push_back(row);
+			}
 		}
+
+		delete query;
 	}
 
 	const std::size_t rowsPerPage = 5;
