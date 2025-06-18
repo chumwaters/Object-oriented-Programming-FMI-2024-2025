@@ -73,7 +73,22 @@ int main() {
 		std::cout << "\n=== Select: (People) Birthday == 01.01.2000.AC (expect 0 results) ===\n";
 		handler.handleCommand("select 2 01.01.2000.AC people");
 
-		// Step 4: Update tests
+		std::cout << "\n=== Select: non_existing_table (should fail) ===\n";
+		handler.handleCommand("select 2 \"Blackbeard\" non_existing_table");
+
+		std::cout << "\n=== Select: Out of bounds index (should fail) ===\n";
+		handler.handleCommand("select 10 42 people");
+
+		std::cout << "\n=== Select: Negative index (should fail) ===\n";
+		handler.handleCommand("select -5 42 people");
+
+		std::cout << "\n=== Select: Invalid index (should fail) ===\n";
+		handler.handleCommand("select marry 42 people");
+
+		std::cout << "\n=== Select: wrong argument count (should fail) ===\n";
+		handler.handleCommand("select 2 Max pets fourth");
+
+		// Step 6: Update tests
 		std::cout << "\n=== Update: Set GPA to 3.90 for ID == 4 ===\n";
 		handler.handleCommand("update people 0 4 3 3.90");
 
