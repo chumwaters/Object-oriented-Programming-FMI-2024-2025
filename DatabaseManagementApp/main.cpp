@@ -43,17 +43,23 @@ int main() {
 		handler.handleCommand("describe people pets");
 
 		// Step 5x: Select tests
-		std::cout << "\n=== Select: Name contains 'Bob' ===\n";
+		std::cout << "\n=== Select: (People) Name contains 'Bob' ===\n";
 		handler.handleCommand("select 1 Bob people");
 
-		std::cout << "\n=== Select: GPA equals '4.00' ===\n";
+		std::cout << "\n=== Select: (People) GPA equals '4.00' ===\n";
 		handler.handleCommand("select 3 4.00 people");
 
-		std::cout << "\n=== Select: ID equals '2' ===\n";
+		std::cout << "\n=== Select: (People) ID equals '2' ===\n";
 		handler.handleCommand("select 0 2 people");
 
-		std::cout << "\n=== Select: OwnerID == 2 ===\n";
+		std::cout << "\n=== Select: (Pets) OwnerID == 2 ===\n";
 		handler.handleCommand("select 1 2 pets");
+
+		std::cout << "\n=== Select: (Pets) Name == 3 (expect 0 results) ===\n";
+		handler.handleCommand("select 2 3 pets");
+
+		std::cout << "\n=== Select: (Pets) PetID == Banana Peel (expect 0 results) ===\n";
+		handler.handleCommand("select 0 \"Banana Peel\" pets");
 
 		// Step 4: Update tests
 		std::cout << "\n=== Update: Set GPA to 3.90 for ID == 4 ===\n";
