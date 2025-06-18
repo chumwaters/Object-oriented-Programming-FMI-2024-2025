@@ -16,6 +16,17 @@ int main() {
 		std::cout << "\n=== Print second table: pets ===\n";
 		handler.handleCommand("print pets");
 
+		// Step 3: Showtables test
+		std::cout << "\n=== Showtables: people, pets ===\n";
+		handler.handleCommand("showtables");
+
+		// Step 4: Describe tests
+		std::cout << "\n=== Describe: people ===\n";
+		handler.handleCommand("describe people");
+
+		std::cout << "\n=== Describe: pets ===\n";
+		handler.handleCommand("describe pets");
+
 		// Step 3: Select tests
 		std::cout << "\n=== Select: Name contains 'Bob' ===\n";
 		handler.handleCommand("select 1 Bob people");
