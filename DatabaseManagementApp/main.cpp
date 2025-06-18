@@ -16,6 +16,12 @@ int main() {
 		std::cout << "\n=== Print second table: pets ===\n";
 		handler.handleCommand("print pets");
 
+		std::cout << "\n=== Print: non_existing_table (should fail) ===\n";
+		handler.handleCommand("print non_existing_table");
+
+		std::cout << "\n=== Print: wrong argument count (should fail) ===\n";
+		handler.handleCommand("print people pets third");
+
 		// Step 3: Showtables test
 		std::cout << "\n=== Showtables: expect people, pets ===\n";
 		handler.handleCommand("showtables");
@@ -36,7 +42,7 @@ int main() {
 		std::cout << "\n=== Describe: wrong argument count (should fail) ===\n";
 		handler.handleCommand("describe people pets");
 
-		// Step 3: Select tests
+		// Step 5x: Select tests
 		std::cout << "\n=== Select: Name contains 'Bob' ===\n";
 		handler.handleCommand("select 1 Bob people");
 
