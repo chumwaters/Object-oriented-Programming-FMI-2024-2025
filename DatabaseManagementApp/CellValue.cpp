@@ -12,8 +12,26 @@ CellValue* CellValue::fromString(const std::string& str, DataType type, bool& ok
 
 	try {
 		switch (type) {
-			case DataType::INT: return new IntValue(std::stoll(str));
-			case DataType::FLOAT: return new FloatValue(std::stod(str));
+			case DataType::INT:{
+				std::size_t pos = 0;
+				long long val = std::stoll(str, &pos);
+				if (pos != str.length()) {
+					ok = false;
+					return nullptr;
+				}
+
+				return new IntValue(val);
+			} 
+			case DataType::FLOAT: {
+				std::size_t pos = 0;
+				double val = std::stod(str, &pos);
+				if (pos != str.length()) {
+					ok = false;
+					return nullptr;
+				}
+
+				return new FloatValue(val);
+			}
 			case DataType::DATE: {
 				bool valid = false;
 				Date d = Date::fromString(str, valid);
