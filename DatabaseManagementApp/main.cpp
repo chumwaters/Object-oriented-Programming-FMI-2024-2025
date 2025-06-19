@@ -168,6 +168,33 @@ int main() {
 		std::cout << "\n=== People Table after update ===\n";
 		handler.handleCommand("print people");
 
+		std::cout << "\n=== Update: non_existing_table (should fail) ===\n";
+		handler.handleCommand("update non_existing_table 4 \"Clownfish\" 4 \"Seahorse\"");
+
+		std::cout << "\n=== Update: Out of bounds indeces (should fail) ===\n";
+		handler.handleCommand("update people 10 \"Sea Urchin\" 1 \"Bobby \\\"Sea Urchin\\\" John\"");
+		handler.handleCommand("update people 1 \"Bobby John\" 5 \"Fishing\"");
+
+		std::cout << "\n=== Update: Negative indeces (should fail) ===\n";
+		handler.handleCommand("update pets -8 777 1 7777");
+		handler.handleCommand("update pets 2 \"Bella\" -2 \"alleB\"");
+
+		std::cout << "\n=== Update: Invalid index (should fail) ===\n";
+		handler.handleCommand("update pets one 1 1 2");
+		handler.handleCommand("update pets 1 1 one 2");
+		handler.handleCommand("update pets 1one 1 1 2");
+		handler.handleCommand("update pets 1 1 1one 2");
+
+		std::cout << "\n=== Pets Table after invalid-index updates ===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Update: wrong argument count (should fail) ===\n";
+		handler.handleCommand("update people 0 1 \"Alisson\"");
+		handler.handleCommand("update people 0 1 1 \"Alisson\" sixth");
+
+		std::cout << "\n=== People Table after wrong argument count updates ===\n";
+		handler.handleCommand("print people");
+
 		// Step 5: Modify tests
 		std::cout << "\n=== Modify: GPA (column 3) to STRING ===\n";
 		handler.handleCommand("modify people 3 STRING");
