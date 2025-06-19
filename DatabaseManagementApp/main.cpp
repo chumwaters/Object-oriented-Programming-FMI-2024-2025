@@ -195,32 +195,81 @@ int main() {
 		std::cout << "\n=== People Table after wrong argument count updates ===\n";
 		handler.handleCommand("print people");
 
-		// Step 5: Modify tests
-		std::cout << "\n=== Modify: GPA (column 3) to STRING ===\n";
+		// Step 7: Modify tests
+		std::cout << "\n=== People Modify: GPA (column 3) to STRING ===\n";
 		handler.handleCommand("modify people 3 STRING");
 
 		std::cout << "\n=== Table after GPA converted to STRING ===\n";
 		handler.handleCommand("print people");
 
-		std::cout << "\n=== Modify: Update GPA (column 3) where GPA == 4.00 to \"Good\" ===\n";
+		std::cout << "\n=== People Modify: Update GPA (column 3) where GPA == 4.00 to \"Good\" ===\n";
 		handler.handleCommand("update people 3 4.00 3 \"Good\"");
 
 		std::cout << "\n=== Table after update of Carol's GPA to \"Good\" ===\n";
 		handler.handleCommand("print people");
 
-		std::cout << "\n=== Modify: Name (column 1) to INT (expect failures) ===\n";
+		std::cout << "\n=== People Modify: Name (column 1) to INT (expect failures) ===\n";
 		handler.handleCommand("modify people 1 INT");
 
 		std::cout << "\n=== Table after Name converted to INT ===\n";
 		handler.handleCommand("print people");
 
-		std::cout << "\n=== Modify: Attempt to Update Name (column 1) where GPA == \"Good\" "
+		std::cout << "\n=== People Modify: Attempt to Update Name (column 1) where GPA == \"Good\" "
 			"to 1234asdf (should fail) ===\n";
 		handler.handleCommand("update people 3 \"Good\" 1 1234asdf");
 
 		std::cout << "\n=== Table after attempting to set the NONE name where GPA is \"Good\" "
 			"to 1234asdf ===\n";
 		handler.handleCommand("print people");
+
+		std::cout << "\n=== Pets Modify: Name (column 2) to NONE (should fail) ===\n";
+		handler.handleCommand("modify pets 1 NONE");
+
+		std::cout << "\n=== Pets Table after failed conversion of Name to NONE ===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Pets Modify: PetID (column 0) to arbitrary unrecognized type (should fail) ===\n";
+		handler.handleCommand("modify pets 0 SOME_UNKNOWN_TYPE");
+
+		std::cout << "\n=== Pets Table after failed conversion of Name to SOME_UNKNOWN_TYPE ===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Pets Modify: PetID (column 0) to FLOAT ===\n";
+		handler.handleCommand("modify pets 0 FLOAT");
+
+		std::cout << "\n=== Pets Table after converting PetID (column 0) to FLOAT ===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Pets Modify: Updating PetID where Name == \"Buddy\" to 2.50 ===\n";
+		handler.handleCommand("update pets 2 \"Buddy\" 0 2.50");
+
+		std::cout << "\n=== Pets Table after updating the PetID of \"Buddy\" to 2.50 ===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Modify: non_existing_table (should fail) ===\n";
+		handler.handleCommand("modify non_existing_table 0 FLOAT");
+
+		std::cout << "\n=== Modify: Out of bounds index (should fail) ===\n";
+		handler.handleCommand("modify pets 34 DATE");
+
+		std::cout << "\n=== Pets Table after attempting modification with out of bounds index===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Modify: Negative index (should fail) ===\n";
+		handler.handleCommand("modify pets -34 DATE");
+
+		std::cout << "\n=== Pets Table after attempting modification with negative index===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Modify: Invalid index (should fail) ===\n";
+		handler.handleCommand("modify pets \"Peppermint\" DATE");
+
+		std::cout << "\n=== Pets Table after attempting modification with invalid index===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Modify: wrong argument count (should fail) ===\n";
+		handler.handleCommand("modify people 2");
+		handler.handleCommand("modify pets 2 INT fourth");
 
 		// Step 6: Delete tests
 		std::cout << "\n=== People Delete: Delete rows where ID == 99 ===\n";
