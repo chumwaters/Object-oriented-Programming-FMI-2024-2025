@@ -149,9 +149,11 @@ void CommandHandler::handleCommand(const std::string& line) {
 			char* endptr2 = nullptr;
 			long parsedSrchIndex = std::strtol(srchIdxStr, &endptr1, 10);
 			long parsedTrgtIndex = std::strtol(trgtIdxStr, &endptr2, 10);
-			if (*endptr1 != '\0' || *endptr2 != '\0' || 
-				parsedSrchIndex < 0 || parsedTrgtIndex < 0)
-				throw std::runtime_error("Invalid column indices: " + tokens[2] + ' ' + tokens[4]);
+			if (*endptr1 != '\0' || parsedSrchIndex < 0)
+				throw std::runtime_error("Invalid search index: " + tokens[2]);
+
+			if (*endptr2 != '\0' || parsedTrgtIndex < 0)
+				throw std::runtime_error("Invalid target index: " + tokens[4]);
 
 			Table* table = db.getTable(tokens[1]);
 			if (!table) throw std::runtime_error("Table not found: " + tokens[1]);
