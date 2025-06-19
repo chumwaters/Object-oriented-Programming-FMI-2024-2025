@@ -271,7 +271,7 @@ int main() {
 		handler.handleCommand("modify people 2");
 		handler.handleCommand("modify pets 2 INT fourth");
 
-		// Step 6: Delete tests
+		// Step 8: Delete tests
 		std::cout << "\n=== People Delete: Delete rows where ID == 99 ===\n";
 		handler.handleCommand("delete people 0 99");
 
@@ -301,6 +301,38 @@ int main() {
 
 		std::cout << "\n=== Pets Table after deletion ===\n";
 		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Pets Delete: Attempt to delete pet where name contains \"Bel\" " 
+			"(expect nothing to be deleted)===\n";
+		handler.handleCommand("delete pets 2 Bud");
+
+		std::cout << "\n=== Pets Table after deletion attempt ===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Delete: non_existing_table (should fail) ===\n";
+		handler.handleCommand("delete non_existing_table 1 \"Harry Truman\"");
+
+		std::cout << "\n=== Delete: Out of bounds index (should fail) ===\n";
+		handler.handleCommand("delete people 115 \"THE END\"");
+
+		std::cout << "\n=== People Table after attempting deeletion with out of bounds index===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Delete: Negative index (should fail) ===\n";
+		handler.handleCommand("modify pets -1 1337");
+
+		std::cout << "\n=== Pets Table after attempting deletion with negative index===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Delete: Invalid index (should fail) ===\n";
+		handler.handleCommand("delete pets \"Oslo, Norway\" \"Bella\"");
+
+		std::cout << "\n=== Pets Table after attempting deletion with invalid index===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Delete: wrong argument count (should fail) ===\n";
+		handler.handleCommand("delete people 2");
+		handler.handleCommand("delete pets 2 \"Buddy\" fourth");
 
 		// Step 7: Export test
 		std::cout << "\n=== Export: Save people table to file ===\n";
