@@ -130,7 +130,7 @@ void CommandHandler::handleCommand(const std::string& line) {
 			char* endptr = nullptr;
 			long parsedIndex = std::strtol(idxStr, &endptr, 10);
 			if (*endptr != '\0' || parsedIndex < 0)
-				throw std::runtime_error("Invalid column index: " + tokens[1]);
+				throw std::runtime_error("Invalid column index: " + tokens[2]);
 			std::size_t colIndex = static_cast<std::size_t>(parsedIndex);
 
 			Table* table = db.getTable(tokens[1]);
