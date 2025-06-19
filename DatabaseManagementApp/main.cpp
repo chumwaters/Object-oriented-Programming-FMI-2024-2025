@@ -104,7 +104,7 @@ int main() {
 		handler.handleCommand("select 0 1asdf people");
 
 		// Step 6: Update tests
-		std::cout << "\n=== Update: Set GPA to 3.90 for ID == 4 ===\n";
+		std::cout << "\n=== People Update: Set GPA to 3.90 for ID == 4 ===\n";
 		handler.handleCommand("update people 0 4 3 3.90");
 
 		std::cout << "\n=== Table after GPA update ===\n";
@@ -127,6 +127,46 @@ int main() {
 
 		std::cout << "\n=== Pets Table after update ===\n";
 		handler.handleCommand("print pets");
+
+		std::cout << "\n=== People Update: Attempt to null out birthday where "
+			"GPA == 3.90 ===\n";
+		handler.handleCommand("update people 3 3.90 2 NULL");
+
+		std::cout << "\n=== People Table after update ===\n";
+		handler.handleCommand("print people");
+
+		std::cout << "\n=== People Update: Attempt to set birthday where "
+			"Birthday == NULL ===\n";
+		handler.handleCommand("update people 2 NULL 2 15.06.1999");
+
+		std::cout << "\n=== People Table after update ===\n";
+		handler.handleCommand("print people");
+
+		std::cout << "\n=== Pets Update: Attempt to set PetID to invalid value (should fail) ===\n";
+		handler.handleCommand("update pets 2 \"Fluffy\" 0 \"Scruffy\"");
+
+		std::cout << "\n=== Pets Table after update ===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== People Update: Attempt to set Birthday to semantically "
+			"invalid value (should fail) ===\n";
+		handler.handleCommand("update people 1 \"Carol\" 2 \"29.02.2001\"");
+
+		std::cout << "\n=== People Table after update ===\n";
+		handler.handleCommand("print people");
+
+		std::cout << "\n=== People Update: Attempt to set Birthday to syntactically "
+			"invalid value (should fail) ===\n";
+		handler.handleCommand("update people 1 \"Carol\" 2 \"28.02.2001va\"");
+
+		std::cout << "\n=== People Table after update ===\n";
+		handler.handleCommand("print people");
+
+		std::cout << "\n=== People Update: Attempt to set GPA to invalid value (should fail) ===\n";
+		handler.handleCommand("update people 3 15.06.1999 3 6.00.01");
+
+		std::cout << "\n=== People Table after update ===\n";
+		handler.handleCommand("print people");
 
 		// Step 5: Modify tests
 		std::cout << "\n=== Modify: GPA (column 3) to STRING ===\n";
