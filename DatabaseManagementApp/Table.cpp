@@ -309,7 +309,7 @@ Table Table::importFromStream(std::istream& in) {
 
 			DataType type;
 			if (!DataTypeHelpers::fromString(typeStr, type))
-				throw std::runtime_error("Unknown data type: " + typeStr);
+				throw std::runtime_error("Unknown column-data type: " + typeStr);
 
 			table.addColumn(colName, type);
 		}
