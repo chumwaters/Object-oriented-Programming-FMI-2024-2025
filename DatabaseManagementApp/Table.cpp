@@ -83,7 +83,7 @@ void Table::modifyColumnType(size_t colIndex, DataType newType) {
 
 	columns[colIndex].type = newType;
 
-	std::cout << "Modified column to " << static_cast<int>(newType) << ".\n";
+	std::cout << "Modified column to " << DataTypeHelpers::toString(newType) << ".\n";
 	std::cout << "Success count: " << successCount << ", Failures: " << failedRows.size() << '\n';
 
 	if (!failedRows.empty()) {
