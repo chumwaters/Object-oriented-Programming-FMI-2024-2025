@@ -186,58 +186,29 @@ void Table::insert(const std::vector<std::string>& rawValues) {
 	}
 
 	Row row(columns.size());
+	
 	for (size_t i = 0; i < columns.size(); ++i) {
-		// Storing for string parsing in STRING case of switch-case
-		const std::string& val = rawValues[i]; 
+		const std::string& val = rawValues[i];
+		bool ok = false;
 
-		if (val == "NULL") {
-			row[i] = new NullValue();
+		try {
+			row[i] = CellValue::fromString(val, columns[i].type, ok);
+			if (!ok || row[i] == nullptr) {
+				throw std::runtime_error("Invalid value for column '"
+					+ columns[i].name + "': " + val);
+			}
 		}
-		else {
-			try {
-				switch (columns[i].type) {
-				case DataType::INT:
-					row[i] = new IntValue(std::stoll(val));
-					break;
-				case DataType::FLOAT:
-					row[i] = new FloatValue(std::stod(val));
-					break;
-				case DataType::DATE: {
-					bool ok = false;
-
-					Date d = Date::fromString(val, ok);
-					if (!ok) throw std::runtime_error("Invalid date format for value: " + val);
-
-					row[i] = new DateValue(d);
-					break;
-				}
-				case DataType::STRING: {
-					row[i] = new StringValue(val);
-					break;
-				}
-				default:
-					row[i] = new NullValue();
-					break;
-				}
-			}
-			catch (const std::exception& e) {
-				row.clear();
-				throw std::runtime_error("Failed to insert value '" + val + "' into column '"
-					+ columns[i].name + "': " + e.what());
-			}
+		catch (const std::exception& e) {
+			row.clear();
+			throw std::runtime_error("Failed to insert value '" + val + "' into column '"
+				+ columns[i].name + "': " + e.what());
 		}
 	}
 
-	// We exited the for-loop, meaning all cells have been parsed
-	// and the complete row is ready for insertion into the table.
-	try {
-		addRow(row);
-	}
-	catch (...) {
-		row.clear();
-		throw; // rethrowing -- we've cleaned up in time, but any callers
-			   // should know something happened so they can inform the user
-	}
+	// All cells have been successfuly added -- this can only throw if 
+	// allocation fails. In that case the Row d-tor will take care
+	// of the memory, so no need for try-catch here.
+	addRow(row);
 }
 
 void Table::exportToStream(std::ostream& out) const {
