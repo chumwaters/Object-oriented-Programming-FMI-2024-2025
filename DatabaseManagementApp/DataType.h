@@ -15,7 +15,7 @@ enum class DataType
 struct DataTypeHelpers {
     /// @brief Converts a string to its corresponding DataType enum value.
     ///
-    /// Accepts the following case-sensitive string values: "INT", "FLOAT", "DATE", "STRING", and "NULL".
+    /// Accepts the following case-sensitive string values: "INT", "FLOAT", "DATE", and "STRING".
     /// If the string matches a known type, `out` is set to the corresponding DataType and the function returns true.
     /// If the string is unrecognized, `out` is not modified and the function returns false.
     ///
