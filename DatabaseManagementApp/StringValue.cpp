@@ -37,34 +37,34 @@ bool StringValue::convertTo(DataType target, CellValue *&out) const
 {
 	switch (target)
 	{
-	case DataType::STRING:
-		out = new StringValue(value);
-		return true;
-	case DataType::INT:
-	{
-		char *endptr = nullptr;
-		long long val = std::strtoll(value.c_str(), &endptr, 10);
+		case DataType::STRING:
+			out = new StringValue(value);
+			return true;
+		case DataType::INT:
+		{
+			char *endptr = nullptr;
+			long long val = std::strtoll(value.c_str(), &endptr, 10);
 
-		if (*endptr != '\0')
+			if (*endptr != '\0')
+				return false;
+
+			out = new IntValue(val);
+
+			return true;
+		}
+		case DataType::FLOAT:
+		{
+			char *endptr = nullptr;
+			double val = std::strtod(value.c_str(), &endptr);
+
+			if (*endptr != '\0')
+				return false;
+
+			out = new FloatValue(val);
+
+			return true;
+		}
+		default:
 			return false;
-
-		out = new IntValue(val);
-
-		return true;
-	}
-	case DataType::FLOAT:
-	{
-		char *endptr = nullptr;
-		double val = std::strtod(value.c_str(), &endptr);
-
-		if (*endptr != '\0')
-			return false;
-
-		out = new FloatValue(val);
-
-		return true;
-	}
-	default:
-		return false;
-	}
+		}
 }
