@@ -43,7 +43,7 @@ bool StringValue::convertTo(DataType target, CellValue *&out) const
 	case DataType::INT:
 	{
 		char *endptr = nullptr;
-		long long val = std::strtoll(value.c_str(), &endptr, 10); // TODO stackoverflow check if thats how you do it?
+		long long val = std::strtoll(value.c_str(), &endptr, 10);
 
 		if (*endptr != '\0')
 			return false;
