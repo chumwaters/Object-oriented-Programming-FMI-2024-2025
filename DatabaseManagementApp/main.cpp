@@ -202,10 +202,24 @@ int main() {
 		std::cout << "\n=== Table after GPA converted to STRING ===\n";
 		handler.handleCommand("print people");
 
+		std::cout << "\n=== Modify: Update GPA (column 3) where GPA == 4.00 to \"Good\" ===\n";
+		handler.handleCommand("update people 3 4.00 3 \"Good\"");
+
+		std::cout << "\n=== Table after update of Carol's GPA to \"Good\" ===\n";
+		handler.handleCommand("print people");
+
 		std::cout << "\n=== Modify: Name (column 1) to INT (expect failures) ===\n";
 		handler.handleCommand("modify people 1 INT");
 
 		std::cout << "\n=== Table after Name converted to INT ===\n";
+		handler.handleCommand("print people");
+
+		std::cout << "\n=== Modify: Attempt to Update Name (column 1) where GPA == \"Good\" "
+			"to 1234asdf (should fail) ===\n";
+		handler.handleCommand("update people 3 \"Good\" 1 1234asdf");
+
+		std::cout << "\n=== Table after attempting to set the NONE name where GPA is \"Good\" "
+			"to 1234asdf ===\n";
 		handler.handleCommand("print people");
 
 		// Step 6: Delete tests
