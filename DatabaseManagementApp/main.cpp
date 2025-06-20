@@ -377,9 +377,16 @@ int main() {
 		std::cout << "\n=== Insert: No arguments (should fail) ===\n";
 		handler.handleCommand("insert pets");
 
-		// Step 7: Export test
+		// Step 10: Export tests
 		std::cout << "\n=== Export: Save people table to file ===\n";
 		handler.handleCommand("export people people_export.txt");
+
+		std::cout << "\n=== Export: non_existing_table (should fail) ===\n";
+		handler.handleCommand("export non_existing_table shopping_list.txt");
+
+		std::cout << "\n=== Export: wrong argument count (should fail) ===\n";
+		handler.handleCommand("export pets");
+		handler.handleCommand("export pets the_archive.txt the_savefile.txt");
 
 		// Step 8: Save test 
 		std::cout << "\n=== Save: Save database to file ===\n";
