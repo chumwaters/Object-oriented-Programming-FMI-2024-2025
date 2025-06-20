@@ -9,7 +9,7 @@ int main() {
 		Database db("database_file.txt");
 		CommandHandler handler(db);
 
-		// Step 2: Print table
+		// Step 2: Non-paginated Print tests
 		std::cout << "\n=== Print first table: people ===\n";
 		handler.handleCommand("print people");
 
@@ -426,9 +426,12 @@ int main() {
 		handler.handleCommand("export pets");
 		handler.handleCommand("export pets the_archive.txt the_savefile.txt");
 
-		// Step 8: Save test 
+		// Step 12: Save test 
 		std::cout << "\n=== Save: Save database to file ===\n";
 		handler.handleCommand("save");
+
+		std::cout << "\n=== Save: With argument (should fail) ===\n";
+		handler.handleCommand("save database_file1.txt");
 
 		// Step 9: SaveAs test
 		std::cout << "\n=== SaveAs: Save database to new file ===\n";
