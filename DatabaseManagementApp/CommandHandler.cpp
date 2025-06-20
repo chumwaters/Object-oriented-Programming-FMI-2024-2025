@@ -194,7 +194,10 @@ void CommandHandler::handleCommand(const std::string& line) {
 			std::cerr << "Unknown or malformed command: " << command << '\n';
 		}
 	}
-	catch (const std::runtime_error e) {
-		std::cerr << "Error: " << e.what() << '\n';
+	catch (const std::runtime_error& e) {
+		std::cerr << "Runtime Error: " << e.what() << '\n';
+	}
+	catch (const std::logic_error& e) {
+		std::cerr << "Logic Error: " << e.what() << '\n';
 	}
 }
