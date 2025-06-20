@@ -503,11 +503,14 @@ int main() {
 		std::cout << "\n=== Paginated Print: invalid RPN (should fail) ===\n";
 		handler.handleCommand("print books \"Dwight D. Eisenhower\"");
 
-		// Step 14: Paginated select test
+		// Step 18: Paginated select tests
 		std::cout << "\n=== Paginated Select: Name contains 'a' (case-sensitive) ===\n";
-		handler.handleCommand("select 1 a people");
+		handler.handleCommand("select 1 a books");
 
-		// Step 15: Command prompt-and-execute loop
+		std::cout << "\n=== Paginated Select: Name contains empty string ===\n";
+		handler.handleCommand("select 1 \"\" books");
+
+		// Step 19: Command prompt-and-execute loop
 		std::string input;
 
 		while (true) {
