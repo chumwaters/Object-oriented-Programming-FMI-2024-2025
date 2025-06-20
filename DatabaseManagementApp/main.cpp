@@ -6,7 +6,7 @@
 int main() {
 	try {
 		// Step 1: Load Database from file
-		Database db("database_file.txt");
+		Database db("./examples/database_file.txt");
 		CommandHandler handler(db);
 
 		std::cout << "\n=== Help: Show a list of commands and their usage ===\n";
@@ -420,7 +420,7 @@ int main() {
 
 		// Step 11: Export tests
 		std::cout << "\n=== Export: Save people table to file ===\n";
-		handler.handleCommand("export people people_export.txt");
+		handler.handleCommand("export people ./examples/people_export.txt");
 
 		std::cout << "\n=== Export: non_existing_table (should fail) ===\n";
 		handler.handleCommand("export non_existing_table shopping_list.txt");
@@ -434,14 +434,14 @@ int main() {
 		handler.handleCommand("save");
 
 		std::cout << "\n=== Save: With argument (should fail) ===\n";
-		handler.handleCommand("save database_file1.txt");
+		handler.handleCommand("save ./examples/database_file1.txt");
 
 		// Step 13: SaveAs tests
 		std::cout << "\n=== SaveAs: Save database to current working file ===\n";
-		handler.handleCommand("saveas database_file.txt");
+		handler.handleCommand("saveas ./examples/database_file.txt");
 
 		std::cout << "\n=== SaveAs: Save database to new file ===\n";
-		handler.handleCommand("saveas database_file1.txt");
+		handler.handleCommand("saveas ./examples/database_file1.txt");
 
 		std::cout << "\n=== SaveAs: Wrong argument count ===\n";
 		handler.handleCommand("saveas");
@@ -462,7 +462,7 @@ int main() {
 
 		// Step 15: Open tests
 		std::cout << "\n=== Open: Open new file ===\n";
-		handler.handleCommand("open big_table.txt");
+		handler.handleCommand("open ./examples/big_table.txt");
 
 		std::cout << "\n=== Open: showtables of new db ===\n";
 		handler.handleCommand("showtables");
