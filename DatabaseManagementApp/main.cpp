@@ -408,6 +408,13 @@ int main() {
 		std::cout << "\n=== Pets table after attempting to add column of invalid type ===\n";
 		handler.handleCommand("print pets");
 
+		std::cout << "\n=== Addcolumn: non_existing_table (should fail) ===\n";
+		handler.handleCommand("addcolumn non_existing_table Height FLOAT");
+
+		std::cout << "\n=== Addcolumn: wrong argument count (should fail) ===\n";
+		handler.handleCommand("addcolumn people Residency");
+		handler.handleCommand("addcolumn pets Color STRING fourth");
+
 		// Step 11: Export tests
 		std::cout << "\n=== Export: Save people table to file ===\n";
 		handler.handleCommand("export people people_export.txt");
