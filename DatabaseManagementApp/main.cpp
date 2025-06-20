@@ -487,9 +487,21 @@ int main() {
 		std::cout << "\n=== Help: with argument ===\n";
 		handler.handleCommand("help me");
 
-		// Step 13: Paginated print test
+		// Step 17: Paginated print test
 		std::cout << "\n=== Paginated Print: 5 rows per page ===\n";
-		handler.handleCommand("print people 5");
+		handler.handleCommand("print books 5");
+
+		std::cout << "\n=== Paginated Print: 0 rows per page (should call default print) ===\n";
+		handler.handleCommand("print books 0");
+
+		std::cout << "\n=== Paginated Print: big RPN (should print entire table) ===\n";
+		handler.handleCommand("print books 30");
+
+		std::cout << "\n=== Paginated Print: negative RPN (should fail) ===\n";
+		handler.handleCommand("print books -21");
+
+		std::cout << "\n=== Paginated Print: invalid RPN (should fail) ===\n";
+		handler.handleCommand("print books \"Dwight D. Eisenhower\"");
 
 		// Step 14: Paginated select test
 		std::cout << "\n=== Paginated Select: Name contains 'a' (case-sensitive) ===\n";
