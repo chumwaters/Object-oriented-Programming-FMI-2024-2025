@@ -7,6 +7,7 @@
 #include "StringUtils.h"
 #include "TablePrintUtils.h"
 
+#include <iostream>
 #include <fstream>
 
 Table::Table(const std::string& tableName) : name(tableName) {}
@@ -181,33 +182,39 @@ void Table::deleteMatchingRows(std::size_t columnIndex, const std::string& match
 
 void Table::insert(const std::vector<std::string>& rawValues) {
 	if (rawValues.size() != columns.size()) {
-		throw std::runtime_error("Expected " + std::to_string(columns.size()) 
+		throw std::runtime_error("Expected " + std::to_string(columns.size())
 			+ " values, got " + std::to_string(rawValues.size()));
 	}
 
 	Row row(columns.size());
-	
+
 	for (size_t i = 0; i < columns.size(); ++i) {
 		const std::string& val = rawValues[i];
 		bool ok = false;
 
 		try {
 			row[i] = CellValue::fromString(val, columns[i].type, ok);
+
 			if (!ok || row[i] == nullptr) {
-				throw std::runtime_error("Invalid value for column '"
+				throw std::invalid_argument("Invalid value for column '"
 					+ columns[i].name + "': " + val);
 			}
 		}
-		catch (const std::exception& e) {
+		catch (const std::invalid_argument& e) {
 			row.clear();
 			throw std::runtime_error("Failed to insert value '" + val + "' into column '"
 				+ columns[i].name + "': " + e.what());
 		}
+		catch (const std::out_of_range& e) {
+			row.clear();
+			throw std::runtime_error("Failed to insert value '" + val + "' into column '"
+				+ columns[i].name + "': " + e.what());
+		}
+		// Note: no catch (std::exception&) here — so bad_alloc will propagate!
 	}
 
-	// All cells have been successfuly added -- this can only throw if 
-	// allocation fails. In that case the Row d-tor will take care
-	// of the memory, so no need for try-catch here.
+	// All cells were inserted — now addRow() can only fail on allocation,
+	// and in that case the Row destructor will clean up automatically.
 	addRow(row);
 }
 
