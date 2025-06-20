@@ -1,6 +1,8 @@
 #include "CommandHandler.h"
 #include "StringUtils.h"
 
+#include <iostream>
+
 CommandHandler::CommandHandler(Database& db) : db(db) {}
 
 void CommandHandler::printHelp() const {
@@ -192,7 +194,7 @@ void CommandHandler::handleCommand(const std::string& line) {
 			std::cerr << "Unknown or malformed command: " << command << '\n';
 		}
 	}
-	catch (const std::exception& e) {
+	catch (const std::runtime_error e) {
 		std::cerr << "Error: " << e.what() << '\n';
 	}
 }
