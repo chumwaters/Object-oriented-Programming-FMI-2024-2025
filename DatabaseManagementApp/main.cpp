@@ -426,16 +426,23 @@ int main() {
 		handler.handleCommand("export pets");
 		handler.handleCommand("export pets the_archive.txt the_savefile.txt");
 
-		// Step 12: Save test 
+		// Step 12: Save tests
 		std::cout << "\n=== Save: Save database to file ===\n";
 		handler.handleCommand("save");
 
 		std::cout << "\n=== Save: With argument (should fail) ===\n";
 		handler.handleCommand("save database_file1.txt");
 
-		// Step 9: SaveAs test
+		// Step 13: SaveAs tests
+		std::cout << "\n=== SaveAs: Save database to current working file ===\n";
+		handler.handleCommand("saveas database_file.txt");
+
 		std::cout << "\n=== SaveAs: Save database to new file ===\n";
 		handler.handleCommand("saveas database_file1.txt");
+
+		std::cout << "\n=== SaveAs: Wrong argument count ===\n";
+		handler.handleCommand("saveas");
+		handler.handleCommand("saveas database_file1.txt database_file2.txt");
 
 		// Step 10: Close test
 		std::cout << "\n=== Close: Close current database ===\n";
