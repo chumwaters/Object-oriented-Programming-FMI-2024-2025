@@ -5,6 +5,11 @@
 #include <string>
 #include <vector>
 
+
+/// @brief Represents a simple in-memory database containing multiple tables.
+/// 
+/// The Database class manages a collection of Table objects, and handles persistence
+/// of the database to and from a file using a simple textual format.
 class Database {
 private:
 	std::vector<Table> tables;
