@@ -480,9 +480,12 @@ int main() {
 		handler.handleCommand("open");
 		handler.handleCommand("open leftwing_parties.txt rightwing_parties.txt");
 
-		// Step 12: Help test
+		// Step 16: Help test
 		std::cout << "\n=== Help: Show a list of commands and their usage ===\n";
 		handler.handleCommand("help");
+
+		std::cout << "\n=== Help: with argument ===\n";
+		handler.handleCommand("help me");
 
 		// Step 13: Paginated print test
 		std::cout << "\n=== Paginated Print: 5 rows per page ===\n";
