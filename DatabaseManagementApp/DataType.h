@@ -12,6 +12,7 @@ enum class DataType
 	NULLTYPE // Explicit NULL (no value)
 };
 
+/// @brief Utility functions for converting between DataType enum and string representations.
 struct DataTypeHelpers {
     /// @brief Converts a string to its corresponding DataType enum value.
     ///
