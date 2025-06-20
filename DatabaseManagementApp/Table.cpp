@@ -210,7 +210,6 @@ void Table::insert(const std::vector<std::string>& rawValues) {
 			throw std::runtime_error("Failed to insert value '" + val + "' into column '"
 				+ columns[i].name + "': " + e.what());
 		}
-		// Note: no catch (std::exception&) here — so bad_alloc will propagate!
 	}
 
 	// All cells were inserted — now addRow() can only fail on allocation,
