@@ -1,6 +1,8 @@
 #include "Column.h"
 #include "Row.h"
 
+#include <iostream>
+
 /// @brief Print header and separator line under header from a given column structure, and
 /// pre-calculated widths array for padding. Used in printRowsFormatted().
 /// @param columns Metadata describing column structure.

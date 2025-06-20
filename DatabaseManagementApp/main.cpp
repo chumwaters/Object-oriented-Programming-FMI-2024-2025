@@ -524,20 +524,16 @@ int main() {
 
 			if (input.empty()) continue;
 
-			try {
-				handler.handleCommand(input);
-			}
-			catch (const std::exception& e) {
-				std::cerr << "Fatal error: " << e.what() << "\n";
-			}
+			
+			handler.handleCommand(input);	
 		}
 	}
 	catch (const std::bad_alloc& ex) {
 		std::cerr << "Fatal memory error: " << ex.what() << "\n";
 		return 1;
 	}
-	catch (const std::exception& ex) {
-		std::cerr << "Fatal error: " << ex.what() << "\n";
+	catch (const std::runtime_error& re) {
+		std::cerr << "Load error: " << re.what() << "\n";
 		return 1;
 	}
 	catch (...) {

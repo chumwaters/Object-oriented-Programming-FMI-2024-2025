@@ -1,7 +1,7 @@
 #include "Database.h"
 
+#include <iostream>
 #include <fstream>
-#include <exception>
 
 Database::Database(const std::string& file) {
 	load(file);

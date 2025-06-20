@@ -2,6 +2,8 @@
 #include "IntValue.h"
 #include "StringValue.h"
 
+#include <cmath>
+
 std::string FloatValue::toString() const {
 	char buff[32];
 	std::snprintf(buff, sizeof(buff), "%.2f", value);

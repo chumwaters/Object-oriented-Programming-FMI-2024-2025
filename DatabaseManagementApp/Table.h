@@ -5,7 +5,6 @@
 
 #include <string>
 #include <vector>
-#include <exception>
 
 /// @brief Holds rows and columns, supports adding rows and modifying schema
 class Table {
