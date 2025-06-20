@@ -2,9 +2,10 @@
 
 #include "Database.h"
 
+/// @brief Parses and executes user commands on a Database.
 class CommandHandler {
 private:
-	Database& db; ///< Reference to the associated Database instance
+	Database& db;
 
 public:
 	/// @brief CommandHandler constructor from Database reference.
