@@ -457,9 +457,28 @@ int main() {
 		std::cout << "\n=== Close: With argument (should fail) ===\n";
 		handler.handleCommand("close database_file1.txt");
 
-		// Step 11: Open test
-		std::cout << "\n=== Open: Open original file ===\n";
+		// Step 15: Open tests
+		std::cout << "\n=== Open: Open new file ===\n";
 		handler.handleCommand("open big_table.txt");
+
+		std::cout << "\n=== Open: showtables of new db ===\n";
+		handler.handleCommand("showtables");
+
+		std::cout << "\n=== Open: print books table ===\n";
+		handler.handleCommand("print books");
+
+		std::cout << "\n=== Open: save after opening (to check that working file changed) ===\n";
+		handler.handleCommand("save");
+
+		std::cout << "\n=== Open: Open non-existing file (should fail) ===\n";
+		handler.handleCommand("open encyclopedia_britannica.txt");
+
+		std::cout << "\n=== Open: showtables after failed open ===\n";
+		handler.handleCommand("showtables");
+
+		std::cout << "\n=== Open: Wrong argument count ===\n";
+		handler.handleCommand("open");
+		handler.handleCommand("open leftwing_parties.txt rightwing_parties.txt");
 
 		// Step 12: Help test
 		std::cout << "\n=== Help: Show a list of commands and their usage ===\n";
