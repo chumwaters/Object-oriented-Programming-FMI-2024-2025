@@ -444,9 +444,18 @@ int main() {
 		handler.handleCommand("saveas");
 		handler.handleCommand("saveas database_file1.txt database_file2.txt");
 
-		// Step 10: Close test
+		// Step 14: Close tests
 		std::cout << "\n=== Close: Close current database ===\n";
 		handler.handleCommand("close");
+
+		std::cout << "\n=== Close: Attempt to execute unavailable-after-close commands ===\n";
+		handler.handleCommand("showtables");
+		handler.handleCommand("addcolumn people Weight FLOAT");
+		handler.handleCommand("delete pets 2 \"Vulpix\"");
+		handler.handleCommand("save");
+
+		std::cout << "\n=== Close: With argument (should fail) ===\n";
+		handler.handleCommand("close database_file1.txt");
 
 		// Step 11: Open test
 		std::cout << "\n=== Open: Open original file ===\n";
