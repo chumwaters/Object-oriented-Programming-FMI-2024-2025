@@ -2,6 +2,7 @@
 
 #include <string>
 
+/// @brief Represents a calendar date(day, month, year).
 struct Date
 {
 	int day = 1;
