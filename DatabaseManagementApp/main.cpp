@@ -9,6 +9,9 @@ int main() {
 		Database db("database_file.txt");
 		CommandHandler handler(db);
 
+		std::cout << "\n=== Help: Show a list of commands and their usage ===\n";
+		handler.handleCommand("help");
+
 		// Step 2: Non-paginated Print tests
 		std::cout << "\n=== Print first table: people ===\n";
 		handler.handleCommand("print people");
@@ -481,9 +484,6 @@ int main() {
 		handler.handleCommand("open leftwing_parties.txt rightwing_parties.txt");
 
 		// Step 16: Help test
-		std::cout << "\n=== Help: Show a list of commands and their usage ===\n";
-		handler.handleCommand("help");
-
 		std::cout << "\n=== Help: with argument ===\n";
 		handler.handleCommand("help me");
 
@@ -532,8 +532,16 @@ int main() {
 			}
 		}
 	}
+	catch (const std::bad_alloc& ex) {
+		std::cerr << "Fatal memory error: " << ex.what() << "\n";
+		return 1;
+	}
 	catch (const std::exception& ex) {
-		std::cerr << "Load failed: " << ex.what() << '\n';
+		std::cerr << "Fatal error: " << ex.what() << "\n";
+		return 1;
+	}
+	catch (...) {
+		std::cerr << "Unknown fatal error occurred.\n";
 		return 1;
 	}
 	
