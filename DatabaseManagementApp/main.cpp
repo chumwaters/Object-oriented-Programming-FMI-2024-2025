@@ -315,7 +315,7 @@ int main() {
 		std::cout << "\n=== Delete: Out of bounds index (should fail) ===\n";
 		handler.handleCommand("delete people 115 \"THE END\"");
 
-		std::cout << "\n=== People Table after attempting deeletion with out of bounds index===\n";
+		std::cout << "\n=== People Table after attempting deletion with out of bounds index===\n";
 		handler.handleCommand("print pets");
 
 		std::cout << "\n=== Delete: Negative index (should fail) ===\n";
@@ -333,6 +333,49 @@ int main() {
 		std::cout << "\n=== Delete: wrong argument count (should fail) ===\n";
 		handler.handleCommand("delete people 2");
 		handler.handleCommand("delete pets 2 \"Buddy\" fourth");
+
+		// Step 9: Insert tests
+		std::cout << "\n=== People Insert: New row in people table ===\n";
+		handler.handleCommand("insert people 2 8008135 16.08.1994 4.52");
+
+		std::cout << "\n=== People table after insertion===\n";
+		handler.handleCommand("print people");
+
+		std::cout << "\n=== Pets Insert: New row in pets table ===\n";
+		handler.handleCommand("insert pets 3.01 2 \"Vulpix\"");
+
+		std::cout << "\n=== Pets table after insertion===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== People Insert: Attemp to insert too long row in people table ===\n";
+		handler.handleCommand("insert people 2 404 04.04.2000 6.00 Male");
+
+		std::cout << "\n=== People table after failed insertion===\n";
+		handler.handleCommand("print people");
+
+		std::cout << "\n=== Pets Insert: Attemp to insert too short row in pets table ===\n";
+		handler.handleCommand("insert pets 4.99 1");
+
+		std::cout << "\n=== Pets table after failed insertion===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Insert: non_existing_table (should fail) ===\n";
+		handler.handleCommand("insert non_existing_table 5 \"Lyndon B. Johnson\"");
+
+		std::cout << "\n=== People Insert: Attemp to insert entry in people with invalid Birthday ===\n";
+		handler.handleCommand("insert people 2 45752 29.02.2013 5.00");
+
+		std::cout << "\n=== People table after failed insertion===\n";
+		handler.handleCommand("print people");
+
+		std::cout << "\n=== People Insert: Attemp to insert entry in pets with invalid PetID ===\n";
+		handler.handleCommand("insert pets \"Robert Knievel\" 2 \"Evel Knievel\"");
+
+		std::cout << "\n=== People table after failed insertion===\n";
+		handler.handleCommand("print people");
+
+		std::cout << "\n=== Insert: No arguments (should fail) ===\n";
+		handler.handleCommand("insert pets");
 
 		// Step 7: Export test
 		std::cout << "\n=== Export: Save people table to file ===\n";
