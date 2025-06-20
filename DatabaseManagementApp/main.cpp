@@ -377,7 +377,38 @@ int main() {
 		std::cout << "\n=== Insert: No arguments (should fail) ===\n";
 		handler.handleCommand("insert pets");
 
-		// Step 10: Export tests
+		// Step 10: Addcolumn tests
+		std::cout << "\n=== People Addcolumn: New column in people table ===\n";
+		handler.handleCommand("addcolumn people Age INT");
+
+		std::cout << "\n=== People table after new column added===\n";
+		handler.handleCommand("print people");
+
+		std::cout << "\n=== People Addcolumn: Add value in new column ===\n";
+		handler.handleCommand("update people 1 NULL 4 25");
+
+		std::cout << "\n=== People table after value added in new column===\n";
+		handler.handleCommand("print people");
+
+		std::cout << "\n=== People Addcolumn: Attempt to add invalid value in new column ===\n";
+		handler.handleCommand("update people 3 4.52 4 \"Treaty\"");
+
+		std::cout << "\n=== People table after attempting to add invalid value in new column ===\n";
+		handler.handleCommand("print people");
+
+		std::cout << "\n=== Pets Addcolumn: Add Invalid column-type ===\n";
+		handler.handleCommand("addcolumn pets Weight NULL");
+
+		std::cout << "\n=== Pets table after attempting to add column of invalid type ===\n";
+		handler.handleCommand("print pets");
+
+		std::cout << "\n=== Pets Addcolumn: Add Invalid column-type ===\n";
+		handler.handleCommand("addcolumn pets Weight INVALID_TYPENAME");
+
+		std::cout << "\n=== Pets table after attempting to add column of invalid type ===\n";
+		handler.handleCommand("print pets");
+
+		// Step 11: Export tests
 		std::cout << "\n=== Export: Save people table to file ===\n";
 		handler.handleCommand("export people people_export.txt");
 
